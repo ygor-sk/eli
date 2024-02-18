@@ -9,11 +9,20 @@ export interface Room {
     height: number,
     left: number,
     top: number,
+    leftBottomCorner?: Corner,
+    rightBottomCorner?: Corner,
+    leftTopCorner?: Corner,
+    rightTopCorner?: Corner,
     leftWall?: WallItem[],
     rightWall?: WallItem[],
     topWall?: WallItem[],
     bottomWall?: WallItem[],
     lights?: Light[]
+}
+
+export interface Corner {
+    width: number,
+    height: number
 }
 
 export type WallItem = Window | Frame;

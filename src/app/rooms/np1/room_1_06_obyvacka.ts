@@ -8,6 +8,10 @@ export const room_1_06_obyvacka: Room = {
     height: 435,
     left: room_1_12_dielna.left,
     top: room_1_12_dielna.top + room_1_12_dielna.height + 40,
+    rightTopCorner: {
+        width: 215,
+        height: 250
+    },
     leftWall: [
         {
             type: "Frame",

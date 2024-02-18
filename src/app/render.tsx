@@ -1,4 +1,4 @@
-import {Floor, Frame, FrameItem, Light, Room, WallItem, Window} from "./types";
+import {Corner, Floor, Frame, FrameItem, Light, Room, WallItem, Window} from "./types";
 import React, {ReactNode} from "react";
 
 const BOX_SIZE = 60;
@@ -17,7 +17,7 @@ enum Orientation {
 }
 
 interface BoxProps {
-    children: ReactNode,
+    children?: ReactNode,
     left?: number,
     right?: number,
     top?: number,
@@ -26,6 +26,10 @@ interface BoxProps {
     height: number,
     background: string,
     className?: string,
+    borderLeft?: boolean,
+    borderRight?: boolean,
+    borderTop?: boolean,
+    borderBottom?: boolean,
 }
 
 function orientation(wall: Wall): Orientation {
@@ -42,12 +46,19 @@ function orientation(wall: Wall): Orientation {
 }
 
 function Box(props: BoxProps) {
+    function resolveBorder(border?: boolean) {
+        return border === undefined || border ? "1px solid black" : "1px solid white";
+    }
+
     return <div
         className={props.className}
         style={{
             position: "absolute",
             background: props.background,
-            border: "1px solid black",
+            borderLeft: resolveBorder(props.borderLeft),
+            borderRight: resolveBorder(props.borderRight),
+            borderTop: resolveBorder(props.borderTop),
+            borderBottom: resolveBorder(props.borderBottom),
             left: props.left,
             right: props.right,
             top: props.top,
@@ -119,8 +130,27 @@ function renderRoom(room: Room) {
         {renderWallItems(Wall.Right, room.rightWall)}
         {renderWallItems(Wall.Top, room.topWall)}
         {renderWallItems(Wall.Bottom, room.bottomWall)}
+        {renderCorner(true, false, room, room.leftBottomCorner)}
+        {renderCorner(false, false, room, room.rightBottomCorner)}
+        {renderCorner(true, true, room, room.leftTopCorner)}
+        {renderCorner(false, true, room, room.rightTopCorner)}
         {renderLights(room.lights)}
     </Box>;
+}
+
+function renderCorner(isLeft: boolean, isTop: boolean, room: Room, corner?: Corner) {
+    if (corner === undefined) {
+        return <></>;
+    }
+    const left = isLeft ? 0 : room.width - corner.width;
+    const top = isTop ? 0 : room.height - corner.height;
+
+    return <Box
+        left={left - 1} top={top - 1} width={corner.width} height={corner.height}
+        background={"white"}
+        borderLeft={!isLeft} borderRight={isLeft}
+        borderTop={!isTop} borderBottom={isTop}
+    />
 }
 
 function renderWallItems(wall: Wall, wallItems?: WallItem[]) {
