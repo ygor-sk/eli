@@ -25,7 +25,7 @@ export interface Corner {
     height: number
 }
 
-export type WallItem = Blinder | Frame;
+export type WallItem = Blinder | Frame | PyrSensor | WallLight;
 
 export interface Blinder {
     type: "Blinder"
@@ -60,4 +60,18 @@ export interface Light {
     left: number,
     top: number,
 }
+
+export interface PyrSensor {
+    type: "PyrSensor",
+    position: number,
+}
+
+export interface WallLight {
+    type: "WallLight",
+    circuit: string,
+    position: number,
+    offset?: number
+}
+
+
 

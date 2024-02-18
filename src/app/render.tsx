@@ -1,7 +1,7 @@
-import {Blinder, Corner, Floor, Frame, FrameItem, Light, Room, WallItem} from "./types";
+import {Blinder, Corner, Floor, Frame, FrameItem, Light, PyrSensor, Room, WallItem, WallLight} from "./types";
 import React, {ReactNode} from "react";
 
-const BOX_SIZE = 24;
+export const BOX_SIZE = 24;
 const NESTED_BOX_MARGIN = 4;
 
 enum Wall {
@@ -160,6 +160,10 @@ function renderWallItems(wall: Wall, wallItems?: WallItem[]) {
                 return renderFrame(wall, wallItem);
             case "Blinder":
                 return renderBlinder(wall, wallItem)
+            case "PyrSensor":
+                return renderPyrSensor(wall, wallItem)
+            case "WallLight":
+                return renderWallLight(wall, wallItem)
         }
     })
 }
@@ -196,8 +200,6 @@ function rectangleProps(wall: Wall, position: number, shortSize: number, longSiz
 
 function renderFrame(wall: Wall, frame: Frame) {
     const props = rectangleProps(wall, frame.position, BOX_SIZE, frame.items.length * BOX_SIZE);
-
-
     return <Box {...props} background={"yellow"}>
         {renderFrameItems(orientation(wall), frame.items)}
     </Box>;
@@ -245,11 +247,15 @@ function renderLights(lights?: Light[]) {
 
 function renderBlinder(wall: Wall, blinder: Blinder) {
     const props = rectangleProps(wall, blinder.position, BOX_SIZE, blinder.size, BOX_SIZE + 4);
+    return <Box {...props} background={"red"}>P</Box>
+}
 
-    return <Box
-        left={props.left} bottom={props.bottom} width={props.width} height={props.height}
-        background={"red"}
-    >
+function renderPyrSensor(wall: Wall, pyrSensor: PyrSensor) {
+    const props = rectangleProps(wall, pyrSensor.position, BOX_SIZE, BOX_SIZE);
+    return <Box {...props} background={"brown"}>P</Box>
+}
 
-    </Box>
+function renderWallLight(wall: Wall, wallLight: WallLight) {
+    const props = rectangleProps(wall, wallLight.position, BOX_SIZE, BOX_SIZE, wallLight.offset);
+    return <Box {...props} background={"green"}>{wallLight.circuit}</Box>
 }

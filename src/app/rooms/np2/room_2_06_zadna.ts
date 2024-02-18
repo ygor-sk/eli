@@ -1,3 +1,4 @@
+import {BOX_SIZE} from "../../render";
 import {Room} from "../../types";
 import {room_1_06_obyvacka} from "../np1/room_1_06_obyvacka";
 
@@ -14,8 +15,9 @@ export const room_2_06_zadna: Room = {
                 {type: "Lan"}, {type: "Socket"}, {type: "Socket"}, {type: "Socket"}, {type: "Socket"},
             ],
         },
-        { type: "Blinder", position: 30, size: 240},
+        { type: "Blinder", position: 50, size: 220},
         { type: "Blinder", position: 280, size: 80},
+        { type: "WallLight", position: 10, offset: BOX_SIZE + 4, circuit: "Ext.1"},
     ],
     leftWall: [
         {type: "Frame", position: 100, items: [{type: "Socket"}, {type: "Socket"}]},
@@ -23,6 +25,7 @@ export const room_2_06_zadna: Room = {
     ],
     topWall: [
         {type: "Frame", position: 300, items: [{type: "Socket"}]},
+        {type: "PyrSensor", position: 380 - BOX_SIZE - 1},
     ],
     rightWall: [
         {
