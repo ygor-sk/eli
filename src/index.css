@@ -11,3 +11,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.Kumbal {
+  z-index: 10;
+  padding-right: 15px;
+  background-clip: content-box;
+  box-shadow: inset 0 0 0 15px white; /* <-- 10px spread radius */
+}
+
+.menu {
+  float: left;
+  width: 10%;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.menu div {
+  padding: 16px;
+}
+
+.content {
+  float: right;
+  width: 90%;
+}
