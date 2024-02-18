@@ -1,7 +1,7 @@
-import {Corner, Floor, Frame, FrameItem, Light, Room, WallItem, Window} from "./types";
+import {Blinder, Corner, Floor, Frame, FrameItem, Light, Room, WallItem} from "./types";
 import React, {ReactNode} from "react";
 
-const BOX_SIZE = 60;
+const BOX_SIZE = 24;
 const NESTED_BOX_MARGIN = 4;
 
 enum Wall {
@@ -112,7 +112,7 @@ function NestedBox(props: NestedBoxProps) {
 
 export function renderFloor(floor: Floor) {
     return (
-        <div style={{position: "relative", margin: 20}}>
+        <div style={{position: "relative", margin: 60}}>
             {
                 floor.rooms.map(room => renderRoom(room))
             }
@@ -158,42 +158,47 @@ function renderWallItems(wall: Wall, wallItems?: WallItem[]) {
         switch (wallItem.type) {
             case "Frame":
                 return renderFrame(wall, wallItem);
-            case "Window":
-                return renderWindow(wallItem)
+            case "Blinder":
+                return renderBlinder(wall, wallItem)
         }
     })
 }
 
-function renderFrame(wall: Wall, frame: Frame) {
-    type Size = { width: number, height: number }
-    type FrameBoxProps = Size & {
-        left?: number, right?: number,
-        top?: number, bottom?: number,
-    };
+type RectangleSize = { width: number, height: number }
 
-    function size(): Size {
+type RectangleProps = RectangleSize & {
+    left?: number, right?: number,
+    top?: number, bottom?: number,
+};
+
+function rectangleProps(wall: Wall, position: number, shortSize: number, longSize: number, offset: number = 0): RectangleProps {
+    function size(): RectangleSize {
         switch (orientation(wall)) {
             case Orientation.Horizontal:
-                return {width: frame.items.length * BOX_SIZE, height: BOX_SIZE}
+                return {width: longSize, height: shortSize}
             case Orientation.Vertical:
-                return {width: BOX_SIZE, height: frame.items.length * BOX_SIZE}
+                return {width: shortSize, height: longSize}
         }
     }
 
-    function calculateProps(): FrameBoxProps {
-        switch (wall) {
-            case Wall.Top:
-                return {...size(), top: 0, left: frame.offset}
-            case Wall.Bottom:
-                return {...size(), bottom: 0, left: frame.offset}
-            case Wall.Left:
-                return {...size(), bottom: frame.offset, left: 0}
-            case Wall.Right:
-                return {...size(), bottom: frame.offset, right: 0}
-        }
+    switch (wall) {
+        case Wall.Top:
+            return {...size(), top: -offset, left: position}
+        case Wall.Bottom:
+            return {...size(), bottom: -offset, left: position}
+        case Wall.Left:
+            return {...size(), bottom: position, left: -offset}
+        case Wall.Right:
+            return {...size(), bottom: position, right: -offset}
     }
+}
 
-    return <Box {...calculateProps()} background={"yellow"}>
+
+function renderFrame(wall: Wall, frame: Frame) {
+    const props = rectangleProps(wall, frame.position, BOX_SIZE, frame.items.length * BOX_SIZE);
+
+
+    return <Box {...props} background={"yellow"}>
         {renderFrameItems(orientation(wall), frame.items)}
     </Box>;
 }
@@ -215,7 +220,9 @@ function renderFrameItem(frameItem: FrameItem) {
         case "Socket":
             return "E";
         case "Switch":
-            return "K";
+            return "K" + frameItem.buttons;
+        case "Lan":
+            return "L";
     }
     // return <Box
     //     width={BOX_SIZE} height={BOX_SIZE}
@@ -228,7 +235,7 @@ function renderFrameItem(frameItem: FrameItem) {
 function renderLights(lights?: Light[]) {
     return (lights || []).map(light => {
         return <Box
-            left={light.left - BOX_SIZE / 2} bottom={light.bottom - BOX_SIZE / 2}
+            left={light.left - BOX_SIZE / 2} top={light.top - BOX_SIZE / 2}
             width={BOX_SIZE} height={BOX_SIZE}
             background={"green"}>
             {light.circuit}
@@ -236,11 +243,13 @@ function renderLights(lights?: Light[]) {
     })
 }
 
-function renderWindow(window: Window) {
+function renderBlinder(wall: Wall, blinder: Blinder) {
+    const props = rectangleProps(wall, blinder.position, BOX_SIZE, blinder.size, BOX_SIZE + 4);
+
     return <Box
-        left={-20 - BOX_SIZE} bottom={window.offset} width={BOX_SIZE} height={BOX_SIZE}
-        background={"lightgreen"}
+        left={props.left} bottom={props.bottom} width={props.width} height={props.height}
+        background={"red"}
     >
-        {window.type} / {window.blinder}
+
     </Box>
 }

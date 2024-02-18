@@ -25,21 +25,21 @@ export interface Corner {
     height: number
 }
 
-export type WallItem = Window | Frame;
+export type WallItem = Blinder | Frame;
 
-export interface Window {
-    type: "Window"
-    offset: number
-    blinder: boolean
+export interface Blinder {
+    type: "Blinder"
+    position: number,
+    size: number,
 }
 
 export interface Frame {
     type: "Frame",
-    offset: number
+    position: number
     items: FrameItem[]
 }
 
-export type FrameItem = Switch | Socket;
+export type FrameItem = Switch | Socket | Lan;
 
 export interface Switch {
     type: "Switch"
@@ -50,10 +50,14 @@ export interface Socket {
     type: "Socket"
 }
 
+export interface Lan {
+    type: "Lan"
+}
+
 export interface Light {
-    type: "Light",
+    type: "Bulb" | "Point",
     circuit: string,
     left: number,
-    bottom: number,
+    top: number,
 }
 

@@ -15,19 +15,19 @@ export const room_1_06_obyvacka: Room = {
     leftWall: [
         {
             type: "Frame",
-            offset: 100,
+            position: 100,
             items: [
                 {type: "Socket"},
                 {type: "Socket"},
                 {type: "Switch", buttons: 2},
             ]
         },
-        {type: "Window", offset: 200, blinder: false},
+        {type: "Blinder", position: 200, size: 80},
     ],
     rightWall: [
         {
             type: "Frame",
-            offset: 100,
+            position: 100,
             items: [
                 {type: "Socket"},
                 {type: "Switch", buttons: 6},
@@ -38,7 +38,7 @@ export const room_1_06_obyvacka: Room = {
     topWall: [
         {
             type: "Frame",
-            offset: 100,
+            position: 100,
             items: [
                 {type: "Socket"},
                 {type: "Switch", buttons: 6},
@@ -49,7 +49,7 @@ export const room_1_06_obyvacka: Room = {
     bottomWall: [
         {
             type: "Frame",
-            offset: 100,
+            position: 100,
             items: [
                 {type: "Socket"},
                 {type: "Switch", buttons: 6},
