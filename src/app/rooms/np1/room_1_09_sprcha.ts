@@ -1,10 +1,22 @@
 import {room_1_08_wc} from "./room_1_08_wc";
+import {frame, knxSwitch, point, Room, socket, wallLight} from "../../types";
 
-export const room_1_09_sprcha = {
+export const room_1_09_sprcha: Room = {
     id: "1.09",
     name: "Sprcha",
     width: 120,
     height: 235,
     left: room_1_08_wc.left + room_1_08_wc.width + 15,
-    top: room_1_08_wc.top
+    top: room_1_08_wc.top,
+    leftWall: [
+        frame(20, [socket()]),
+        wallLight("1.09b", 100)
+    ],
+    bottomWall: [
+        frame(30, [knxSwitch(2)])
+    ],
+    lights: [
+        point("1.09a", 60, 60),
+        point("1.09a", 60, 160),
+    ]
 };

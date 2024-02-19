@@ -25,7 +25,7 @@ export interface Corner {
     height: number
 }
 
-export type WallItem = Blinder | Frame | PyrSensor | WallLight;
+export type WallItem = Blinder | Frame | PyrSensor | WallLight | Display;
 
 export interface Blinder {
     type: "Blinder"
@@ -39,11 +39,13 @@ export interface Frame {
     type: "Frame",
     position: number
     items: FrameItem[]
+    offset?: number
 }
 
-export const frame = (position: number, items: FrameItem[]): Frame => ({type: "Frame", position, items})
+export const frame = (position: number, items: FrameItem[], offset?: number): Frame =>
+    ({type: "Frame", position, items, offset})
 
-export type FrameItem = Switch | Socket | Lan;
+export type FrameItem = Switch | Socket | Lan | Tunnel;
 
 export interface Switch {
     type: "Switch"
@@ -63,6 +65,12 @@ export interface Lan {
 }
 
 export const lan = (): Lan => ({type: "Lan"})
+
+export interface Tunnel {
+    type: "Tunnel"
+}
+
+export const tunnel = (): Tunnel => ({type: "Tunnel"})
 
 export interface Light {
     type: "Bulb" | "Point",
@@ -90,4 +98,12 @@ export interface WallLight {
 
 export const wallLight = (circuit: string, position: number, offset?: number): WallLight =>
     ({type: "WallLight", circuit, position, offset})
+
+export interface Display {
+    type: "Display",
+    position: number,
+}
+
+export const display = (position: number): Display =>
+    ({type: "Display", position})
 

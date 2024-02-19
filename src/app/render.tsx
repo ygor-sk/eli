@@ -1,4 +1,4 @@
-import {Blinder, Corner, Floor, Frame, FrameItem, Light, PyrSensor, Room, WallItem, WallLight} from "./types";
+import {Blinder, Corner, Display, Floor, Frame, FrameItem, Light, PyrSensor, Room, WallItem, WallLight} from "./types";
 import React, {ReactNode} from "react";
 
 export const BOX_SIZE = 24;
@@ -164,6 +164,8 @@ function renderWallItems(wall: Wall, wallItems?: WallItem[]) {
                 return renderPyrSensor(wall, wallItem)
             case "WallLight":
                 return renderWallLight(wall, wallItem)
+            case "Display":
+                return renderDisplay(wall, wallItem)
         }
     })
 }
@@ -199,7 +201,7 @@ function rectangleProps(wall: Wall, position: number, shortSize: number, longSiz
 
 
 function renderFrame(wall: Wall, frame: Frame) {
-    const props = rectangleProps(wall, frame.position, BOX_SIZE, frame.items.length * BOX_SIZE);
+    const props = rectangleProps(wall, frame.position, BOX_SIZE, frame.items.length * BOX_SIZE, frame.offset);
     return <Box {...props} background={"yellow"}>
         {renderFrameItems(orientation(wall), frame.items)}
     </Box>;
@@ -225,13 +227,9 @@ function renderFrameItem(frameItem: FrameItem) {
             return "K" + frameItem.buttons;
         case "Lan":
             return "L";
+        case "Tunnel":
+            return "T";
     }
-    // return <Box
-    //     width={BOX_SIZE} height={BOX_SIZE}
-    //     background={"lightgreen"}
-    // >
-    //     {frameItem.type}
-    // </Box>
 }
 
 function renderLights(lights?: Light[]) {
@@ -259,3 +257,9 @@ function renderWallLight(wall: Wall, wallLight: WallLight) {
     const props = rectangleProps(wall, wallLight.position, BOX_SIZE, BOX_SIZE, wallLight.offset);
     return <Box {...props} background={"green"}>{wallLight.circuit}</Box>
 }
+
+function renderDisplay(wall: Wall, display: Display) {
+    const props = rectangleProps(wall, display.position, BOX_SIZE, BOX_SIZE * 2);
+    return <Box {...props} background={"aqua"}>D</Box>
+}
+
