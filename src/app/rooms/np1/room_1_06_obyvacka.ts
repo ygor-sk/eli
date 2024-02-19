@@ -1,4 +1,17 @@
-import {blinder, bulb, frame, knxSwitch, lan, point, pyrSensor, Room, socket, special, tunnel} from "../../types";
+import {
+    blinder,
+    bulb,
+    frame,
+    knxSwitch,
+    lan,
+    point,
+    pyrSensor,
+    Room,
+    socket,
+    special,
+    tunnel,
+    wallLight
+} from "../../types";
 import {room_1_12_dielna} from "./room_1_12_dielna";
 import {BOX_SIZE} from "../../render";
 
@@ -35,7 +48,9 @@ export const room_1_06_obyvacka: Room = {
         blinder(360, 150),
         frame(520, [knxSwitch(8), knxSwitch(6)]),
         special(960, "Sirena"),
-        special(1000, "Zvoncek")
+        special(1000, "Zvoncek"),
+        wallLight("Ee1.5", 10, BOX_SIZE + 4),
+        wallLight("Ee1.4", 380 + 15 + 280, BOX_SIZE + 4),
     ],
     ceilingItems: [
         bulb("106.1", 160, 220),

@@ -13,6 +13,9 @@ export const room_1_13_garaz: Room = {
         width: 115,
         height: 155
     },
+    rightWall: [
+        wallLight("Ee1.1", 380, BOX_SIZE + 4)
+    ],
     leftWall: [
         frame(100, [knxSwitch(2)], -115),
         special(120, "Display", -115),

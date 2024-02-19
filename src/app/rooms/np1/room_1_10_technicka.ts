@@ -1,5 +1,6 @@
 import {room_1_09_sprcha} from "./room_1_09_sprcha";
-import {frame, knxSwitch, point, Room, socket} from "../../types";
+import {frame, knxSwitch, point, Room, socket, wallLight} from "../../types";
+import {BOX_SIZE} from "../../render";
 
 export const room_1_10_technicka: Room = {
     id: "1.10",
@@ -17,6 +18,9 @@ export const room_1_10_technicka: Room = {
     ],
     bottomWall: [
         frame(100, [knxSwitch(1)])
+    ],
+    topWall: [
+        wallLight("Ee1.1", 180, BOX_SIZE + 4)
     ],
     ceilingItems: [
         point("1.10a", 70, 80),

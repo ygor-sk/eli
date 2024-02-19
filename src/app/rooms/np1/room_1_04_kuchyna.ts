@@ -1,5 +1,6 @@
 import {room_1_06_obyvacka} from "./room_1_06_obyvacka";
-import {blinder, bulb, frame, knxSwitch, point, pyrSensor, rawCable, Room, socket} from "../../types";
+import {blinder, bulb, frame, knxSwitch, point, pyrSensor, rawCable, Room, socket, wallLight} from "../../types";
+import {BOX_SIZE} from "../../render";
 
 export const room_1_04_kuchyna: Room = {
     id: "1.04",
@@ -18,6 +19,7 @@ export const room_1_04_kuchyna: Room = {
         frame(350, [knxSwitch(8)]),
         blinder(50, 200),
         blinder(260, 80),
+        wallLight("Ee1.3", 30, BOX_SIZE + 4),
     ],
     bottomWall: [
         frame(10, [socket(), socket(), socket(), socket()]),

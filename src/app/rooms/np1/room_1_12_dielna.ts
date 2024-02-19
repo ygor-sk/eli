@@ -1,4 +1,5 @@
-import {blinder, bulb, frame, knxSwitch, pyrSensor, Room, socket} from "../../types";
+import {blinder, bulb, frame, knxSwitch, pyrSensor, Room, socket, wallLight} from "../../types";
+import {BOX_SIZE} from "../../render";
 
 export const room_1_12_dielna: Room = {
     id: "1.12",
@@ -9,6 +10,7 @@ export const room_1_12_dielna: Room = {
         frame(100, [knxSwitch(2)]),
         frame(200, [socket(), socket()]),
         blinder(140, 200),
+        wallLight("Ee1.6", 50, BOX_SIZE + 4)
     ],
     ceilingItems: [
         bulb("1.03a", 80, 100),
