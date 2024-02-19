@@ -1,4 +1,4 @@
-import {Room} from "../../types";
+import {bulb, Room} from "../../types";
 
 export const room_1_12_dielna: Room = {
     id: "1.12",
@@ -6,9 +6,9 @@ export const room_1_12_dielna: Room = {
     width: 315, height: 410,
     left: 0, top: 0,
     lights: [
-        {type: "Bulb", left: 80, top: 100, circuit: "1.03a"},
-        {type: "Bulb", left: 270, top: 100, circuit: "1.03a"},
-        {type: "Bulb", left: 80, top: 300, circuit: "1.03a"},
-        {type: "Bulb", left: 270, top: 300, circuit: "1.03a"},
+        bulb("1.03a", 80, 100),
+        bulb("1.03a", 270, 100),
+        bulb("1.03a", 80, 300),
+        bulb("1.03a", 270, 300),
     ]
 };

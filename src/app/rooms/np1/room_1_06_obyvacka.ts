@@ -1,4 +1,4 @@
-import {Room} from "../../types";
+import {blinder, frame, knxSwitch, Room, socket} from "../../types";
 import {room_1_12_dielna} from "./room_1_12_dielna";
 
 export const room_1_06_obyvacka: Room = {
@@ -13,48 +13,12 @@ export const room_1_06_obyvacka: Room = {
         height: 250
     },
     leftWall: [
-        {
-            type: "Frame",
-            position: 100,
-            items: [
-                {type: "Socket"},
-                {type: "Socket"},
-                {type: "Switch", buttons: 2},
-            ]
-        },
-        {type: "Blinder", position: 200, size: 80},
+        frame(100, [socket(), socket(), knxSwitch(2)]),
+        blinder(200, 80),
     ],
     rightWall: [
-        {
-            type: "Frame",
-            position: 100,
-            items: [
-                {type: "Socket"},
-                {type: "Switch", buttons: 6},
-                {type: "Switch", buttons: 2},
-            ]
-        }
-    ],
+        frame(100, [socket(), knxSwitch(6), knxSwitch(2),])],
     topWall: [
-        {
-            type: "Frame",
-            position: 100,
-            items: [
-                {type: "Socket"},
-                {type: "Switch", buttons: 6},
-                {type: "Switch", buttons: 2},
-            ]
-        }
-    ],
-    bottomWall: [
-        {
-            type: "Frame",
-            position: 100,
-            items: [
-                {type: "Socket"},
-                {type: "Switch", buttons: 6},
-                {type: "Switch", buttons: 2},
-            ]
-        }
-    ],
+        frame(100, [socket(), knxSwitch(6), knxSwitch(2)])],
+    bottomWall: [],
 };

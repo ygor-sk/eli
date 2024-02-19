@@ -1,5 +1,5 @@
 import {BOX_SIZE} from "../../render";
-import {Room} from "../../types";
+import {blinder, bulb, frame, knxSwitch, lan, point, pyrSensor, Room, socket, wallLight} from "../../types";
 import {room_1_06_obyvacka} from "../np1/room_1_06_obyvacka";
 
 export const room_2_06_zadna: Room = {
@@ -10,40 +10,33 @@ export const room_2_06_zadna: Room = {
     left: room_1_06_obyvacka.left,
     top: room_1_06_obyvacka.top,
     bottomWall: [
-        {
-            type: "Frame", position: 120, items: [
-                {type: "Lan"}, {type: "Socket"}, {type: "Socket"}, {type: "Socket"}, {type: "Socket"},
-            ],
-        },
-        { type: "Blinder", position: 50, size: 220},
-        { type: "Blinder", position: 280, size: 80},
-        { type: "WallLight", position: 10, offset: BOX_SIZE + 4, circuit: "Ext.1"},
+        frame(120, [
+            lan(), socket(), socket(), socket(), socket(),
+        ]),
+        blinder(50, 220),
+        blinder(280, 80),
+        wallLight("Ext.1", 10, BOX_SIZE + 4),
     ],
     leftWall: [
-        {type: "Frame", position: 100, items: [{type: "Socket"}, {type: "Socket"}]},
-        {type: "Frame", position: 250, items: [{type: "Socket"}, {type: "Socket"}]},
+        frame(100, [socket(), socket()]),
+        frame(250, [socket(), socket()]),
     ],
     topWall: [
-        {type: "Frame", position: 300, items: [{type: "Socket"}]},
-        {type: "PyrSensor", position: 380 - BOX_SIZE - 1},
+        frame(300, [socket()]),
+        pyrSensor(380 - BOX_SIZE - 1),
     ],
     rightWall: [
-        {
-            type: "Frame", position: 150, items: [
-                {type: "Lan"}, {type: "Socket"}, {type: "Socket"}, {type: "Socket"},
-            ],
-        },
-        {
-            type: "Frame", position: 100, items: [
-                {type: "Switch", buttons: 8,},
-            ],
-        }
-    ],
+        frame(150, [
+            lan(), socket(), socket(), socket(),
+        ]),
+        frame(100, [
+            knxSwitch(8),
+        ])],
     lights: [
-        {type: "Bulb", circuit: "2.06a", left: 190, top: 200},
-        {type: "Point", circuit: "2.06b", left: 100, top: 100},
-        {type: "Point", circuit: "2.06b", left: 280, top: 100},
-        {type: "Point", circuit: "2.06b", left: 100, top: 300},
-        {type: "Point", circuit: "2.06b", left: 280, top: 300},
+        bulb("2.06a", 190, 200),
+        point("2.06b", 100, 100),
+        point("2.06b", 280, 100),
+        point("2.06b", 100, 300),
+        point("2.06b", 280, 300),
     ]
 };

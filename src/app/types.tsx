@@ -33,11 +33,15 @@ export interface Blinder {
     size: number,
 }
 
+export const blinder = (position: number, size: number): Blinder => ({type: "Blinder", position, size})
+
 export interface Frame {
     type: "Frame",
     position: number
     items: FrameItem[]
 }
+
+export const frame = (position: number, items: FrameItem[]): Frame => ({type: "Frame", position, items})
 
 export type FrameItem = Switch | Socket | Lan;
 
@@ -46,13 +50,19 @@ export interface Switch {
     buttons: 1 | 2 | 4 | 6 | 8
 }
 
+export const knxSwitch = (buttons: 1 | 2 | 4 | 6 | 8): Switch => ({type: "Switch", buttons})
+
 export interface Socket {
     type: "Socket"
 }
 
+export const socket = (): Socket => ({type: "Socket"})
+
 export interface Lan {
     type: "Lan"
 }
+
+export const lan = (): Lan => ({type: "Lan"})
 
 export interface Light {
     type: "Bulb" | "Point",
@@ -61,10 +71,15 @@ export interface Light {
     top: number,
 }
 
+export const bulb = (circuit: string, left: number, top: number): Light => ({type: "Bulb", left, top, circuit})
+export const point = (circuit: string, left: number, top: number): Light => ({type: "Point", left, top, circuit})
+
 export interface PyrSensor {
     type: "PyrSensor",
     position: number,
 }
+
+export const pyrSensor = (position: number): PyrSensor => ({type: "PyrSensor", position})
 
 export interface WallLight {
     type: "WallLight",
@@ -73,5 +88,6 @@ export interface WallLight {
     offset?: number
 }
 
-
+export const wallLight = (circuit: string, position: number, offset?: number): WallLight =>
+    ({type: "WallLight", circuit, position, offset})
 

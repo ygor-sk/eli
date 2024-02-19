@@ -247,7 +247,7 @@ function renderLights(lights?: Light[]) {
 
 function renderBlinder(wall: Wall, blinder: Blinder) {
     const props = rectangleProps(wall, blinder.position, BOX_SIZE, blinder.size, BOX_SIZE + 4);
-    return <Box {...props} background={"red"}>P</Box>
+    return <Box {...props} background={"red"}>Z</Box>
 }
 
 function renderPyrSensor(wall: Wall, pyrSensor: PyrSensor) {
