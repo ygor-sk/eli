@@ -1,8 +1,8 @@
 import {room_1_05_satnik} from "./room_1_05_satnik";
-import {blinder, frame, knxSwitch, lan, pyrSensor, socket, tunnel} from "../../types";
+import {Room, blinder, frame, knxSwitch, lan, pyrSensor, socket, tunnel} from "../../types";
 import {BOX_SIZE} from "../../render";
 
-export const room_1_02_hostovska = {
+export const room_1_02_hostovska: Room = {
     id: "1.02",
     name: "Hostovska",
     width: 300,

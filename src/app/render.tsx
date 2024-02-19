@@ -1,8 +1,21 @@
-import {Blinder, Corner, Display, Floor, Frame, FrameItem, Light, PyrSensor, Room, WallItem, WallLight} from "./types";
+import {
+    Blinder,
+    Corner,
+    Floor,
+    Frame,
+    FrameItem,
+    Light,
+    PyrSensor,
+    RawCable,
+    Room,
+    Special,
+    WallItem,
+    WallLight
+} from "./types";
 import React, {ReactNode} from "react";
 
-export const BOX_SIZE = 24;
-const NESTED_BOX_MARGIN = 4;
+export const BOX_SIZE = 14;
+const NESTED_BOX_MARGIN = 2;
 
 enum Wall {
     Top,
@@ -89,18 +102,18 @@ function NestedBox(props: NestedBoxProps) {
     function bottom() {
         switch (props.orientation) {
             case Orientation.Vertical:
-                return BOX_SIZE * props.index + margin;
+                return BOX_SIZE * props.index + margin - 1;
             case Orientation.Horizontal:
-                return margin;
+                return margin - 1;
         }
     }
 
     function left() {
         switch (props.orientation) {
             case Orientation.Vertical:
-                return margin;
+                return margin - 1;
             case Orientation.Horizontal:
-                return BOX_SIZE * props.index + margin;
+                return BOX_SIZE * props.index + margin - 1;
         }
     }
 
@@ -125,7 +138,12 @@ function renderRoom(room: Room) {
         left={room.left} top={room.top} width={room.width} height={room.height}
         background={"grey"} className={room.name}
     >
-        <div className="room-name">{room.id} / {room.name}</div>
+        <div className="room-name" style={{
+            paddingLeft: room.nameOffset?.horizontal,
+            paddingBottom: room.nameOffset?.vertical
+        }}>
+            {room.id} / {room.name}
+        </div>
         {renderWallItems(Wall.Left, room.leftWall)}
         {renderWallItems(Wall.Right, room.rightWall)}
         {renderWallItems(Wall.Top, room.topWall)}
@@ -164,8 +182,10 @@ function renderWallItems(wall: Wall, wallItems?: WallItem[]) {
                 return renderPyrSensor(wall, wallItem)
             case "WallLight":
                 return renderWallLight(wall, wallItem)
-            case "Display":
-                return renderDisplay(wall, wallItem)
+            case "Special":
+                return renderSpecial(wall, wallItem)
+            case "RawCable":
+                return renderRawCable(wall, wallItem)
         }
     })
 }
@@ -237,7 +257,7 @@ function renderLights(lights?: Light[]) {
         return <Box
             left={light.left - BOX_SIZE / 2} top={light.top - BOX_SIZE / 2}
             width={BOX_SIZE} height={BOX_SIZE}
-            background={"green"}>
+            background={light.type === 'Bulb' ? "yellow" : "orange"}>
             {light.circuit}
         </Box>
     })
@@ -258,8 +278,13 @@ function renderWallLight(wall: Wall, wallLight: WallLight) {
     return <Box {...props} background={"green"}>{wallLight.circuit}</Box>
 }
 
-function renderDisplay(wall: Wall, display: Display) {
-    const props = rectangleProps(wall, display.position, BOX_SIZE, BOX_SIZE * 2);
-    return <Box {...props} background={"aqua"}>D</Box>
+function renderSpecial(wall: Wall, special: Special) {
+    const props = rectangleProps(wall, special.position, BOX_SIZE, BOX_SIZE);
+    return <Box {...props} background={"aqua"}>{special.name}</Box>
+}
+
+function renderRawCable(wall: Wall, rawCable: RawCable) {
+    const props = rectangleProps(wall, rawCable.position, BOX_SIZE, BOX_SIZE);
+    return <Box {...props} background={"darkGreen"}>e</Box>
 }
 

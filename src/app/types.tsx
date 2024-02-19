@@ -5,6 +5,10 @@ export interface Floor {
 export interface Room {
     id: string
     name: string,
+    nameOffset?: {
+        horizontal?: number,
+        vertical?: number,
+    }
     width: number,
     height: number,
     left: number,
@@ -25,7 +29,7 @@ export interface Corner {
     height: number
 }
 
-export type WallItem = Blinder | Frame | PyrSensor | WallLight | Display;
+export type WallItem = Blinder | Frame | PyrSensor | WallLight | Special | RawCable;
 
 export interface Blinder {
     type: "Blinder"
@@ -99,11 +103,17 @@ export interface WallLight {
 export const wallLight = (circuit: string, position: number, offset?: number): WallLight =>
     ({type: "WallLight", circuit, position, offset})
 
-export interface Display {
-    type: "Display",
+export interface Special {
+    type: "Special",
+    position: number,
+    name: string,
+}
+
+export const special = (position: number, name: string): Special => ({type: "Special", position, name})
+
+export interface RawCable {
+    type: "RawCable",
     position: number,
 }
 
-export const display = (position: number): Display =>
-    ({type: "Display", position})
-
+export const rawCable = (position: number): RawCable => ({type: "RawCable", position})

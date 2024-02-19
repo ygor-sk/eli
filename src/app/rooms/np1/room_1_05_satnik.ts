@@ -1,10 +1,19 @@
 import {room_1_04_kuchyna} from "./room_1_04_kuchyna";
+import {frame, knxSwitch, point, Room} from "../../types";
 
-export const room_1_05_satnik = {
+export const room_1_05_satnik: Room = {
     id: "1.05",
     name: "Satnik",
+    nameOffset: {vertical: 40},
     width: 145,
     height: 120,
     left: room_1_04_kuchyna.left + room_1_04_kuchyna.width + 15,
-    top: room_1_04_kuchyna.top
+    top: room_1_04_kuchyna.top,
+    topWall: [
+        frame(120, [knxSwitch(2)])
+    ],
+    lights: [
+        point("1.05a", 45, 60),
+        point("1.05a", 100, 60),
+    ]
 };

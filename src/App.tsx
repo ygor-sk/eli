@@ -12,12 +12,14 @@ function App() {
             <Link to="/np2" style={{padding: 5}}>2.NP</Link>
             <Link to="/np3" style={{padding: 5}}>3.NP</Link>
         </nav>
-        <Routes>
-            <Route path="/" element={<Navigate replace to="/np1"/>}/>
-            <Route path="/np1" element={renderFloor(np_1)}/>
-            <Route path="/np2" element={renderFloor(np_2)}/>
-            <Route path="/np3" element={renderFloor(np_3)}/>
-        </Routes>
+        <div className={"main"}>
+            <Routes>
+                <Route path="/" element={<Navigate replace to="/np1"/>}/>
+                <Route path="/np1" element={renderFloor(np_1)}/>
+                <Route path="/np2" element={renderFloor(np_2)}/>
+                <Route path="/np3" element={renderFloor(np_3)}/>
+            </Routes>
+        </div>
     </Router>
 
 

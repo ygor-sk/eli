@@ -1,4 +1,4 @@
-import {blinder, frame, knxSwitch, Room, socket} from "../../types";
+import {blinder, frame, knxSwitch, pyrSensor, Room, socket, special} from "../../types";
 import {room_1_12_dielna} from "./room_1_12_dielna";
 
 export const room_1_06_obyvacka: Room = {
@@ -12,13 +12,16 @@ export const room_1_06_obyvacka: Room = {
         width: 215,
         height: 250
     },
-    leftWall: [
-        frame(100, [socket(), socket(), knxSwitch(2)]),
-        blinder(200, 80),
+    leftWall: [],
+    rightWall: [],
+    topWall: [],
+    bottomWall: [
+        pyrSensor(0),
+        frame(170, [socket()]),
+        blinder(200, 150),
+        blinder(360, 150),
+        frame(520, [knxSwitch(8), knxSwitch(6)]),
+        special(960, "Sirena"),
+        special(1000, "Zvoncek")
     ],
-    rightWall: [
-        frame(100, [socket(), knxSwitch(6), knxSwitch(2),])],
-    topWall: [
-        frame(100, [socket(), knxSwitch(6), knxSwitch(2)])],
-    bottomWall: [],
 };

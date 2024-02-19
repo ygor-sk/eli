@@ -1,5 +1,5 @@
 import {room_1_08_wc} from "./room_1_08_wc";
-import {bulb, display, frame, knxSwitch, point, pyrSensor} from "../../types";
+import {bulb, special, frame, knxSwitch, point, pyrSensor} from "../../types";
 
 export const room_1_01_chodba = {
     id: "1.01",
@@ -13,7 +13,7 @@ export const room_1_01_chodba = {
     ],
     bottomWall: [
         frame(420, [knxSwitch(4)]),
-        display(360)
+        special(360, "Display")
     ],
     lights: [
         bulb("1.01a", 230, 90),
