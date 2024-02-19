@@ -1,5 +1,6 @@
 import {room_1_12_dielna} from "./room_1_12_dielna";
-import {Room} from "../../types";
+import {bulb, frame, knxSwitch, pyrSensor, rawCable, Room, socket, special, wallLight} from "../../types";
+import {BOX_SIZE} from "../../render";
 
 export const room_1_13_garaz: Room = {
     id: "1.13",
@@ -12,4 +13,24 @@ export const room_1_13_garaz: Room = {
         width: 115,
         height: 155
     },
+    leftWall: [
+        frame(100, [knxSwitch(2)], -115),
+        special(120, "Display", -115),
+    ],
+    bottomWall: [
+        frame(180, [socket(), socket()]),
+        rawCable(440, "El.auto"),
+        rawCable(500, "400V"),
+        frame(580, [socket(), socket()]),
+        wallLight("113.2", 540),
+        frame(600, [knxSwitch(6)]),
+        pyrSensor(640 - BOX_SIZE)
+    ],
+    topWall: [
+        wallLight("113.2", 540)
+    ],
+    ceilingItems: [
+        bulb("113.1", 240, 100),
+        bulb("113.1", 240, 300),
+    ]
 };

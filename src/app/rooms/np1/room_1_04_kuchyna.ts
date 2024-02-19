@@ -27,7 +27,7 @@ export const room_1_04_kuchyna: Room = {
         rawCable(160),
         frame(220, [knxSwitch(2), socket(), socket(), socket(), socket()]),
     ],
-    lights: [
+    ceilingItems: [
         bulb("1.04a", 100, 180),
         bulb("1.04a", 200, 180),
         point("1.04b", 50, 60),

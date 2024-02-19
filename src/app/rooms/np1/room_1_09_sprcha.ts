@@ -15,7 +15,7 @@ export const room_1_09_sprcha: Room = {
     bottomWall: [
         frame(30, [knxSwitch(2)])
     ],
-    lights: [
+    ceilingItems: [
         point("1.09a", 60, 60),
         point("1.09a", 60, 160),
     ]

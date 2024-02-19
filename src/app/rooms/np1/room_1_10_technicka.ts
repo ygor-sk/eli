@@ -18,7 +18,7 @@ export const room_1_10_technicka: Room = {
     bottomWall: [
         frame(100, [knxSwitch(1)])
     ],
-    lights: [
+    ceilingItems: [
         point("1.10a", 70, 80),
         point("1.10a", 140, 80),
     ]

@@ -11,7 +11,7 @@ export const room_1_03_spajza: Room = {
     topWall: [
         frame(70, [socket(), socket()])
     ],
-    lights: [
+    ceilingItems: [
         point("1.03a", 80, 60),
         point("1.03a", 80, 180),
     ]

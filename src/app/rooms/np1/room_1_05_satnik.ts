@@ -12,7 +12,7 @@ export const room_1_05_satnik: Room = {
     topWall: [
         frame(120, [knxSwitch(2)])
     ],
-    lights: [
+    ceilingItems: [
         point("1.05a", 45, 60),
         point("1.05a", 100, 60),
     ]

@@ -11,7 +11,7 @@ export const room_1_08_wc: Room = {
     leftWall: [
         frame(30, [knxSwitch(1)])
     ],
-    lights: [
+    ceilingItems: [
         point("1.08a", 50, 60),
         point("1.08a", 50, 160),
     ]

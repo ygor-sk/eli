@@ -21,7 +21,7 @@ export interface Room {
     rightWall?: WallItem[],
     topWall?: WallItem[],
     bottomWall?: WallItem[],
-    lights?: Light[]
+    ceilingItems?: CeilingItem[]
 }
 
 export interface Corner {
@@ -49,14 +49,16 @@ export interface Frame {
 export const frame = (position: number, items: FrameItem[], offset?: number): Frame =>
     ({type: "Frame", position, items, offset})
 
-export type FrameItem = Switch | Socket | Lan | Tunnel;
+export type FrameItem = KnxControl | Socket | Lan | Tunnel;
 
-export interface Switch {
-    type: "Switch"
-    buttons: 1 | 2 | 4 | 6 | 8
+type KnxType = 1 | 2 | 4 | 6 | 8;
+
+export interface KnxControl {
+    type: "KnxControl"
+    knxType: KnxType
 }
 
-export const knxSwitch = (buttons: 1 | 2 | 4 | 6 | 8): Switch => ({type: "Switch", buttons})
+export const knxSwitch = (knxType: KnxType): KnxControl => ({type: "KnxControl", knxType})
 
 export interface Socket {
     type: "Socket"
@@ -76,15 +78,21 @@ export interface Tunnel {
 
 export const tunnel = (): Tunnel => ({type: "Tunnel"})
 
-export interface Light {
-    type: "Bulb" | "Point",
+export interface CeilingItem {
+    type: "Bulb" | "Point" | "Sensor",
     circuit: string,
     left: number,
     top: number,
 }
 
-export const bulb = (circuit: string, left: number, top: number): Light => ({type: "Bulb", left, top, circuit})
-export const point = (circuit: string, left: number, top: number): Light => ({type: "Point", left, top, circuit})
+export const bulb = (circuit: string, left: number, top: number): CeilingItem => ({type: "Bulb", left, top, circuit})
+export const point = (circuit: string, left: number, top: number): CeilingItem => ({type: "Point", left, top, circuit})
+export const sensor = (circuit: string, left: number, top: number): CeilingItem => ({
+    type: "Sensor",
+    left,
+    top,
+    circuit
+})
 
 export interface PyrSensor {
     type: "PyrSensor",
@@ -107,13 +115,16 @@ export interface Special {
     type: "Special",
     position: number,
     name: string,
+    offset?: number
 }
 
-export const special = (position: number, name: string): Special => ({type: "Special", position, name})
+export const special = (position: number, name: string, offset?: number): Special =>
+    ({type: "Special", position, name, offset})
 
 export interface RawCable {
     type: "RawCable",
     position: number,
+    note?: string
 }
 
-export const rawCable = (position: number): RawCable => ({type: "RawCable", position})
+export const rawCable = (position: number, note?: string): RawCable => ({type: "RawCable", position, note})

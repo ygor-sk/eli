@@ -32,7 +32,7 @@ export const room_2_06_zadna: Room = {
         frame(100, [
             knxSwitch(8),
         ])],
-    lights: [
+    ceilingItems: [
         bulb("2.06a", 190, 200),
         point("2.06b", 100, 100),
         point("2.06b", 280, 100),

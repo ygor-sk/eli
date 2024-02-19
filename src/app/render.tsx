@@ -1,10 +1,10 @@
 import {
     Blinder,
+    CeilingItem,
     Corner,
     Floor,
     Frame,
     FrameItem,
-    Light,
     PyrSensor,
     RawCable,
     Room,
@@ -152,7 +152,7 @@ function renderRoom(room: Room) {
         {renderCorner(false, false, room, room.rightBottomCorner)}
         {renderCorner(true, true, room, room.leftTopCorner)}
         {renderCorner(false, true, room, room.rightTopCorner)}
-        {renderLights(room.lights)}
+        {renderLights(room.ceilingItems)}
     </Box>;
 }
 
@@ -243,8 +243,8 @@ function renderFrameItem(frameItem: FrameItem) {
     switch (frameItem.type) {
         case "Socket":
             return "E";
-        case "Switch":
-            return "K" + frameItem.buttons;
+        case "KnxControl":
+            return "K" + frameItem.knxType;
         case "Lan":
             return "L";
         case "Tunnel":
@@ -252,13 +252,25 @@ function renderFrameItem(frameItem: FrameItem) {
     }
 }
 
-function renderLights(lights?: Light[]) {
-    return (lights || []).map(light => {
+function renderLights(lights?: CeilingItem[]) {
+
+    return (lights || []).map(item => {
+        function background() {
+            switch (item.type) {
+                case "Bulb":
+                    return "yellow";
+                case "Point":
+                    return "orange";
+                case "Sensor":
+                    return "gold";
+            }
+        }
+
         return <Box
-            left={light.left - BOX_SIZE / 2} top={light.top - BOX_SIZE / 2}
+            left={item.left - BOX_SIZE / 2} top={item.top - BOX_SIZE / 2}
             width={BOX_SIZE} height={BOX_SIZE}
-            background={light.type === 'Bulb' ? "yellow" : "orange"}>
-            {light.circuit}
+            background={background()}>
+            {item.circuit}
         </Box>
     })
 }
@@ -275,16 +287,16 @@ function renderPyrSensor(wall: Wall, pyrSensor: PyrSensor) {
 
 function renderWallLight(wall: Wall, wallLight: WallLight) {
     const props = rectangleProps(wall, wallLight.position, BOX_SIZE, BOX_SIZE, wallLight.offset);
-    return <Box {...props} background={"green"}>{wallLight.circuit}</Box>
+    return <Box {...props} background={"pink"}>{wallLight.circuit}</Box>
 }
 
 function renderSpecial(wall: Wall, special: Special) {
-    const props = rectangleProps(wall, special.position, BOX_SIZE, BOX_SIZE);
+    const props = rectangleProps(wall, special.position, BOX_SIZE, BOX_SIZE, special.offset);
     return <Box {...props} background={"aqua"}>{special.name}</Box>
 }
 
 function renderRawCable(wall: Wall, rawCable: RawCable) {
     const props = rectangleProps(wall, rawCable.position, BOX_SIZE, BOX_SIZE);
-    return <Box {...props} background={"darkGreen"}>e</Box>
+    return <Box {...props} background={"darkGreen"}>e{rawCable.note ? `(${rawCable.note})` : ""}</Box>
 }
 
