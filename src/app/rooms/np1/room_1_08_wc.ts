@@ -15,5 +15,4 @@ export const room_1_08_wc: Room = {
         point("1.08a", 50, 60),
         point("1.08a", 50, 160),
     ]
-
 };
