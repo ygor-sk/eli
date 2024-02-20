@@ -262,20 +262,32 @@ function textProps(wall: Wall, mirror: boolean = false): AbsolutePosition {
 function renderFrame(wall: Wall, frame: Frame) {
     const props = rectangleProps(wall, frame.position, BOX_SIZE, frame.items.length * BOX_SIZE, frame.offset);
     return <Box {...props} background={"yellow"}>
-        {renderFrameItems(orientation(wall), frame.items)}
+        {renderFrameItems(wall, frame.items)}
     </Box>;
 }
 
-function renderFrameItems(orientation: Orientation, items: FrameItem[]) {
+function renderFrameItems(wall: Wall, items: FrameItem[]) {
+    const tProps = textProps(wall);
     return items.map((frameItem, index) =>
         <NestedBox
             level={1}
             index={index}
             background={"lightblue"}
-            orientation={orientation}
+            orientation={orientation(wall)}
         >
-            {renderFrameItem(frameItem)}
-        </NestedBox>)
+            <div style={{position: "absolute", ...tProps}}>{renderFrameItem(frameItem)}</div>
+
+        </NestedBox>
+        // <NestedBox
+        //     level={1}
+        //     index={index}
+        //     background={"lightblue"}
+        //     orientation={orientation}
+        // >
+        //     {renderFrameItem(frameItem)}
+        // </NestedBox>
+
+    )
 }
 
 function renderFrameItem(frameItem: FrameItem) {
