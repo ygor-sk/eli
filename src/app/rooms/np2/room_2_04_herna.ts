@@ -11,8 +11,8 @@ export const room_2_04_herna: Room = {
     left: room_2_03_spalna.left - 15 - 410,
     top: room_2_03_spalna.top,
     leftWall: [
-        blinder(60, 180),
-        blinder(250, 100),
+        blinder("MZ204.2", 60, 180),
+        blinder("MZ204.1", 250, 100),
         frame(100, [socket(), socket(), socket(), socket()]),
         frame(360, [knxSwitch(4)]),
         wallLight("Ext.1", 30, BOX_SIZE + 4)

@@ -28,7 +28,7 @@ export const room_1_06_obyvacka: Room = {
     },
     leftWall: [
         frame(40, [socket()]),
-        blinder(100, 250),
+        blinder("MZ106.1", 100, 250),
         frame(390, [socket()]),
     ],
     topWall: [
@@ -44,8 +44,8 @@ export const room_1_06_obyvacka: Room = {
     bottomWall: [
         pyrSensor(0),
         frame(170, [socket()]),
-        blinder(200, 150),
-        blinder(360, 150),
+        blinder("MZ106.3", 200, 150),
+        blinder("MZ106.4", 360, 150),
         frame(520, [knxSwitch(8), knxSwitch(6)]),
         special(960, "Sirena"),
         special(1000, "Zvoncek"),
@@ -53,13 +53,13 @@ export const room_1_06_obyvacka: Room = {
         wallLight("Ee1.4", 380 + 15 + 280, BOX_SIZE + 4),
     ],
     ceilingItems: [
-        bulb("106.1", 160, 220),
+        bulb("E106.1", 160, 220),
         ...([0, 1, 2, 3].map(i => [
             point("106.3", 100 + i * 200, 80),
             point("106.3", 100 + i * 200, 340),
         ]).flat()),
-        point("106.4", 900, 340),
+        point("E106.4", 900, 340),
         ...([0, 1, 2].map(i =>
-            bulb("106.2", 600 + i * 40, 120)))
+            bulb("E106.2", 600 + i * 40, 120)))
     ]
 };

@@ -24,7 +24,7 @@ export const room_2_03_spalna = {
         frame(295, [socket(), socket()]),
     ],
     bottomWall: [
-        blinder(60, 200),
+        blinder("MZ203.1", 60, 200),
         frame(30, [socket()])
     ],
     ceilingItems: [

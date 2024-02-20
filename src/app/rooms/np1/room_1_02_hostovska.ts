@@ -1,5 +1,5 @@
 import {room_1_05_satnik} from "./room_1_05_satnik";
-import {blinder, frame, knxSwitch, lan, pyrSensor, Room, socket, tunnel} from "../../types";
+import {blinder, bulb, frame, knxSwitch, lan, pyrSensor, Room, socket, tunnel} from "../../types";
 import {BOX_SIZE} from "../../render";
 
 export const room_1_02_hostovska: Room = {
@@ -18,11 +18,14 @@ export const room_1_02_hostovska: Room = {
         frame(300, [socket()]),
     ],
     bottomWall: [
-        blinder(60, 180)
+        blinder("MZ102.1", 60, 180)
     ],
     leftWall: [
         frame(30, [socket()]),
         frame(100, [tunnel(), socket(), socket(), lan()]),
         frame(100, [tunnel(), socket(), socket(), socket(), socket()], -BOX_SIZE - 4),
+    ],
+    ceilingItems: [
+        bulb("E102.1", 150, 190)
     ]
 };

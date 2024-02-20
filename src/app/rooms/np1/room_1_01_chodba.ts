@@ -20,8 +20,8 @@ export const room_1_01_chodba = {
         wallLight("Ee1.2", 90, BOX_SIZE + 4)
     ],
     lights: [
-        bulb("1.01a", 230, 90),
-        point("1.01b", 130, 90),
-        point("1.01b", 330, 90),
+        bulb("E101.1", 230, 90),
+        point("E101.2", 130, 90),
+        point("E101.2", 330, 90),
     ]
 };

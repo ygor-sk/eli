@@ -33,11 +33,13 @@ export type WallItem = Blinder | Frame | PyrSensor | WallLight | Special | RawCa
 
 export interface Blinder {
     type: "Blinder"
-    position: number,
-    size: number,
+    circuit: string
+    position: number
+    size: number
 }
 
-export const blinder = (position: number, size: number): Blinder => ({type: "Blinder", position, size})
+export const blinder = (circuit: string, position: number, size: number): Blinder =>
+    ({type: "Blinder", circuit, position, size})
 
 export interface Frame {
     type: "Frame",

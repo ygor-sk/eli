@@ -22,8 +22,8 @@ export const room_2_05_pracovna: Room = {
             frame(120, [knxSwitch(8)])
         ],
         bottomWall: [
-            blinder(20, 100),
-            blinder(130, 100),
+            blinder("MZ205.1", 20, 100),
+            blinder("MZ205.2", 130, 100),
             wallLight("Ext.1", 280, BOX_SIZE + 4)
         ],
         ceilingItems: [

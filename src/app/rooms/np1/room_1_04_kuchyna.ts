@@ -17,8 +17,8 @@ export const room_1_04_kuchyna: Room = {
         frame(130, [socket()]),
         rawCable(220),
         frame(350, [knxSwitch(8)]),
-        blinder(50, 200),
-        blinder(260, 80),
+        blinder("MZ104.2", 50, 200),
+        blinder("MZ104.1", 260, 80),
         wallLight("Ee1.3", 30, BOX_SIZE + 4),
     ],
     bottomWall: [

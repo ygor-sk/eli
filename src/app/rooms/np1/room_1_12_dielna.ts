@@ -9,7 +9,7 @@ export const room_1_12_dielna: Room = {
     leftWall: [
         frame(100, [knxSwitch(2)]),
         frame(200, [socket(), socket()]),
-        blinder(140, 200),
+        blinder("MZ112.1", 140, 200),
         wallLight("Ee1.6", 50, BOX_SIZE + 4)
     ],
     ceilingItems: [
