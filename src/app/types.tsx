@@ -46,10 +46,11 @@ export interface Frame {
     position: number
     items: FrameItem[]
     offset?: number
+    mirror?: boolean
 }
 
-export const frame = (position: number, items: FrameItem[], offset?: number): Frame =>
-    ({type: "Frame", position, items, offset})
+export const frame = (position: number, items: FrameItem[], offset?: number, mirror?: boolean): Frame =>
+    ({type: "Frame", position, items, offset, mirror})
 
 export type FrameItem = KnxControl | Socket | Lan | Tunnel;
 

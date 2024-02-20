@@ -8,7 +8,7 @@ export const room_1_12_dielna: Room = {
     left: 0, top: 0,
     leftWall: [
         frame(100, [knxSwitch("Q112.1", 4)]),
-        frame(100, [knxSwitch("Q112.2", 4)], BOX_SIZE + 4),
+        frame(120, [knxSwitch("Q112.2", 2)], 0, true),
         frame(200, [socket(), socket()]),
         blinder("MZ112.1", 140, 200),
         wallLight("Ee1.6", 50, true)

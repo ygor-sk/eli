@@ -4,7 +4,6 @@ import {
     Corner,
     Floor,
     Frame,
-    FrameItem,
     PirSensor,
     RawCable,
     Room,
@@ -249,58 +248,49 @@ function textProps(wall: Wall, mirror: boolean = false): AbsolutePosition {
     const effectiveWall = mirror ? mirrorWall(wall) : wall;
     switch (effectiveWall) {
         case Wall.Top:
-            return {top: BOX_SIZE + 4, left: -4}
+            return {top: BOX_SIZE + 4, left: -2}
         case Wall.Bottom:
-            return {bottom: BOX_SIZE, left: -4}
+            return {bottom: BOX_SIZE, left: -2}
         case Wall.Left:
-            return {left: BOX_SIZE + 4}
+            return {left: BOX_SIZE + 2}
         case Wall.Right:
-            return {right: BOX_SIZE + 4}
+            return {right: BOX_SIZE + 2}
     }
 }
 
 function renderFrame(wall: Wall, frame: Frame) {
-    const props = rectangleProps(wall, frame.position, BOX_SIZE, frame.items.length * BOX_SIZE, frame.offset);
-    return <Box {...props} background={"yellow"}>
-        {renderFrameItems(wall, frame.items)}
-    </Box>;
-}
-
-function renderFrameItems(wall: Wall, items: FrameItem[]) {
-    const tProps = textProps(wall);
-    return items.map((frameItem, index) =>
-        <NestedBox
+    function renderFrameItem(index: number, background: string, text?: string) {
+        const tProps = textProps(wall, frame.mirror);
+        return <NestedBox
             level={1}
             index={index}
-            background={"lightblue"}
+            background={background}
             orientation={orientation(wall)}
         >
-            <div style={{position: "absolute", ...tProps}}>{renderFrameItem(frameItem)}</div>
-
+            <div style={{position: "absolute", ...tProps}}>{text}</div>
         </NestedBox>
-        // <NestedBox
-        //     level={1}
-        //     index={index}
-        //     background={"lightblue"}
-        //     orientation={orientation}
-        // >
-        //     {renderFrameItem(frameItem)}
-        // </NestedBox>
-
-    )
-}
-
-function renderFrameItem(frameItem: FrameItem) {
-    switch (frameItem.type) {
-        case "Socket":
-            return "E";
-        case "KnxControl":
-            return `${frameItem.name}:${frameItem.knxType}`;
-        case "Lan":
-            return "L";
-        case "Tunnel":
-            return "T";
     }
+
+    function renderFrameItems() {
+        return frame.items.map((item, index) => {
+                switch (item.type) {
+                    case "Socket":
+                        return renderFrameItem(index, "lightblue");
+                    case "KnxControl":
+                        return renderFrameItem(index, "purple", `${item.name}|${item.knxType}`);
+                    case "Lan":
+                        return renderFrameItem(index, "gray", "L");
+                    case "Tunnel":
+                        return renderFrameItem(index, "white", "");
+                }
+            }
+        )
+    }
+
+    const props = rectangleProps(wall, frame.position, BOX_SIZE, frame.items.length * BOX_SIZE, frame.offset, frame.mirror);
+    return <Box {...props} background={"yellow"}>
+        {renderFrameItems()}
+    </Box>;
 }
 
 function renderCeilingItem(items?: CeilingItem[]) {

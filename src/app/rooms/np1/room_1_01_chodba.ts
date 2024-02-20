@@ -18,7 +18,7 @@ export const room_1_01_chodba = {
     ],
     rightWall: [
         wallLight("Ee1.2", 90, true),
-        frame(20, [knxSwitch("Q101.3", 4)], BOX_SIZE + 4),
+        frame(20, [knxSwitch("Q101.3", 2)], 0, true),
     ],
     lights: [
         bulb("E101.1", 230, 90),
