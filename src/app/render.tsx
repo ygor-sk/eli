@@ -253,30 +253,45 @@ function mirrorWall(wall: Wall): Wall {
     }
 }
 
-function textProps(wall: Wall, mirror: boolean = false): AbsolutePosition {
+function textProps(wall: Wall, mirror?: boolean, rotate?: boolean): any { // TODO: type
     const effectiveWall = mirror ? mirrorWall(wall) : wall;
     switch (effectiveWall) {
         case Wall.Top:
-            return {top: BOX_SIZE + 4, left: -2}
+            return {
+                top: BOX_SIZE + 4,
+                ...(rotate ? {} : {writingMode: "vertical-rl", textOrientation: "mixed"})
+            }
         case Wall.Bottom:
-            return {bottom: BOX_SIZE, left: -2}
+            return {
+                bottom: BOX_SIZE + 4,
+                ...(rotate ? {} : {writingMode: "vertical-rl", textOrientation: "mixed"})
+            }
         case Wall.Left:
-            return {left: BOX_SIZE + 2}
+            return {
+                left: BOX_SIZE + 2,
+                ...(rotate ? {writingMode: "vertical-rl", textOrientation: "mixed"} : {})
+            }
         case Wall.Right:
-            return {right: BOX_SIZE + 2}
+            return {
+                right: BOX_SIZE + 2,
+                ...(rotate ? {writingMode: "vertical-rl", textOrientation: "mixed"} : {})
+            }
     }
 }
 
 function renderFrame(wall: Wall, frame: Frame) {
-    function renderFrameItem(index: number, background: string, text?: string) {
+    function renderFrameItem(index: number, background: string, text?: string, nameOffset?: NameOffset) {
         const tProps = textProps(wall, frame.mirror);
+        const nameOffsetProps = nameOffsetStyle(nameOffset);
         return <NestedBox
             level={1}
             index={index}
             background={background}
             orientation={orientation(wall)}
         >
-            <div style={{position: "absolute", ...tProps}}>{text}</div>
+            <div style={{
+                position: "absolute", ...tProps, ...nameOffsetProps
+            }}>{text}</div>
         </NestedBox>
     }
 
@@ -284,13 +299,13 @@ function renderFrame(wall: Wall, frame: Frame) {
         return frame.items.map((item, index) => {
                 switch (item.type) {
                     case "Socket":
-                        return renderFrameItem(index, "lightblue");
+                        return renderFrameItem(index, "lightblue", "E");
                     case "KnxControl":
-                        return renderFrameItem(index, "purple", `${item.name}|${item.knxType}`);
+                        return renderFrameItem(index, "purple", `${item.name}|${item.knxType}`, item.nameOffset);
                     case "Lan":
                         return renderFrameItem(index, "gray", item.name);
                     case "Tunnel":
-                        return renderFrameItem(index, "white", "");
+                        return renderFrameItem(index, "white", "T");
                 }
             }
         )
@@ -341,13 +356,13 @@ function renderRawCable(wall: Wall, rawCable: RawCable) {
 }
 
 function renderBlinder(wall: Wall, blinder: Blinder) {
-    return renderWallItem(wall, "red", BOX_SIZE, blinder.size, {...blinder, mirror: true});
+    return renderWallItem(wall, "red", BOX_SIZE, blinder.size, {...blinder, mirror: true, rotate: true});
 }
 
 function renderWallItem(wall: Wall, background: string, shortSize: number, longSize: number,
-                        wallItem: { name: string; position: number; mirror?: boolean; offset?: number }) {
+                        wallItem: { name: string; position: number; mirror?: boolean; rotate?: boolean, offset?: number }) {
     const rProps = rectangleProps(wall, wallItem.position, shortSize, longSize, wallItem.offset, wallItem.mirror);
-    const tProps = textProps(wall, wallItem.mirror);
+    const tProps = textProps(wall, wallItem.mirror, wallItem.rotate);
     return <Box {...rProps} background={background}>
         <div style={{position: "absolute", ...tProps}}>{wallItem.name}</div>
     </Box>

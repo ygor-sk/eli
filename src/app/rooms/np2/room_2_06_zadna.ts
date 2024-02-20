@@ -5,6 +5,7 @@ import {room_1_06_obyvacka} from "../np1/room_1_06_obyvacka";
 export const room_2_06_zadna: Room = {
     id: "2.06",
     name: "Zadna",
+    nameOffset: {vertical: -80},
     width: 380,
     height: room_1_06_obyvacka.height,
     left: room_1_06_obyvacka.left,
@@ -15,7 +16,7 @@ export const room_2_06_zadna: Room = {
         ]),
         blinder("MZ206.1", 50, 220),
         blinder("MZ206.2", 280, 80),
-        wallLight("Ext.1", 10, undefined, BOX_SIZE + 4),
+        wallLight("Ee1.5", 10, true),
     ],
     leftWall: [
         frame(100, [socket(), socket()]),

@@ -26,13 +26,11 @@ export const room_1_06_obyvacka: Room = {
         width: 215,
         height: 250
     },
-    rightWall: [
-        pirSensor("PIR106.1", 0),
-    ],
     leftWall: [
         frame(40, [socket()]),
         blinder("MZ106.1", 100, 250),
         frame(390, [socket()]),
+        pirSensor("PIR106.2", 0),
     ],
     topWall: [
         frame(920, [knxSwitch("Q106.1", 6)], -250),
@@ -41,19 +39,22 @@ export const room_1_06_obyvacka: Room = {
         frame(480, [socket()]),
         frame(450, [knxSwitch("Q106.4", 4)]),
         frame(150, [lan("PC106a"), socket(), socket(), tunnel()]),
-        frame(150 - 2 * BOX_SIZE, [socket(), socket(), socket(), socket()], -BOX_SIZE - 4),
-        frame(150 + 3 * BOX_SIZE, [tunnel()], -BOX_SIZE - 4),
+        frame(150 - 2 * BOX_SIZE, [socket(), socket(), socket(), socket()], -4 * BOX_SIZE),
+        frame(150 + 3 * BOX_SIZE, [tunnel()], -4 * BOX_SIZE),
     ],
     bottomWall: [
-        pirSensor("PIR106.2", 0),
         frame(170, [socket()]),
         blinder("MZ106.3", 200, 150),
         blinder("MZ106.4", 360, 150),
-        frame(520, [knxSwitch("Q106.2", 4), knxSwitch("Q106.3", 6)]),
-        special(960, "Sirena"),
-        special(1000, "Zvoncek"),
+        frame(520, [
+            knxSwitch("Q106.2", 4),
+            knxSwitch("Q106.3", 6)
+        ]),
+        special(970, "Sirena"),
+        special(990, "Zvoncek"),
         wallLight("Ee1.5", 10, true),
         wallLight("Ee1.4", 380 + 15 + 280, true),
+        pirSensor("PIR106.1", 1010)
     ],
     ceilingItems: [
         bulb("E106.1", 160, 220),

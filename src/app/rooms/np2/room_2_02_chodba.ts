@@ -5,7 +5,7 @@ import {room_2_01_schody} from "./room_2_01_schody";
 export const room_2_02_chodba: Room = {
     id: "2.02",
     name: "Chodba",
-    nameOffset: {vertical: 80},
+    nameOffset: {vertical: -80},
     width: 465,
     height: 185,
     left: room_2_05_pracovna.left + room_2_05_pracovna.width + 15,

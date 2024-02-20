@@ -62,10 +62,11 @@ export interface KnxControl {
     type: "KnxControl"
     name: string
     knxType: KnxType
+    nameOffset?: NameOffset
 }
 
-export const knxSwitch = (name: string, knxType: KnxType): KnxControl =>
-    ({type: "KnxControl", name, knxType})
+export const knxSwitch = (name: string, knxType: KnxType, nameOffset?: NameOffset): KnxControl =>
+    ({type: "KnxControl", name, knxType, nameOffset})
 
 export interface Socket {
     type: "Socket"
