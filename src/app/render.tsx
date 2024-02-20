@@ -119,7 +119,6 @@ function NestedBox(props: NestedBoxProps) {
 
     return <Box width={size} height={size} left={left()} bottom={bottom()} background={props.background}>
         {props.children}
-        {/*<div style={{position: "absolute", right: "15px"}}>{props.children}</div>*/}
     </Box>
 }
 
@@ -215,17 +214,21 @@ function rectangleProps(wall: Wall, position: number, shortSize: number, longSiz
 
     switch (wall) {
         case Wall.Top:
-            return {...size, top: -offset, left: position}
+            return mirror ?
+                {...size, top: -size.height - 4 - offset, left: position} :
+                {...size, top: -offset, left: position}
         case Wall.Bottom:
             return mirror ?
-                {...size, bottom: -size.height - 4 -offset, left: position} :
+                {...size, bottom: -size.height - 4 - offset, left: position} :
                 {...size, bottom: -offset, left: position};
         case Wall.Left:
             return mirror ?
-                {...size, bottom: position, left: -size.width -4 -offset} :
+                {...size, bottom: position, left: -size.width - 4 - offset} :
                 {...size, bottom: position, left: -offset};
         case Wall.Right:
-            return {...size, bottom: position, right: -offset}
+            return mirror ?
+                {...size, bottom: position, right: -size.width - 4 - offset} :
+                {...size, bottom: position, right: -offset};
     }
 }
 
@@ -310,18 +313,13 @@ function renderCeilingItem(items?: CeilingItem[]) {
     })
 }
 
-function renderBlinder(wall: Wall, blinder: Blinder) {
-    const props = rectangleProps(wall, blinder.position, BOX_SIZE, blinder.size, BOX_SIZE + 4);
-    return <Box {...props} background={"red"}>{blinder.circuit}</Box>
-}
-
 function renderPyrSensor(wall: Wall, pyrSensor: PyrSensor) {
     const props = rectangleProps(wall, pyrSensor.position, BOX_SIZE, BOX_SIZE);
     return <Box {...props} background={"brown"}>P</Box>
 }
 
 function renderWallLight(wall: Wall, wallLight: WallLight) {
-    return renderWallItem(wall, wallLight, "pink");
+    return renderWallItem(wall, "pink", BOX_SIZE, BOX_SIZE, wallLight);
 }
 
 function renderSpecial(wall: Wall, special: Special) {
@@ -334,11 +332,15 @@ function renderRawCable(wall: Wall, rawCable: RawCable) {
     return <Box {...props} background={"darkGreen"}>e{rawCable.note ? `(${rawCable.note})` : ""}</Box>
 }
 
-function renderWallItem(wall: Wall, wallItem: { circuit: string, position: number, mirror?: boolean, offset?: number }, background: string) {
-    const rProps = rectangleProps(wall, wallItem.position, BOX_SIZE, BOX_SIZE, wallItem.offset, wallItem.mirror);
+function renderBlinder(wall: Wall, blinder: Blinder) {
+    return renderWallItem(wall, "red", BOX_SIZE, blinder.size, {...blinder, mirror: true});
+}
+
+function renderWallItem(wall: Wall, background: string, shortSize: number, longSize: number,
+                        wallItem: { circuit: string; position: number; mirror?: boolean; offset?: number }) {
+    const rProps = rectangleProps(wall, wallItem.position, shortSize, longSize, wallItem.offset, wallItem.mirror);
     const tProps = textProps(wall, wallItem.mirror);
     return <Box {...rProps} background={background}>
         <div style={{position: "absolute", ...tProps}}>{wallItem.circuit}</div>
     </Box>
 }
-

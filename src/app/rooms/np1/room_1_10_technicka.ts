@@ -20,7 +20,7 @@ export const room_1_10_technicka: Room = {
         frame(100, [knxSwitch("Q110.1", 1)])
     ],
     topWall: [
-        wallLight("Ee1.1", 180, BOX_SIZE + 4)
+        wallLight("Ee1.1", 180, 0, true)
     ],
     ceilingItems: [
         point("1.10a", 70, 80),

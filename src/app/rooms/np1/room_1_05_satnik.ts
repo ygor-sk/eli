@@ -4,7 +4,7 @@ import {frame, knxSwitch, point, Room} from "../../types";
 export const room_1_05_satnik: Room = {
     id: "1.05",
     name: "Satnik",
-    nameOffset: {vertical: 40},
+    nameOffset: {vertical: 80},
     width: 145,
     height: 120,
     left: room_1_04_kuchyna.left + room_1_04_kuchyna.width + 15,

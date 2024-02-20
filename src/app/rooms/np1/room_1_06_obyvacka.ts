@@ -50,7 +50,8 @@ export const room_1_06_obyvacka: Room = {
         special(960, "Sirena"),
         special(1000, "Zvoncek"),
         wallLight("Ee1.5", 10, 0, true),
-        wallLight("Ee1.4", 380 + 15 + 280, 0, true),
+        wallLight("" +
+            "Ee1.4", 380 + 15 + 280, 0, true),
     ],
     ceilingItems: [
         bulb("E106.1", 160, 220),

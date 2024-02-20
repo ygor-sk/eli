@@ -5,6 +5,7 @@ import {BOX_SIZE} from "../../render";
 export const room_1_02_hostovska: Room = {
     id: "1.02",
     name: "Hostovska",
+    nameOffset: {vertical: 100},
     width: 300,
     height: 385,
     left: room_1_05_satnik.left + room_1_05_satnik.width + 15,
