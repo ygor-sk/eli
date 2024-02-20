@@ -29,7 +29,7 @@ export interface Corner {
     height: number
 }
 
-export type WallItem = Blinder | Frame | PyrSensor | WallLight | Special | RawCable;
+export type WallItem = Blinder | Frame | PirSensor | WallLight | Special | RawCable;
 
 export interface Blinder {
     type: "Blinder"
@@ -98,12 +98,14 @@ export const sensor = (circuit: string, left: number, top: number): CeilingItem 
     circuit
 })
 
-export interface PyrSensor {
-    type: "PyrSensor",
+export interface PirSensor {
+    type: "PirSensor",
+    name: string,
     position: number,
 }
 
-export const pyrSensor = (position: number): PyrSensor => ({type: "PyrSensor", position})
+export const pirSensor = (name: string, position: number): PirSensor =>
+    ({type: "PirSensor", name, position})
 
 export interface WallLight {
     type: "WallLight",

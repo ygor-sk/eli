@@ -5,7 +5,7 @@ import {
     knxSwitch,
     lan,
     point,
-    pyrSensor,
+    pirSensor,
     Room,
     socket,
     special,
@@ -26,6 +26,9 @@ export const room_1_06_obyvacka: Room = {
         width: 215,
         height: 250
     },
+    rightWall: [
+        pirSensor("PIR106.1", 0),
+    ],
     leftWall: [
         frame(40, [socket()]),
         blinder("MZ106.1", 100, 250),
@@ -42,7 +45,7 @@ export const room_1_06_obyvacka: Room = {
         frame(150 + 3 * BOX_SIZE, [tunnel()], -BOX_SIZE - 4),
     ],
     bottomWall: [
-        pyrSensor(0),
+        pirSensor("PIR106.2", 0),
         frame(170, [socket()]),
         blinder("MZ106.3", 200, 150),
         blinder("MZ106.4", 360, 150),

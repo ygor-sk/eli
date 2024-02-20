@@ -1,5 +1,5 @@
 import {room_1_06_obyvacka} from "./room_1_06_obyvacka";
-import {blinder, bulb, frame, knxSwitch, point, pyrSensor, rawCable, Room, socket, wallLight} from "../../types";
+import {blinder, bulb, frame, knxSwitch, point, pirSensor, rawCable, Room, socket, wallLight} from "../../types";
 import {BOX_SIZE} from "../../render";
 
 export const room_1_04_kuchyna: Room = {
@@ -11,7 +11,7 @@ export const room_1_04_kuchyna: Room = {
     left: room_1_06_obyvacka.left + 652 + 38 + 35,
     top: room_1_06_obyvacka.top + room_1_06_obyvacka.height + 30,
     topWall: [
-        pyrSensor(200)
+        pirSensor("PIR104", 200)
     ],
     leftWall: [
         frame(130, [socket()]),

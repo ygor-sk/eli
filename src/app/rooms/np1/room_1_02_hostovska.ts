@@ -1,5 +1,5 @@
 import {room_1_05_satnik} from "./room_1_05_satnik";
-import {blinder, bulb, frame, knxSwitch, lan, pyrSensor, Room, socket, tunnel} from "../../types";
+import {blinder, bulb, frame, knxSwitch, lan, pirSensor, Room, socket, tunnel} from "../../types";
 import {BOX_SIZE} from "../../render";
 
 export const room_1_02_hostovska: Room = {
@@ -12,7 +12,7 @@ export const room_1_02_hostovska: Room = {
     top: room_1_05_satnik.top,
     topWall: [
         frame(100, [knxSwitch("Q102.1", 4)]),
-        pyrSensor(0)
+        pirSensor("PIR102", 0)
     ],
     rightWall: [
         frame(60, [socket()]),

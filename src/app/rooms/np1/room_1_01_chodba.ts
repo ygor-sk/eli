@@ -1,5 +1,5 @@
 import {room_1_08_wc} from "./room_1_08_wc";
-import {bulb, special, frame, knxSwitch, point, pyrSensor, wallLight} from "../../types";
+import {bulb, special, frame, knxSwitch, point, pirSensor, wallLight} from "../../types";
 import {BOX_SIZE} from "../../render";
 
 export const room_1_01_chodba = {
@@ -10,7 +10,7 @@ export const room_1_01_chodba = {
     left: room_1_08_wc.left,
     top: room_1_08_wc.top + room_1_08_wc.height + 15,
     topWall: [
-        pyrSensor(0)
+        pirSensor("PIR101", 0)
     ],
     bottomWall: [
         frame(420, [knxSwitch("Q101.1", 4)]),

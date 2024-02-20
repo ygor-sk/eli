@@ -1,5 +1,5 @@
 import {room_2_09_satnik} from "./room_2_09_satnik";
-import {blinder, bulb, frame, knxSwitch, socket, wallLight} from "../../types";
+import {blinder, bulb, frame, knxSwitch, pirSensor, socket, wallLight} from "../../types";
 
 export const room_2_03_spalna = {
     id: "2.03",
@@ -13,7 +13,8 @@ export const room_2_03_spalna = {
         frame(300, [socket()])
     ],
     topWall: [
-        frame(100, [knxSwitch("Q203.1", 4)])
+        frame(100, [knxSwitch("Q203.1", 4)]),
+        pirSensor("PIR204",0)
     ],
     rightWall: [
         frame(60, [socket(), socket()]),

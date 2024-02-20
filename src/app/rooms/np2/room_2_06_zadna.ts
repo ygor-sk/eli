@@ -1,5 +1,5 @@
 import {BOX_SIZE} from "../../render";
-import {blinder, bulb, frame, knxSwitch, lan, point, pyrSensor, Room, socket, wallLight} from "../../types";
+import {blinder, bulb, frame, knxSwitch, lan, point, pirSensor, Room, socket, wallLight} from "../../types";
 import {room_1_06_obyvacka} from "../np1/room_1_06_obyvacka";
 
 export const room_2_06_zadna: Room = {
@@ -23,7 +23,7 @@ export const room_2_06_zadna: Room = {
     ],
     topWall: [
         frame(300, [socket()]),
-        pyrSensor(380 - BOX_SIZE - 1),
+        pirSensor("PIR206", 380 - BOX_SIZE - 1),
     ],
     rightWall: [
         frame(150, [

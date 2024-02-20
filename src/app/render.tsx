@@ -5,7 +5,7 @@ import {
     Floor,
     Frame,
     FrameItem,
-    PyrSensor,
+    PirSensor,
     RawCable,
     Room,
     Special,
@@ -178,7 +178,7 @@ function renderWallItems(wall: Wall, wallItems?: WallItem[]) {
                 return renderFrame(wall, wallItem);
             case "Blinder":
                 return renderBlinder(wall, wallItem)
-            case "PyrSensor":
+            case "PirSensor":
                 return renderPyrSensor(wall, wallItem)
             case "WallLight":
                 return renderWallLight(wall, wallItem)
@@ -313,9 +313,8 @@ function renderCeilingItem(items?: CeilingItem[]) {
     })
 }
 
-function renderPyrSensor(wall: Wall, pyrSensor: PyrSensor) {
-    const props = rectangleProps(wall, pyrSensor.position, BOX_SIZE, BOX_SIZE);
-    return <Box {...props} background={"brown"}>P</Box>
+function renderPyrSensor(wall: Wall, pyrSensor: PirSensor) {
+    return renderWallItem(wall, "brown", BOX_SIZE, BOX_SIZE, pyrSensor);
 }
 
 function renderWallLight(wall: Wall, wallLight: WallLight) {
@@ -328,8 +327,6 @@ function renderSpecial(wall: Wall, special: Special) {
 
 function renderRawCable(wall: Wall, rawCable: RawCable) {
     return renderWallItem(wall, "darkGreen", BOX_SIZE, BOX_SIZE, {...rawCable, name: rawCable.note || ""});
-    const props = rectangleProps(wall, rawCable.position, BOX_SIZE, BOX_SIZE);
-    return <Box {...props} background={"darkGreen"}>e</Box>
 }
 
 function renderBlinder(wall: Wall, blinder: Blinder) {

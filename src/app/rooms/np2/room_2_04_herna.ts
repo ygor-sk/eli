@@ -1,6 +1,6 @@
 import {room_2_03_spalna} from "./room_2_03_spalna";
 import {BOX_SIZE} from "../../render";
-import {blinder, bulb, frame, knxSwitch, lan, point, pyrSensor, Room, socket, wallLight} from "../../types";
+import {blinder, bulb, frame, knxSwitch, lan, point, pirSensor, Room, socket, wallLight} from "../../types";
 
 export const room_2_04_herna: Room = {
     id: "2.04",
@@ -20,7 +20,7 @@ export const room_2_04_herna: Room = {
     topWall: [
         frame(200, [socket(), socket(), socket(), socket(), lan()]),
         frame(300, [knxSwitch("Q204.1", 4)]),
-        pyrSensor(410 - BOX_SIZE - 2),
+        pirSensor("PIR204",410 - BOX_SIZE - 2),
     ],
     bottomWall: [
         frame(350, [socket()])
