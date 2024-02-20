@@ -13,7 +13,7 @@ export const room_2_08_kupelna: Room = {
         frame(20, [socket()])
     ],
     bottomWall: [
-        frame(90, [knxSwitch(2)]),
+        frame(90, [knxSwitch("Q208.1", 2)]),
         frame(110, [socket(), socket()]),
         wallLight("E208.2", 150),
         frame(300, [socket(), socket()]),

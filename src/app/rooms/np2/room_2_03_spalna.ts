@@ -13,14 +13,14 @@ export const room_2_03_spalna = {
         frame(300, [socket()])
     ],
     topWall: [
-        frame(100, [knxSwitch(4)])
+        frame(100, [knxSwitch("Q203.1", 4)])
     ],
     rightWall: [
         frame(60, [socket(), socket()]),
-        frame(90, [knxSwitch(2)]),
-        wallLight("E203.3", 110),
+        frame(90, [knxSwitch("Q203.2", 2)]),
+        wallLight("E203.2", 110),
         wallLight("E203.3", 260),
-        frame(280, [knxSwitch(2)]),
+        frame(280, [knxSwitch("Q203.3", 2)]),
         frame(295, [socket(), socket()]),
     ],
     bottomWall: [

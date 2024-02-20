@@ -10,7 +10,7 @@ export const room_1_02_hostovska: Room = {
     left: room_1_05_satnik.left + room_1_05_satnik.width + 15,
     top: room_1_05_satnik.top,
     topWall: [
-        frame(100, [knxSwitch(4)]),
+        frame(100, [knxSwitch("Q102.1", 4)]),
         pyrSensor(0)
     ],
     rightWall: [

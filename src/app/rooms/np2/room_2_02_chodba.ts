@@ -11,10 +11,10 @@ export const room_2_02_chodba: Room = {
     left: room_2_05_pracovna.left + room_2_05_pracovna.width + 15,
     top: room_2_01_schody.top + room_2_01_schody.height,
     topWall: [
-        frame(215, [knxSwitch(1)])
+        frame(215, [knxSwitch("Q202.1", 1)])
     ],
     bottomWall: [
-        frame(325, [knxSwitch(1)]),
+        frame(325, [knxSwitch("Q202.2", 1)]),
         frame(100, [socket()]),
         frame(160, [socket()]),
     ],

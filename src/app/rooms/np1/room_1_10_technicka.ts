@@ -17,7 +17,7 @@ export const room_1_10_technicka: Room = {
         frame(200, [socket()]),
     ],
     bottomWall: [
-        frame(100, [knxSwitch(1)])
+        frame(100, [knxSwitch("Q110.1", 1)])
     ],
     topWall: [
         wallLight("Ee1.1", 180, BOX_SIZE + 4)

@@ -13,11 +13,12 @@ export const room_1_01_chodba = {
         pyrSensor(0)
     ],
     bottomWall: [
-        frame(420, [knxSwitch(4)]),
+        frame(420, [knxSwitch("Q101.1", 4)]),
         special(360, "Display")
     ],
     rightWall: [
-        wallLight("Ee1.2", 90, BOX_SIZE + 4)
+        wallLight("Ee1.2", 90, BOX_SIZE + 4),
+        frame(20, [knxSwitch("Q101.3", 4)], BOX_SIZE + 4),
     ],
     lights: [
         bulb("E101.1", 230, 90),

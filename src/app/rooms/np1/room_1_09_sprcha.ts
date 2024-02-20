@@ -13,7 +13,7 @@ export const room_1_09_sprcha: Room = {
         wallLight("1.09b", 100)
     ],
     bottomWall: [
-        frame(30, [knxSwitch(2)])
+        frame(30, [knxSwitch("Q109.1", 2)])
     ],
     ceilingItems: [
         point("1.09a", 60, 60),

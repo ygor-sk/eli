@@ -10,7 +10,7 @@ export const room_2_09_satnik = {
     left: room_2_02_chodba.left + room_2_02_chodba.width + 15,
     top: room_2_02_chodba.top,
     bottomWall: [
-        frame(100, [knxSwitch(1)]),
+        frame(100, [knxSwitch("Q209.1", 1)]),
         frame(120, [socket()]),
     ],
     ceilingItems: [

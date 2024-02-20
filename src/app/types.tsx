@@ -57,10 +57,12 @@ type KnxType = 1 | 2 | 4 | 6 | 8;
 
 export interface KnxControl {
     type: "KnxControl"
+    name: string
     knxType: KnxType
 }
 
-export const knxSwitch = (knxType: KnxType): KnxControl => ({type: "KnxControl", knxType})
+export const knxSwitch = (name: string, knxType: KnxType): KnxControl =>
+    ({type: "KnxControl", name, knxType})
 
 export interface Socket {
     type: "Socket"
@@ -107,11 +109,12 @@ export interface WallLight {
     type: "WallLight",
     circuit: string,
     position: number,
-    offset?: number
+    offset?: number,
+    mirror?: boolean
 }
 
-export const wallLight = (circuit: string, position: number, offset?: number): WallLight =>
-    ({type: "WallLight", circuit, position, offset})
+export const wallLight = (circuit: string, position: number, offset?: number, mirror?: boolean): WallLight =>
+    ({type: "WallLight", circuit, position, offset, mirror})
 
 export interface Special {
     type: "Special",

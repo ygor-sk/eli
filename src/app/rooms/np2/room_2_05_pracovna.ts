@@ -19,7 +19,7 @@ export const room_2_05_pracovna: Room = {
         ],
         rightWall: [
             frame(240, [socket(), socket(), socket(), socket(), lan()]),
-            frame(120, [knxSwitch(8)])
+            frame(120, [knxSwitch("Q205.1", 8)])
         ],
         bottomWall: [
             blinder("MZ205.1", 20, 100),

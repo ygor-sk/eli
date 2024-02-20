@@ -14,12 +14,12 @@ export const room_2_04_herna: Room = {
         blinder("MZ204.2", 60, 180),
         blinder("MZ204.1", 250, 100),
         frame(100, [socket(), socket(), socket(), socket()]),
-        frame(360, [knxSwitch(4)]),
+        frame(360, [knxSwitch("Q204.2", 4)]),
         wallLight("Ext.1", 30, BOX_SIZE + 4)
     ],
     topWall: [
         frame(200, [socket(), socket(), socket(), socket(), lan()]),
-        frame(300, [knxSwitch(4)]),
+        frame(300, [knxSwitch("Q204.1", 4)]),
         pyrSensor(410 - BOX_SIZE - 2),
     ],
     bottomWall: [

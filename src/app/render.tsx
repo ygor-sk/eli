@@ -80,7 +80,7 @@ function Box(props: BoxProps) {
             height: props.height,
             display: "grid",
             textAlign: "center",
-            alignItems: "center"
+            alignItems: "center",
         }}>
         {props.children}
     </div>
@@ -119,6 +119,7 @@ function NestedBox(props: NestedBoxProps) {
 
     return <Box width={size} height={size} left={left()} bottom={bottom()} background={props.background}>
         {props.children}
+        {/*<div style={{position: "absolute", right: "15px"}}>{props.children}</div>*/}
     </Box>
 }
 
@@ -152,7 +153,7 @@ function renderRoom(room: Room) {
         {renderCorner(false, false, room, room.rightBottomCorner)}
         {renderCorner(true, true, room, room.leftTopCorner)}
         {renderCorner(false, true, room, room.rightTopCorner)}
-        {renderLights(room.ceilingItems)}
+        {renderCeilingItem(room.ceilingItems)}
     </Box>;
 }
 
@@ -190,15 +191,18 @@ function renderWallItems(wall: Wall, wallItems?: WallItem[]) {
     })
 }
 
-type RectangleSize = { width: number, height: number }
-
-type RectangleProps = RectangleSize & {
+type AbsolutePosition = {
     left?: number, right?: number,
     top?: number, bottom?: number,
-};
+}
 
-function rectangleProps(wall: Wall, position: number, shortSize: number, longSize: number, offset: number = 0): RectangleProps {
-    function size(): RectangleSize {
+type RectangleSize = { width: number, height: number }
+
+type RectangleProps = AbsolutePosition & RectangleSize;
+
+function rectangleProps(wall: Wall, position: number, shortSize: number, longSize: number,
+                        offset: number = 0, mirror: boolean = false): RectangleProps {
+    function calculateSize(): RectangleSize {
         switch (orientation(wall)) {
             case Orientation.Horizontal:
                 return {width: longSize, height: shortSize}
@@ -207,18 +211,50 @@ function rectangleProps(wall: Wall, position: number, shortSize: number, longSiz
         }
     }
 
+    const size = calculateSize();
+
     switch (wall) {
         case Wall.Top:
-            return {...size(), top: -offset, left: position}
+            return {...size, top: -offset, left: position}
         case Wall.Bottom:
-            return {...size(), bottom: -offset, left: position}
+            return mirror ?
+                {...size, bottom: -size.height - 4 -offset, left: position} :
+                {...size, bottom: -offset, left: position};
         case Wall.Left:
-            return {...size(), bottom: position, left: -offset}
+            return mirror ?
+                {...size, bottom: position, left: -size.width -4 -offset} :
+                {...size, bottom: position, left: -offset};
         case Wall.Right:
-            return {...size(), bottom: position, right: -offset}
+            return {...size, bottom: position, right: -offset}
     }
 }
 
+function mirrorWall(wall: Wall): Wall {
+    switch (wall) {
+        case Wall.Top:
+            return Wall.Bottom;
+        case Wall.Bottom:
+            return Wall.Top;
+        case Wall.Left:
+            return Wall.Right;
+        case Wall.Right:
+            return Wall.Left;
+    }
+}
+
+function textProps(wall: Wall, mirror: boolean = false): AbsolutePosition {
+    const effectiveWall = mirror ? mirrorWall(wall) : wall;
+    switch (effectiveWall) {
+        case Wall.Top:
+            return {top: BOX_SIZE + 4, left: -4}
+        case Wall.Bottom:
+            return {bottom: BOX_SIZE, left: -4}
+        case Wall.Left:
+            return {left: BOX_SIZE + 4}
+        case Wall.Right:
+            return {right: BOX_SIZE + 4}
+    }
+}
 
 function renderFrame(wall: Wall, frame: Frame) {
     const props = rectangleProps(wall, frame.position, BOX_SIZE, frame.items.length * BOX_SIZE, frame.offset);
@@ -244,7 +280,7 @@ function renderFrameItem(frameItem: FrameItem) {
         case "Socket":
             return "E";
         case "KnxControl":
-            return "K" + frameItem.knxType;
+            return `${frameItem.name}:${frameItem.knxType}`;
         case "Lan":
             return "L";
         case "Tunnel":
@@ -252,9 +288,8 @@ function renderFrameItem(frameItem: FrameItem) {
     }
 }
 
-function renderLights(lights?: CeilingItem[]) {
-
-    return (lights || []).map(item => {
+function renderCeilingItem(items?: CeilingItem[]) {
+    return (items || []).map(item => {
         function background() {
             switch (item.type) {
                 case "Bulb":
@@ -270,7 +305,7 @@ function renderLights(lights?: CeilingItem[]) {
             left={item.left - BOX_SIZE / 2} top={item.top - BOX_SIZE / 2}
             width={BOX_SIZE} height={BOX_SIZE}
             background={background()}>
-            {item.circuit}
+            <div style={{position: "absolute", top: -BOX_SIZE + 4, left: -4}}>{item.circuit}</div>
         </Box>
     })
 }
@@ -286,8 +321,7 @@ function renderPyrSensor(wall: Wall, pyrSensor: PyrSensor) {
 }
 
 function renderWallLight(wall: Wall, wallLight: WallLight) {
-    const props = rectangleProps(wall, wallLight.position, BOX_SIZE, BOX_SIZE, wallLight.offset);
-    return <Box {...props} background={"pink"}>{wallLight.circuit}</Box>
+    return renderWallItem(wall, wallLight, "pink");
 }
 
 function renderSpecial(wall: Wall, special: Special) {
@@ -298,5 +332,13 @@ function renderSpecial(wall: Wall, special: Special) {
 function renderRawCable(wall: Wall, rawCable: RawCable) {
     const props = rectangleProps(wall, rawCable.position, BOX_SIZE, BOX_SIZE);
     return <Box {...props} background={"darkGreen"}>e{rawCable.note ? `(${rawCable.note})` : ""}</Box>
+}
+
+function renderWallItem(wall: Wall, wallItem: { circuit: string, position: number, mirror?: boolean, offset?: number }, background: string) {
+    const rProps = rectangleProps(wall, wallItem.position, BOX_SIZE, BOX_SIZE, wallItem.offset, wallItem.mirror);
+    const tProps = textProps(wall, wallItem.mirror);
+    return <Box {...rProps} background={background}>
+        <div style={{position: "absolute", ...tProps}}>{wallItem.circuit}</div>
+    </Box>
 }
 

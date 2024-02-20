@@ -9,7 +9,7 @@ export const room_2_07_wc = {
     left: room_2_01_schody.left + room_2_01_schody.width + 15,
     top: room_2_01_schody.top,
     leftWall: [
-        frame(20, [knxSwitch(1)])
+        frame(20, [knxSwitch("Q207.1", 1)])
     ],
     ceilingItems: [
         point("207.1", 50, 60),

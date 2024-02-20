@@ -17,7 +17,7 @@ export const room_1_13_garaz: Room = {
         wallLight("Ee1.1", 380, BOX_SIZE + 4)
     ],
     leftWall: [
-        frame(100, [knxSwitch(2)], -115),
+        frame(100, [knxSwitch("Q113.1", 2)], -115),
         special(120, "Display", -115),
     ],
     bottomWall: [
@@ -26,7 +26,7 @@ export const room_1_13_garaz: Room = {
         rawCable(500, "400V"),
         frame(580, [socket(), socket()]),
         wallLight("113.2", 540),
-        frame(600, [knxSwitch(6)]),
+        frame(600, [knxSwitch("Q113.2", 6)]),
         pyrSensor(640 - BOX_SIZE)
     ],
     topWall: [
