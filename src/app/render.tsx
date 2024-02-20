@@ -323,13 +323,13 @@ function renderWallLight(wall: Wall, wallLight: WallLight) {
 }
 
 function renderSpecial(wall: Wall, special: Special) {
-    const props = rectangleProps(wall, special.position, BOX_SIZE, BOX_SIZE, special.offset);
-    return <Box {...props} background={"aqua"}>{special.name}</Box>
+    return renderWallItem(wall, "aqua", BOX_SIZE, BOX_SIZE, special);
 }
 
 function renderRawCable(wall: Wall, rawCable: RawCable) {
+    return renderWallItem(wall, "darkGreen", BOX_SIZE, BOX_SIZE, {...rawCable, name: rawCable.note || ""});
     const props = rectangleProps(wall, rawCable.position, BOX_SIZE, BOX_SIZE);
-    return <Box {...props} background={"darkGreen"}>e{rawCable.note ? `(${rawCable.note})` : ""}</Box>
+    return <Box {...props} background={"darkGreen"}>e</Box>
 }
 
 function renderBlinder(wall: Wall, blinder: Blinder) {
@@ -337,10 +337,10 @@ function renderBlinder(wall: Wall, blinder: Blinder) {
 }
 
 function renderWallItem(wall: Wall, background: string, shortSize: number, longSize: number,
-                        wallItem: { circuit: string; position: number; mirror?: boolean; offset?: number }) {
+                        wallItem: { name: string; position: number; mirror?: boolean; offset?: number }) {
     const rProps = rectangleProps(wall, wallItem.position, shortSize, longSize, wallItem.offset, wallItem.mirror);
     const tProps = textProps(wall, wallItem.mirror);
     return <Box {...rProps} background={background}>
-        <div style={{position: "absolute", ...tProps}}>{wallItem.circuit}</div>
+        <div style={{position: "absolute", ...tProps}}>{wallItem.name}</div>
     </Box>
 }

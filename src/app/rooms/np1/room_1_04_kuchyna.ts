@@ -15,7 +15,7 @@ export const room_1_04_kuchyna: Room = {
     ],
     leftWall: [
         frame(130, [socket()]),
-        rawCable(220),
+        rawCable(220, "kuch.doska"),
         frame(350, [knxSwitch("Q104.2", 8)]),
         blinder("MZ104.2", 50, 200),
         blinder("MZ104.1", 260, 80),
@@ -24,9 +24,9 @@ export const room_1_04_kuchyna: Room = {
     bottomWall: [
         frame(10, [socket(), socket(), socket(), socket()]),
         frame(100, [socket()]),
-        rawCable(120),
+        rawCable(120, "digestor"),
         frame(140, [socket()]),
-        rawCable(160),
+        rawCable(170, "var.doska"),
         frame(220, [knxSwitch("Q104.3", 2), socket(), socket(), socket(), socket()]),
     ],
     ceilingItems: [
