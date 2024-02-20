@@ -4,8 +4,8 @@ import {
     frame,
     knxSwitch,
     lan,
-    point,
     pirSensor,
+    point,
     Room,
     socket,
     special,
@@ -52,9 +52,8 @@ export const room_1_06_obyvacka: Room = {
         frame(520, [knxSwitch("Q106.2", 4), knxSwitch("Q106.3", 6)]),
         special(960, "Sirena"),
         special(1000, "Zvoncek"),
-        wallLight("Ee1.5", 10, 0, true),
-        wallLight("" +
-            "Ee1.4", 380 + 15 + 280, 0, true),
+        wallLight("Ee1.5", 10, true),
+        wallLight("Ee1.4", 380 + 15 + 280, true),
     ],
     ceilingItems: [
         bulb("E106.1", 160, 220),

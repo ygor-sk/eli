@@ -24,7 +24,7 @@ export const room_2_05_pracovna: Room = {
         bottomWall: [
             blinder("MZ205.1", 20, 100),
             blinder("MZ205.2", 130, 100),
-            wallLight("Ext.1", 280, BOX_SIZE + 4)
+            wallLight("Ext.1", 280, undefined, BOX_SIZE + 4)
         ],
         ceilingItems: [
             bulb("E205.1", 200, 200),

@@ -15,7 +15,7 @@ export const room_2_06_zadna: Room = {
         ]),
         blinder("MZ206.1", 50, 220),
         blinder("MZ206.2", 280, 80),
-        wallLight("Ext.1", 10, BOX_SIZE + 4),
+        wallLight("Ext.1", 10, undefined, BOX_SIZE + 4),
     ],
     leftWall: [
         frame(100, [socket(), socket()]),

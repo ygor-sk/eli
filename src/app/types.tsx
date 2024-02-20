@@ -115,7 +115,7 @@ export interface WallLight {
     mirror?: boolean
 }
 
-export const wallLight = (name: string, position: number, offset?: number, mirror?: boolean): WallLight =>
+export const wallLight = (name: string, position: number, mirror?: boolean, offset?: number): WallLight =>
     ({type: "WallLight", name, position, offset, mirror})
 
 export interface Special {

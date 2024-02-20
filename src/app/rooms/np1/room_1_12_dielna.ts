@@ -11,7 +11,7 @@ export const room_1_12_dielna: Room = {
         frame(100, [knxSwitch("Q112.2", 4)], BOX_SIZE + 4),
         frame(200, [socket(), socket()]),
         blinder("MZ112.1", 140, 200),
-        wallLight("Ee1.6", 50, 0, true)
+        wallLight("Ee1.6", 50, true)
     ],
     topWall: [
         frame(150, [socket(), socket()]),
