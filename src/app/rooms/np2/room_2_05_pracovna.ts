@@ -1,4 +1,4 @@
-import {blinder, bulb, frame, knxSwitch, lan, point, pirSensor, Room, socket, wallLight} from "../../types";
+import {blinder, bulb, frame, knxSwitch, lan, pirSensor, point, Room, socket, wallLight} from "../../types";
 import {room_2_06_zadna} from "./room_2_06_zadna";
 import {BOX_SIZE} from "../../render";
 
@@ -10,15 +10,15 @@ export const room_2_05_pracovna: Room = {
         left: room_2_06_zadna.left + room_2_06_zadna.width + 15,
         top: room_2_06_zadna.top,
         leftWall: [
-            frame(150, [lan(), socket(), socket()]),
+            frame(150, [lan("PC205c"), socket(), socket()]),
         ],
         topWall: [
-            frame(20, [lan(), socket(), socket(), socket(), socket()]),
+            frame(20, [lan("PC205b"), socket(), socket(), socket(), socket()]),
             frame(320, [socket(), socket()]),
             pirSensor("PIR205", 400 - BOX_SIZE - 2),
         ],
         rightWall: [
-            frame(240, [socket(), socket(), socket(), socket(), lan()]),
+            frame(240, [socket(), socket(), socket(), socket(), lan("PC205a")]),
             frame(120, [knxSwitch("Q205.1", 8)])
         ],
         bottomWall: [

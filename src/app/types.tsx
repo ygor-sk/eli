@@ -2,13 +2,15 @@ export interface Floor {
     rooms: Room[];
 }
 
+export type NameOffset = {
+    horizontal?: number,
+    vertical?: number,
+};
+
 export interface Room {
     id: string
     name: string,
-    nameOffset?: {
-        horizontal?: number,
-        vertical?: number,
-    }
+    nameOffset?: NameOffset
     width: number,
     height: number,
     left: number,
@@ -72,10 +74,11 @@ export interface Socket {
 export const socket = (): Socket => ({type: "Socket"})
 
 export interface Lan {
+    name: string
     type: "Lan"
 }
 
-export const lan = (): Lan => ({type: "Lan"})
+export const lan = (name: string): Lan => ({type: "Lan", name})
 
 export interface Tunnel {
     type: "Tunnel"

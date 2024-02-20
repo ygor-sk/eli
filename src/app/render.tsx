@@ -4,6 +4,7 @@ import {
     Corner,
     Floor,
     Frame,
+    NameOffset,
     PirSensor,
     RawCable,
     Room,
@@ -132,15 +133,23 @@ export function renderFloor(floor: Floor) {
     );
 }
 
+function nameOffsetStyle(nameOffset?: NameOffset): any {
+    const horizontal = nameOffset?.horizontal || 0;
+    const vertical = nameOffset?.vertical || 0;
+    return {
+        paddingLeft: horizontal > 0 ? horizontal : undefined,
+        paddingBottom: vertical > 0 ? vertical : undefined,
+        paddingRight: horizontal < 0 ? -horizontal : undefined,
+        paddingTop: vertical < 0 ? -vertical : undefined,
+    };
+}
+
 function renderRoom(room: Room) {
     return <Box
         left={room.left} top={room.top} width={room.width} height={room.height}
         background={"grey"} className={room.name}
     >
-        <div className="room-name" style={{
-            paddingLeft: room.nameOffset?.horizontal,
-            paddingBottom: room.nameOffset?.vertical
-        }}>
+        <div className="room-name" style={nameOffsetStyle(room.nameOffset)}>
             {room.id} / {room.name}
         </div>
         {renderWallItems(Wall.Left, room.leftWall)}
@@ -279,7 +288,7 @@ function renderFrame(wall: Wall, frame: Frame) {
                     case "KnxControl":
                         return renderFrameItem(index, "purple", `${item.name}|${item.knxType}`);
                     case "Lan":
-                        return renderFrameItem(index, "gray", "L");
+                        return renderFrameItem(index, "gray", item.name);
                     case "Tunnel":
                         return renderFrameItem(index, "white", "");
                 }

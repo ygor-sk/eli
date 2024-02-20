@@ -11,7 +11,7 @@ export const room_2_06_zadna: Room = {
     top: room_1_06_obyvacka.top,
     bottomWall: [
         frame(120, [
-            lan(), socket(), socket(), socket(), socket(),
+            lan("PC206b"), socket(), socket(), socket(), socket(),
         ]),
         blinder("MZ206.1", 50, 220),
         blinder("MZ206.2", 280, 80),
@@ -27,7 +27,7 @@ export const room_2_06_zadna: Room = {
     ],
     rightWall: [
         frame(150, [
-            lan(), socket(), socket(), socket(),
+            lan("PC206a"), socket(), socket(), socket(),
         ]),
         frame(100, [
             knxSwitch("Q206.2", 8),

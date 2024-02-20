@@ -40,7 +40,7 @@ export const room_1_06_obyvacka: Room = {
         special(730, "Display"),
         frame(480, [socket()]),
         frame(450, [knxSwitch("Q106.4", 4)]),
-        frame(150, [lan(), socket(), socket(), tunnel()]),
+        frame(150, [lan("PC106a"), socket(), socket(), tunnel()]),
         frame(150 - 2 * BOX_SIZE, [socket(), socket(), socket(), socket()], -BOX_SIZE - 4),
         frame(150 + 3 * BOX_SIZE, [tunnel()], -BOX_SIZE - 4),
     ],

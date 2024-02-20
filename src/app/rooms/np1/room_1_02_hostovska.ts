@@ -23,7 +23,7 @@ export const room_1_02_hostovska: Room = {
     ],
     leftWall: [
         frame(30, [socket()]),
-        frame(100, [tunnel(), socket(), socket(), lan()]),
+        frame(100, [tunnel(), socket(), socket(), lan("PC102a")]),
         frame(100, [tunnel(), socket(), socket(), socket(), socket()], -BOX_SIZE - 4),
     ],
     ceilingItems: [

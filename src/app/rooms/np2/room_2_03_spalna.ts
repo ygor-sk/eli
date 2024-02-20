@@ -14,7 +14,7 @@ export const room_2_03_spalna = {
     ],
     topWall: [
         frame(100, [knxSwitch("Q203.1", 4)]),
-        pirSensor("PIR204",0)
+        pirSensor("PIR203",0)
     ],
     rightWall: [
         frame(60, [socket(), socket()]),

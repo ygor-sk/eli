@@ -1,4 +1,4 @@
-import {frame, knxSwitch, point, Room, socket} from "../../types";
+import {frame, knxSwitch, pirSensor, point, Room, socket} from "../../types";
 import {room_2_05_pracovna} from "./room_2_05_pracovna";
 import {room_2_01_schody} from "./room_2_01_schody";
 
@@ -12,6 +12,9 @@ export const room_2_02_chodba: Room = {
     top: room_2_01_schody.top + room_2_01_schody.height,
     topWall: [
         frame(215, [knxSwitch("Q202.1", 1)])
+    ],
+    rightWall: [
+        pirSensor("PIR202",0)
     ],
     bottomWall: [
         frame(325, [knxSwitch("Q202.2", 1)]),
