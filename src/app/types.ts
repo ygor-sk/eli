@@ -1,4 +1,5 @@
 export interface Floor {
+    name: "np1" | "np2" | "np3"
     rooms: Room[];
 }
 
@@ -119,7 +120,7 @@ export interface Tunnel {
 export const tunnel = (): Tunnel => ({type: "Tunnel"})
 
 export interface CeilingItem {
-    type: "Bulb" | "Point" | "Sensor",
+    type: "Bulb" | "Point" | "Sensor" | "Smoke",
     circuit: string,
     left: number,
     top: number,
@@ -134,6 +135,9 @@ export const point = (circuit: string, left: number, top: number): CeilingItem =
     ({type: "Point", left, top, circuit, options: {installed: true}})
 export const sensor = (circuit: string, left: number, top: number, options?: Partial<CeilingItem["options"]>): CeilingItem =>
     ({type: "Sensor", left, top, circuit, options: Object.assign({installed: true}, options)})
+export const smoke = (circuit: string, left: number, top: number, options?: Partial<CeilingItem["options"]>): CeilingItem =>
+    ({type: "Smoke", left, top, circuit, options: Object.assign({installed: true}, options)})
+
 
 export interface PirSensor {
     type: "PirSensor",

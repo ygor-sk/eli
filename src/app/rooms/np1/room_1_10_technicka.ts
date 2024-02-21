@@ -13,7 +13,7 @@ export const room_1_10_technicka: Room = {
         frame(180, [socket({installedCover: false})], {installed: false}),
     ],
     rightWall: [
-        frame(200, [socket({installedCover: false})]), // IP44 ?
+        frame(200, [socket({installedCover: false})], {installed: false}), // IP44 ?
     ],
     bottomWall: [
         frame(100, [knxSwitch("Q110.1", 1, {installed: false})], {installed: false})

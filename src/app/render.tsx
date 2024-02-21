@@ -333,6 +333,8 @@ function renderCeilingItem(items?: CeilingItem[]) {
                     return "orange";
                 case "Sensor":
                     return "darkblue";
+                case "Smoke":
+                    return "lightpurple";
             }
         }
 
