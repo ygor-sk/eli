@@ -15,6 +15,6 @@ export const room_2_01_schody: Room = {
     ceilingItems: [
         point("E202.1", 50, 100),
         point("E202.1", 150, 100),
-        sensor("P202.1", 100, 240)
+        sensor("P202.1", 100, 220)
     ]
 };

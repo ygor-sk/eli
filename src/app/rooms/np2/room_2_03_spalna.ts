@@ -18,10 +18,10 @@ export const room_2_03_spalna = {
     ],
     rightWall: [
         frame(60, [socket(), socket()]),
-        frame(90, [knxSwitch("Q203.2", 2)]),
+        frame(90, [knxSwitch("Q203.2", 2, {installed: false})],{installed: false}),
         wallLight("E203.2", 110),
         wallLight("E203.3", 260),
-        frame(280, [knxSwitch("Q203.3", 2)]),
+        frame(280, [knxSwitch("Q203.3", 2, {installed: false})], {installed: false}),
         frame(295, [socket(), socket()]),
     ],
     bottomWall: [

@@ -10,13 +10,13 @@ export const room_2_08_kupelna: Room = {
     left: room_2_07_wc.left + room_2_07_wc.width + 15,
     top: room_2_07_wc.top,
     leftWall: [
-        frame(20, [socket()])
+        frame(20, [socket({ip:"IP44"})])
     ],
     bottomWall: [
-        frame(90, [knxSwitch("Q208.1", 2)]),
-        frame(110, [socket(), socket()]),
+        frame(90, [knxSwitch("Q208.1", 2, {installed: false})], {installed: false}),
+        frame(110, [socket({ip:"IP44"}), socket({ip:"IP44"})]),
         wallLight("E208.2", 150),
-        frame(300, [socket(), socket()]),
+        frame(300, [socket({ip:"IP44"}), socket({ip:"IP44"})]),
         wallLight("E208.2", 250),
     ],
     ceilingItems: [

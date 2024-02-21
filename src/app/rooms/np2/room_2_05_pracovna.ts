@@ -10,10 +10,20 @@ export const room_2_05_pracovna: Room = {
         left: room_2_06_zadna.left + room_2_06_zadna.width + 15,
         top: room_2_06_zadna.top,
         leftWall: [
-            frame(150, [lan("PC205c"), socket(), socket()]),
+            frame(150, [
+                lan("PC205c", {missing: true}),
+                socket({installedCover: false}),
+                socket({installedCover: false}),
+            ], {installed: false}),
         ],
         topWall: [
-            frame(20, [lan("PC205b"), socket(), socket(), socket(), socket()]),
+            frame(20, [
+                lan("PC205b", {missing: true}),
+                socket({installedCover: false}),
+                socket({installedCover: false}),
+                socket({installedCover: false}),
+                socket({installedCover: false}),
+            ], {installed: false}),
             frame(320, [socket(), socket()]),
             pirSensor("PIR205", 400 - BOX_SIZE - 2, {installed: false}),
         ],

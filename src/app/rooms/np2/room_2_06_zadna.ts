@@ -30,9 +30,10 @@ export const room_2_06_zadna: Room = {
         frame(150, [
             lan("PC206a"), socket(), socket(), socket(),
         ]),
-        frame(100, [
-            knxSwitch("Q206.2", 8),
-        ])],
+        frame(
+            100,
+            [knxSwitch("Q206.2", 8, {installed: false}),],
+            {installed: false, buried: false})],
     ceilingItems: [
         bulb("2.06a", 190, 200),
         point("2.06b", 100, 100),

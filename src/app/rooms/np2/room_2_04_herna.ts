@@ -18,9 +18,14 @@ export const room_2_04_herna: Room = {
         wallLight("Ee1.3", 30, true)
     ],
     topWall: [
-        frame(200, [socket(), socket(), socket(), socket(), lan("PC204a")]),
+        frame(200, [
+            socket({installedCover: false}),
+            socket({installedCover: false}),
+            socket({installedCover: false}),
+            socket({installedCover: false}),
+            lan("PC204a", {missing: true})], {installed: false}),
         frame(300, [knxSwitch("Q204.1", 4)]),
-        pirSensor("PIR204",410 - BOX_SIZE - 2, {installed: false}),
+        pirSensor("PIR204", 410 - BOX_SIZE - 2, {installed: false}),
     ],
     bottomWall: [
         frame(350, [socket()])
