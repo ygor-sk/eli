@@ -63,3 +63,4 @@ export const np_3: Floor = {
     ]
 }
 
+export const floors: Floor[] = [np_1, np_2, np_3];
