@@ -281,7 +281,7 @@ function textProps(wall: Wall, mirror?: boolean, rotate?: boolean): any { // TOD
 
 function renderFrame(wall: Wall, frame: Frame) {
     function renderFrameItem(index: number, background: string, text?: string, nameOffset?: NameOffset) {
-        const tProps = textProps(wall, frame.mirror);
+        const tProps = textProps(wall, frame.options.mirror);
         const nameOffsetProps = nameOffsetStyle(nameOffset);
         return <NestedBox
             level={1}
@@ -301,7 +301,7 @@ function renderFrame(wall: Wall, frame: Frame) {
                     case "Socket":
                         return renderFrameItem(index, "lightblue", "E");
                     case "KnxControl":
-                        return renderFrameItem(index, "purple", `${item.name}|${item.knxType}`, item.nameOffset);
+                        return renderFrameItem(index, "purple", `${item.name}|${item.knxType}`, item.options.nameOffset);
                     case "Lan":
                         return renderFrameItem(index, "gray", item.name);
                     case "Tunnel":
@@ -311,7 +311,7 @@ function renderFrame(wall: Wall, frame: Frame) {
         )
     }
 
-    const props = rectangleProps(wall, frame.position, BOX_SIZE, frame.items.length * BOX_SIZE, frame.offset, frame.mirror);
+    const props = rectangleProps(wall, frame.position, BOX_SIZE, frame.items.length * BOX_SIZE, frame.options.offset, frame.options.mirror);
     return <Box {...props} background={"yellow"}>
         {renderFrameItems()}
     </Box>;
@@ -326,7 +326,7 @@ function renderCeilingItem(items?: CeilingItem[]) {
                 case "Point":
                     return "orange";
                 case "Sensor":
-                    return "gold";
+                    return "darkblue";
             }
         }
 

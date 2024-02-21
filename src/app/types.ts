@@ -47,18 +47,18 @@ export interface Frame {
     type: "Frame",
     position: number
     items: FrameItem[]
-    offset?: number
-    mirror?: boolean,
     options: {
+        offset: number
+        mirror: boolean,
         buried: boolean,
         installed: boolean
     }
 }
 
-export const frame = (position: number, items: FrameItem[], offset?: number, mirror?: boolean, options?: Partial<Frame["options"]>): Frame =>
+export const frame = (position: number, items: FrameItem[], options?: Partial<Frame["options"]>): Frame =>
     ({
-        type: "Frame", position, items, offset, mirror,
-        options: Object.assign({buried: true, installed: true}, options)
+        type: "Frame", position, items,
+        options: Object.assign({offset: 0, mirror: false, buried: true, installed: true}, options)
     })
 
 export type FrameItem = KnxControl | Socket | Lan | Tunnel;
@@ -67,17 +67,17 @@ export interface KnxControl {
     type: "KnxControl"
     name: string
     knxType: 1 | 2 | 4 | 6 | 8
-    nameOffset?: NameOffset,
     options: {
+        nameOffset: NameOffset,
         installed: boolean,
     }
 }
 
-export const knxSwitch = (name: string, knxType: KnxControl["knxType"], nameOffset?: NameOffset, options?: Partial<KnxControl["options"]>): KnxControl =>
+export const knxSwitch = (name: string, knxType: KnxControl["knxType"], options?: Partial<KnxControl["options"]>): KnxControl =>
     ({
         type: "KnxControl",
-        name, knxType, nameOffset,
-        options: Object.assign({installed: true}, options)
+        name, knxType,
+        options: Object.assign({nameOffset: {}, installed: true}, options)
     })
 
 export interface Socket {

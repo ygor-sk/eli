@@ -1,5 +1,4 @@
 import {blinder, bulb, frame, knxSwitch, pirSensor, Room, socket, wallLight} from "../../types";
-import {BOX_SIZE} from "../../render";
 
 export const room_1_12_dielna: Room = {
     id: "1.12",
@@ -9,13 +8,13 @@ export const room_1_12_dielna: Room = {
     leftWall: [
         frame(
             100,
-            [knxSwitch("Q112.1", 4, undefined, {installed: false})],
-            0, false, {installed: false}
-            ),
+            [knxSwitch("Q112.1", 4, {installed: false})],
+            {installed: false}
+        ),
         frame(
-            120,
-            [knxSwitch("Q112.2", 2, undefined, {installed: false})], 0            ,
-            true, {installed: false}),
+            100,
+            [knxSwitch("Q112.2", 2, {installed: false})],
+            {mirror: true, installed: false}),
         frame(200, [socket(), socket()]),
         blinder("MZ112.1", 140, 200),
         wallLight("Ee1.6", 50, true)

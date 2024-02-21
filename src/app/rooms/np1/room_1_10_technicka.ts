@@ -1,6 +1,5 @@
 import {room_1_09_sprcha} from "./room_1_09_sprcha";
 import {frame, knxSwitch, point, Room, socket, wallLight} from "../../types";
-import {BOX_SIZE} from "../../render";
 
 export const room_1_10_technicka: Room = {
     id: "1.10",
@@ -17,7 +16,7 @@ export const room_1_10_technicka: Room = {
         frame(200, [socket({installedCover: false})]), // IP44 ?
     ],
     bottomWall: [
-        frame(100, [knxSwitch("Q110.1", 1, undefined, {installed: false})], 0, false, {installed: false})
+        frame(100, [knxSwitch("Q110.1", 1, {installed: false})], {installed: false})
     ],
     topWall: [
         wallLight("Ee1.1", 180, true)

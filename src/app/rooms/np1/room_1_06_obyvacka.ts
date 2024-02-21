@@ -33,14 +33,14 @@ export const room_1_06_obyvacka: Room = {
         pirSensor("PIR106.2", 0, {installed: false}),
     ],
     topWall: [
-        frame(920, [knxSwitch("Q106.1", 6)], -250),
+        frame(920, [knxSwitch("Q106.1", 6)], {offset: -250}),
         frame(780, [socket()]),
         special("Display", 730, {installed: false}),
         frame(480, [socket()]),
         frame(450, [knxSwitch("Q106.4", 4)]),
         frame(150, [lan("PC106a"), socket(), socket(), tunnel()]),
-        frame(150 - 2 * BOX_SIZE, [socket(), socket(), socket(), socket()], -4 * BOX_SIZE),
-        frame(150 + 3 * BOX_SIZE, [tunnel()], -4 * BOX_SIZE),
+        frame(150 - 2 * BOX_SIZE, [socket(), socket(), socket(), socket()], {offset: -4 * BOX_SIZE}),
+        frame(150 + 3 * BOX_SIZE, [tunnel()], {offset: -4 * BOX_SIZE}),
     ],
     bottomWall: [
         frame(170, [socket()]),

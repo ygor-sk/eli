@@ -17,7 +17,7 @@ export const room_1_01_chodba: Room = {
         special("Display", 360, {installed: false}),
         frame(
             300,
-            [socket({installedHardware: false, installedCover: false})], 0, false,
+            [socket({installedHardware: false, installedCover: false})],
             {installed: false}
         )
     ],
@@ -25,8 +25,7 @@ export const room_1_01_chodba: Room = {
         wallLight("Ee1.2", 90, true),
         frame(
             20,
-            [knxSwitch("Q101.3", 2, undefined, {installed: false})], 0, true,
-            {installed: false}
+            [knxSwitch("Q101.3", 2, {installed: false})], {mirror: true, installed: false}
         ),
     ],
     ceilingItems: [

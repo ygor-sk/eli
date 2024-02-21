@@ -29,8 +29,8 @@ export const room_1_04_kuchyna: Room = {
         rawCable(220, "kuch.doska"),
         frame(
             350,
-            [knxSwitch("Q104.2", 8, undefined, {installed: false})],
-            0, false, {installed: false}
+            [knxSwitch("Q104.2", 8, {installed: false})],
+            {installed: false}
         ),
         blinder("MZ104.2", 50, 200),
         blinder("MZ104.1", 260, 80),
@@ -45,7 +45,7 @@ export const room_1_04_kuchyna: Room = {
         frame(
             210,
             [
-                knxSwitch("Q104.3", 2, undefined, {installed: false}),
+                knxSwitch("Q104.3", 2, {installed: false}),
                 socket(), socket(), socket(), socket()
             ]
         ),
