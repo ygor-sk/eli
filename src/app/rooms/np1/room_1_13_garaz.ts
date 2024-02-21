@@ -18,7 +18,7 @@ export const room_1_13_garaz: Room = {
     ],
     leftWall: [
         frame(100, [knxSwitch("Q113.1", 2)], -115),
-        special(120, "Display", -115),
+        special("Display", 120, {offset: -115}),
     ],
     bottomWall: [
         frame(180, [socket(), socket()]),

@@ -348,7 +348,7 @@ function renderWallLight(wall: Wall, wallLight: WallLight) {
 }
 
 function renderSpecial(wall: Wall, special: Special) {
-    return renderWallItem(wall, "aqua", BOX_SIZE, BOX_SIZE, special);
+    return renderWallItem(wall, "aqua", BOX_SIZE, BOX_SIZE, {...special, offset: special?.options.offset});
 }
 
 function renderRawCable(wall: Wall, rawCable: RawCable) {

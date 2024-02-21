@@ -35,7 +35,7 @@ export const room_1_06_obyvacka: Room = {
     topWall: [
         frame(920, [knxSwitch("Q106.1", 6)], -250),
         frame(780, [socket()]),
-        special(730, "Display"),
+        special("Display", 730),
         frame(480, [socket()]),
         frame(450, [knxSwitch("Q106.4", 4)]),
         frame(150, [lan("PC106a"), socket(), socket(), tunnel()]),
@@ -50,8 +50,8 @@ export const room_1_06_obyvacka: Room = {
             knxSwitch("Q106.2", 4),
             knxSwitch("Q106.3", 6)
         ]),
-        special(970, "Sirena"),
-        special(990, "Zvoncek"),
+        special("Sirena", 970),
+        special("Zvoncek", 990),
         wallLight("Ee1.5", 10, true),
         wallLight("Ee1.4", 380 + 15 + 280, true),
         pirSensor("PIR106.1", 1010)

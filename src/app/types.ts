@@ -156,11 +156,17 @@ export interface Special {
     type: "Special",
     position: number,
     name: string,
-    offset?: number
+    options: {
+        installed: boolean,
+        offset: number
+    }
 }
 
-export const special = (position: number, name: string, offset?: number): Special =>
-    ({type: "Special", position, name, offset})
+export const special = (name: string, position: number, options?: Partial<Special["options"]>): Special =>
+    ({
+        type: "Special", position, name,
+        options: Object.assign({installed: true, offset: 0}, options)
+    })
 
 export interface RawCable {
     type: "RawCable",
