@@ -10,7 +10,11 @@ export const room_1_05_satnik: Room = {
     left: room_1_04_kuchyna.left + room_1_04_kuchyna.width + 15,
     top: room_1_04_kuchyna.top,
     topWall: [
-        frame(120, [knxSwitch("Q105.1", 2)])
+        frame(
+            120,
+            [knxSwitch("Q105.1", 2, undefined, {installed: false})],
+            0, false, {installed: false}
+        )
     ],
     ceilingItems: [
         point("1.05a", 45, 60),

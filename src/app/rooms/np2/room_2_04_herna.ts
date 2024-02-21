@@ -20,7 +20,7 @@ export const room_2_04_herna: Room = {
     topWall: [
         frame(200, [socket(), socket(), socket(), socket(), lan("PC204a")]),
         frame(300, [knxSwitch("Q204.1", 4)]),
-        pirSensor("PIR204",410 - BOX_SIZE - 2),
+        pirSensor("PIR204",410 - BOX_SIZE - 2, {installed: false}),
     ],
     bottomWall: [
         frame(350, [socket()])

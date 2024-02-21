@@ -8,7 +8,7 @@ export const room_1_07_kumbal: Room = {
     height: 250 - 15,
     left: room_1_08_wc.left - 215,
     top: room_1_08_wc.top,
-    leftBottomCorner: {height: 100, width: 100},
+    leftBottomCorner: {height: 150, width: 100},
     bottomWall: [
         wallLight("1.07a", 150),
     ],

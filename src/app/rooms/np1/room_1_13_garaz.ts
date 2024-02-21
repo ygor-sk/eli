@@ -18,19 +18,20 @@ export const room_1_13_garaz: Room = {
     ],
     leftWall: [
         frame(100, [knxSwitch("Q113.1", 2)], -115),
-        special("Display", 120, {offset: -115}),
+        special("Display", 120, {offset: -115, installed: false}),
     ],
     bottomWall: [
         frame(180, [socket(), socket()]),
         rawCable(440, "El.auto"),
         rawCable(460, "400V"),
+        special("400V box", 480, {installed: false}),
         wallLight("113.2", 500),
         frame(540, [socket(), socket()]),
         frame(600, [knxSwitch("Q113.2", 6)]),
-        pirSensor("PIR113", 640 - BOX_SIZE - 1)
+        pirSensor("PIR113", 640 - BOX_SIZE - 1, {installed: false})
     ],
     topWall: [
-        wallLight("113.2", 500)
+        wallLight("113.2", 500) // TODO: second add
     ],
     ceilingItems: [
         bulb("113.1", 240, 100),

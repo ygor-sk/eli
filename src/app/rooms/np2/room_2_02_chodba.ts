@@ -14,7 +14,7 @@ export const room_2_02_chodba: Room = {
         frame(215, [knxSwitch("Q202.1", 1)])
     ],
     rightWall: [
-        pirSensor("PIR202",0)
+        pirSensor("PIR202",0, {installed: false})
     ],
     bottomWall: [
         frame(325, [knxSwitch("Q202.2", 1)]),

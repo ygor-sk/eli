@@ -55,7 +55,7 @@ export interface Frame {
     }
 }
 
-export const frame = (position: number, items: FrameItem[], offset?: number, mirror?: boolean, options?: Frame["options"]): Frame =>
+export const frame = (position: number, items: FrameItem[], offset?: number, mirror?: boolean, options?: Partial<Frame["options"]>): Frame =>
     ({
         type: "Frame", position, items, offset, mirror,
         options: Object.assign({buried: true, installed: true}, options)
@@ -69,16 +69,15 @@ export interface KnxControl {
     knxType: 1 | 2 | 4 | 6 | 8
     nameOffset?: NameOffset,
     options: {
-        installedHardware: boolean,
-        installedCover: boolean,
+        installed: boolean,
     }
 }
 
-export const knxSwitch = (name: string, knxType: KnxControl["knxType"], nameOffset?: NameOffset, options?: Partial<Socket["options"]>): KnxControl =>
+export const knxSwitch = (name: string, knxType: KnxControl["knxType"], nameOffset?: NameOffset, options?: Partial<KnxControl["options"]>): KnxControl =>
     ({
         type: "KnxControl",
         name, knxType, nameOffset,
-        options: Object.assign({installedHardware: true, installedCover: true}, options)
+        options: Object.assign({installed: true}, options)
     })
 
 export interface Socket {
@@ -121,25 +120,29 @@ export interface CeilingItem {
     circuit: string,
     left: number,
     top: number,
+    options: {
+        installed: boolean
+    }
 }
 
-export const bulb = (circuit: string, left: number, top: number): CeilingItem => ({type: "Bulb", left, top, circuit})
-export const point = (circuit: string, left: number, top: number): CeilingItem => ({type: "Point", left, top, circuit})
-export const sensor = (circuit: string, left: number, top: number): CeilingItem => ({
-    type: "Sensor",
-    left,
-    top,
-    circuit
-})
+export const bulb = (circuit: string, left: number, top: number): CeilingItem =>
+    ({type: "Bulb", left, top, circuit, options: {installed: true}})
+export const point = (circuit: string, left: number, top: number): CeilingItem =>
+    ({type: "Point", left, top, circuit, options: {installed: true}})
+export const sensor = (circuit: string, left: number, top: number, options?: Partial<CeilingItem["options"]>): CeilingItem =>
+    ({type: "Sensor", left, top, circuit, options: Object.assign({installed: true}, options)})
 
 export interface PirSensor {
     type: "PirSensor",
     name: string,
     position: number,
+    options: {
+        installed: boolean
+    }
 }
 
-export const pirSensor = (name: string, position: number): PirSensor =>
-    ({type: "PirSensor", name, position})
+export const pirSensor = (name: string, position: number, options?: Partial<PirSensor["options"]>): PirSensor =>
+    ({type: "PirSensor", name, position, options: Object.assign({installed: true}, options)})
 
 export interface WallLight {
     type: "WallLight",
@@ -170,8 +173,9 @@ export const special = (name: string, position: number, options?: Partial<Specia
 
 export interface RawCable {
     type: "RawCable",
+    note: string
     position: number,
-    note?: string
+
 }
 
-export const rawCable = (position: number, note?: string): RawCable => ({type: "RawCable", position, note})
+export const rawCable = (position: number, name: string): RawCable => ({type: "RawCable", position, note: name})

@@ -15,7 +15,7 @@ export const room_2_05_pracovna: Room = {
         topWall: [
             frame(20, [lan("PC205b"), socket(), socket(), socket(), socket()]),
             frame(320, [socket(), socket()]),
-            pirSensor("PIR205", 400 - BOX_SIZE - 2),
+            pirSensor("PIR205", 400 - BOX_SIZE - 2, {installed: false}),
         ],
         rightWall: [
             frame(240, [socket(), socket(), socket(), socket(), lan("PC205a")]),

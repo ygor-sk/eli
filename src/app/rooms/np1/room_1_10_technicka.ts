@@ -10,14 +10,14 @@ export const room_1_10_technicka: Room = {
     left: room_1_09_sprcha.left + room_1_09_sprcha.width + 15,
     top: room_1_09_sprcha.top,
     leftWall: [
-        frame(130, [socket()]),
-        frame(180, [socket()]),
+        frame(130, [socket({installedCover: false})]), // IP44 ?
+        frame(180, [socket({installedCover: false})]),
     ],
     rightWall: [
-        frame(200, [socket()]),
+        frame(200, [socket({installedCover: false})]), // IP44 ?
     ],
     bottomWall: [
-        frame(100, [knxSwitch("Q110.1", 1)])
+        frame(100, [knxSwitch("Q110.1", 1, undefined, {installed: false})], 0, false, {installed: false})
     ],
     topWall: [
         wallLight("Ee1.1", 180, true)

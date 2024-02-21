@@ -9,11 +9,11 @@ export const room_1_09_sprcha: Room = {
     left: room_1_08_wc.left + room_1_08_wc.width + 15,
     top: room_1_08_wc.top,
     leftWall: [
-        frame(20, [socket()]),
+        frame(20, [socket({ip: "IP44"})]),
         wallLight("1.09b", 100)
     ],
     bottomWall: [
-        frame(30, [knxSwitch("Q109.1", 2)])
+        frame(30, [knxSwitch("Q109.1", 2, undefined, {installed: false})], 0, false, {  installed: false})
     ],
     ceilingItems: [
         point("1.09a", 60, 60),

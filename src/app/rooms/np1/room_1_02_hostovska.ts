@@ -12,7 +12,7 @@ export const room_1_02_hostovska: Room = {
     top: room_1_05_satnik.top,
     topWall: [
         frame(100, [knxSwitch("Q102.1", 4)]),
-        pirSensor("PIR102", 0)
+        pirSensor("PIR102", 0, {installed: false})
     ],
     rightWall: [
         frame(60, [socket()]),

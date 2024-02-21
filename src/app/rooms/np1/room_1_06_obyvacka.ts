@@ -30,12 +30,12 @@ export const room_1_06_obyvacka: Room = {
         frame(40, [socket()]),
         blinder("MZ106.1", 100, 250),
         frame(390, [socket()]),
-        pirSensor("PIR106.2", 0),
+        pirSensor("PIR106.2", 0, {installed: false}),
     ],
     topWall: [
         frame(920, [knxSwitch("Q106.1", 6)], -250),
         frame(780, [socket()]),
-        special("Display", 730),
+        special("Display", 730, {installed: false}),
         frame(480, [socket()]),
         frame(450, [knxSwitch("Q106.4", 4)]),
         frame(150, [lan("PC106a"), socket(), socket(), tunnel()]),
@@ -50,11 +50,11 @@ export const room_1_06_obyvacka: Room = {
             knxSwitch("Q106.2", 4),
             knxSwitch("Q106.3", 6)
         ]),
-        special("Sirena", 970),
-        special("Zvoncek", 990),
+        special("Sirena", 970, {installed: false}),
+        special("Zvoncek", 990, {installed: false}),
         wallLight("Ee1.5", 10, true),
         wallLight("Ee1.4", 380 + 15 + 280, true),
-        pirSensor("PIR106.1", 1010)
+        pirSensor("PIR106.1", 1010, {installed: false})
     ],
     ceilingItems: [
         bulb("E106.1", 160, 220),
