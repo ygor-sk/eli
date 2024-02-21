@@ -68,7 +68,6 @@ export interface KnxControl {
     name: string
     knxType: 1 | 2 | 4 | 6 | 8
     options: {
-        nameOffset: NameOffset,
         installed: boolean,
     }
 }
@@ -77,7 +76,7 @@ export const knxSwitch = (name: string, knxType: KnxControl["knxType"], options?
     ({
         type: "KnxControl",
         name, knxType,
-        options: Object.assign({nameOffset: {}, installed: true}, options)
+        options: Object.assign({installed: true}, options)
     })
 
 export interface Socket {
@@ -104,10 +103,14 @@ console.log(socket({voltage: 400, installedCover: false}))
 
 export interface Lan {
     name: string
-    type: "Lan"
+    type: "Lan",
+    options: {
+        missing: boolean
+    }
 }
 
-export const lan = (name: string): Lan => ({type: "Lan", name})
+export const lan = (name: string, options?: Partial<Lan["options"]>): Lan =>
+    ({type: "Lan", name, options: Object.assign({missing: false}, options)})
 
 export interface Tunnel {
     type: "Tunnel"

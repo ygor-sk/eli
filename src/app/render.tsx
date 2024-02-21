@@ -253,66 +253,72 @@ function mirrorWall(wall: Wall): Wall {
     }
 }
 
-function textProps(wall: Wall, mirror?: boolean, rotate?: boolean): any { // TODO: type
+function textProps(wall: Wall, mirror: boolean, rotate: boolean, installed: boolean): any { // TODO: type
     const effectiveWall = mirror ? mirrorWall(wall) : wall;
-    switch (effectiveWall) {
-        case Wall.Top:
-            return {
-                top: BOX_SIZE + 4,
-                ...(rotate ? {} : {writingMode: "vertical-rl", textOrientation: "mixed"})
-            }
-        case Wall.Bottom:
-            return {
-                bottom: BOX_SIZE + 4,
-                ...(rotate ? {} : {writingMode: "vertical-rl", textOrientation: "mixed"})
-            }
-        case Wall.Left:
-            return {
-                left: BOX_SIZE + 2,
-                ...(rotate ? {writingMode: "vertical-rl", textOrientation: "mixed"} : {})
-            }
-        case Wall.Right:
-            return {
-                right: BOX_SIZE + 2,
-                ...(rotate ? {writingMode: "vertical-rl", textOrientation: "mixed"} : {})
-            }
+
+    function positionProps() {
+        switch (effectiveWall) {
+            case Wall.Top:
+                return {
+                    top: BOX_SIZE + 4,
+                    ...(rotate ? {} : {writingMode: "vertical-rl", textOrientation: "mixed"})
+                }
+            case Wall.Bottom:
+                return {
+                    bottom: BOX_SIZE + 4,
+                    ...(rotate ? {} : {writingMode: "vertical-rl", textOrientation: "mixed"})
+                }
+            case Wall.Left:
+                return {
+                    left: BOX_SIZE + 2,
+                    ...(rotate ? {writingMode: "vertical-rl", textOrientation: "mixed"} : {})
+                }
+            case Wall.Right:
+                return {
+                    right: BOX_SIZE + 2,
+                    ...(rotate ? {writingMode: "vertical-rl", textOrientation: "mixed"} : {})
+                }
+        }
     }
+
+    return {
+        ...positionProps(),
+        color: installed ? undefined : "darkred",
+        textDecoration: installed ? undefined : "underline"
+    };
 }
 
 function renderFrame(wall: Wall, frame: Frame) {
-    function renderFrameItem(index: number, background: string, text?: string, nameOffset?: NameOffset) {
-        const tProps = textProps(wall, frame.options.mirror);
-        const nameOffsetProps = nameOffsetStyle(nameOffset);
-        return <NestedBox
-            level={1}
-            index={index}
-            background={background}
-            orientation={orientation(wall)}
-        >
-            <div style={{
-                position: "absolute", ...tProps, ...nameOffsetProps
-            }}>{text}</div>
-        </NestedBox>
-    }
-
     function renderFrameItems() {
         return frame.items.map((item, index) => {
+                function renderFrameItem(background: string, text: string, installed: boolean) {
+                    const tProps = textProps(wall, frame.options.mirror, false, installed);
+                    return <NestedBox
+                        level={1}
+                        index={index}
+                        background={background}
+                        orientation={orientation(wall)}
+                    >
+                        <div style={{position: "absolute", ...tProps}}>{text}</div>
+                    </NestedBox>
+                }
+
                 switch (item.type) {
                     case "Socket":
-                        return renderFrameItem(index, "lightblue", "E");
+                        return renderFrameItem("lightblue", "E", item.options.installedHardware && item.options.installedCover);
                     case "KnxControl":
-                        return renderFrameItem(index, "purple", `${item.name}|${item.knxType}`, item.options.nameOffset);
+                        return renderFrameItem("purple", `${item.name}|${item.knxType}`, item.options.installed);
                     case "Lan":
-                        return renderFrameItem(index, "gray", item.name);
+                        return renderFrameItem("gray", item.name, !item.options.missing);
                     case "Tunnel":
-                        return renderFrameItem(index, "white", "T");
+                        return renderFrameItem("white", "T", true);
                 }
             }
         )
     }
 
     const props = rectangleProps(wall, frame.position, BOX_SIZE, frame.items.length * BOX_SIZE, frame.options.offset, frame.options.mirror);
-    return <Box {...props} background={"yellow"}>
+    return <Box {...props} background={frame.options.installed ? "yellow" : "red"}>
         {renderFrameItems()}
     </Box>;
 }
@@ -330,17 +336,19 @@ function renderCeilingItem(items?: CeilingItem[]) {
             }
         }
 
-        return <Box
-            left={item.left - BOX_SIZE / 2} top={item.top - BOX_SIZE / 2}
-            width={BOX_SIZE} height={BOX_SIZE}
-            background={background()}>
-            <div style={{position: "absolute", top: -BOX_SIZE + 4, left: -4}}>{item.circuit}</div>
+        const rProps = rectangleProps(Wall.Top, item.left - BOX_SIZE / 2, BOX_SIZE, BOX_SIZE, -item.top + BOX_SIZE / 2, false);
+        const tProps = textProps(Wall.Top, false, true, item.options.installed);
+        return <Box {...rProps} background={background()}>
+            <div style={{position: "absolute", ...tProps}}>{item.circuit}</div>
         </Box>
+
     })
 }
 
 function renderPyrSensor(wall: Wall, pyrSensor: PirSensor) {
-    return renderWallItem(wall, "brown", BOX_SIZE, BOX_SIZE, pyrSensor);
+    return renderWallItem(wall, "DarkSlateGray", BOX_SIZE, BOX_SIZE, {
+        ...pyrSensor, missing: !pyrSensor.options.installed
+    });
 }
 
 function renderWallLight(wall: Wall, wallLight: WallLight) {
@@ -348,7 +356,11 @@ function renderWallLight(wall: Wall, wallLight: WallLight) {
 }
 
 function renderSpecial(wall: Wall, special: Special) {
-    return renderWallItem(wall, "aqua", BOX_SIZE, BOX_SIZE, {...special, offset: special?.options.offset});
+    return renderWallItem(wall, "aqua", BOX_SIZE, BOX_SIZE, {
+        ...special,
+        offset: special?.options.offset,
+        missing: !special.options.installed
+    });
 }
 
 function renderRawCable(wall: Wall, rawCable: RawCable) {
@@ -356,13 +368,13 @@ function renderRawCable(wall: Wall, rawCable: RawCable) {
 }
 
 function renderBlinder(wall: Wall, blinder: Blinder) {
-    return renderWallItem(wall, "red", BOX_SIZE, blinder.size, {...blinder, mirror: true, rotate: true});
+    return renderWallItem(wall, "Beige", BOX_SIZE, blinder.size, {...blinder, mirror: true, rotate: true});
 }
 
 function renderWallItem(wall: Wall, background: string, shortSize: number, longSize: number,
-                        wallItem: { name: string; position: number; mirror?: boolean; rotate?: boolean, offset?: number }) {
+                        wallItem: { name: string; position: number; mirror?: boolean; rotate?: boolean, offset?: number, missing?: boolean }) {
     const rProps = rectangleProps(wall, wallItem.position, shortSize, longSize, wallItem.offset, wallItem.mirror);
-    const tProps = textProps(wall, wallItem.mirror, wallItem.rotate);
+    const tProps = textProps(wall, wallItem.mirror || false, wallItem.rotate || false, !wallItem.missing);
     return <Box {...rProps} background={background}>
         <div style={{position: "absolute", ...tProps}}>{wallItem.name}</div>
     </Box>

@@ -9,8 +9,8 @@ export const room_1_10_technicka: Room = {
     left: room_1_09_sprcha.left + room_1_09_sprcha.width + 15,
     top: room_1_09_sprcha.top,
     leftWall: [
-        frame(130, [socket({installedCover: false})]), // IP44 ?
-        frame(180, [socket({installedCover: false})]),
+        frame(130, [socket({installedCover: false})], {installed: false}), // IP44 ?
+        frame(180, [socket({installedCover: false})], {installed: false}),
     ],
     rightWall: [
         frame(200, [socket({installedCover: false})]), // IP44 ?
