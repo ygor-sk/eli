@@ -23,14 +23,14 @@ export const room_1_13_garaz: Room = {
     bottomWall: [
         frame(180, [socket(), socket()]),
         rawCable(440, "El.auto"),
-        rawCable(500, "400V"),
-        frame(580, [socket(), socket()]),
-        wallLight("113.2", 540),
+        rawCable(460, "400V"),
+        wallLight("113.2", 500),
+        frame(540, [socket(), socket()]),
         frame(600, [knxSwitch("Q113.2", 6)]),
-        pirSensor("PIR113", 640 - BOX_SIZE)
+        pirSensor("PIR113", 640 - BOX_SIZE - 1)
     ],
     topWall: [
-        wallLight("113.2", 540)
+        wallLight("113.2", 500)
     ],
     ceilingItems: [
         bulb("113.1", 240, 100),

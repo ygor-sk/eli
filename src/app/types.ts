@@ -48,31 +48,60 @@ export interface Frame {
     position: number
     items: FrameItem[]
     offset?: number
-    mirror?: boolean
+    mirror?: boolean,
+    options: {
+        buried: boolean,
+        installed: boolean
+    }
 }
 
-export const frame = (position: number, items: FrameItem[], offset?: number, mirror?: boolean): Frame =>
-    ({type: "Frame", position, items, offset, mirror})
+export const frame = (position: number, items: FrameItem[], offset?: number, mirror?: boolean, options?: Frame["options"]): Frame =>
+    ({
+        type: "Frame", position, items, offset, mirror,
+        options: Object.assign({buried: true, installed: true}, options)
+    })
 
 export type FrameItem = KnxControl | Socket | Lan | Tunnel;
-
-type KnxType = 1 | 2 | 4 | 6 | 8;
 
 export interface KnxControl {
     type: "KnxControl"
     name: string
-    knxType: KnxType
-    nameOffset?: NameOffset
+    knxType: 1 | 2 | 4 | 6 | 8
+    nameOffset?: NameOffset,
+    options: {
+        installedHardware: boolean,
+        installedCover: boolean,
+    }
 }
 
-export const knxSwitch = (name: string, knxType: KnxType, nameOffset?: NameOffset): KnxControl =>
-    ({type: "KnxControl", name, knxType, nameOffset})
+export const knxSwitch = (name: string, knxType: KnxControl["knxType"], nameOffset?: NameOffset, options?: Partial<Socket["options"]>): KnxControl =>
+    ({
+        type: "KnxControl",
+        name, knxType, nameOffset,
+        options: Object.assign({installedHardware: true, installedCover: true}, options)
+    })
 
 export interface Socket {
-    type: "Socket"
+    type: "Socket",
+    options: {
+        ip: "IP20" | "IP44",
+        voltage: 220 | 400,
+        installedHardware: boolean,
+        installedCover: boolean,
+    }
 }
 
-export const socket = (): Socket => ({type: "Socket"})
+export const socket = (options?: Partial<Socket["options"]>): Socket => ({
+    type: "Socket",
+    options: Object.assign({
+        ip: "IP20",
+        voltage: 220,
+        installedHardware: true,
+        installedCover: true
+    }, options)
+})
+
+console.log(socket({voltage: 400, installedCover: false}))
 
 export interface Lan {
     name: string
