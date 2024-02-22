@@ -25,7 +25,7 @@ import {room_1_07_kumbal} from "./rooms/np1/room_1_07_kumbal";
 import {room_2_10_sklep} from "./rooms/np2/room_2_10_sklep";
 
 export const np_1: Floor = {
-    name: "np1",
+    name: 1,
     rooms: [
         room_1_01_chodba,
         room_1_02_hostovska,
@@ -44,7 +44,7 @@ export const np_1: Floor = {
 }
 
 export const np_2: Floor = {
-    name: "np2",
+    name: 2,
     rooms: [
         room_2_01_schody,
         room_2_02_chodba,
@@ -60,7 +60,7 @@ export const np_2: Floor = {
 }
 
 export const np_3: Floor = {
-    name: "np3",
+    name: 3,
     rooms: [
         room_3_01_podkrovie,
     ]

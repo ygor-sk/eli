@@ -18,8 +18,8 @@ function App() {
                         <li className="nav-item"><Link className="nav-link" to="/np3" style={{padding: 5}}>3.NP</Link></li>
                         <li className="nav-item"><Link className="nav-link" to="/AllItemsReport" style={{padding: 5}}>Vsetky
                             zariadenia</Link></li>
-                        <li className="nav-item"><Link className="nav-link" to="/KnxSwitchReport" style={{padding: 5}}>KNX
-                            tlacidla</Link></li>
+                        {/*<li className="nav-item"><Link className="nav-link" to="/KnxSwitchReport" style={{padding: 5}}>KNX*/}
+                        {/*    tlacidla</Link></li>*/}
                     </ul>
 
                 </div>

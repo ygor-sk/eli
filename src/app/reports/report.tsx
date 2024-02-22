@@ -1,5 +1,5 @@
 import {floors} from "../floors";
-import {CeilingItem, Floor, Frame, FrameItem, Room, WallItem} from "../types";
+import {CeilingItem, Floor, Frame, FrameItem, Room, Socket, SocketCover, SocketHardware, WallItem} from "../types";
 
 
 const wallItems = (room: Room) => [
@@ -9,19 +9,31 @@ const wallItems = (room: Room) => [
     ...(room.bottomWall || []),
 ]
 
-export function* allItems(): Generator<{ floor: Floor, room: Room, frame: Frame | null, item: WallItem | FrameItem | CeilingItem }> {
+type ReportItem = {
+    floor: Floor,
+    room: Room,
+    item: WallItem | FrameItem | CeilingItem | SocketHardware| SocketCover
+    frame?: Frame,
+    socket?: Socket,
+};
+
+export function* allItems(): Generator<ReportItem> {
     for (const floor of floors) {
         for (const room of floor.rooms) {
             for (const wallItem of wallItems(room)) {
-                yield {floor, room, frame: null, item: wallItem}
+                yield {floor, room, item: wallItem}
                 if (wallItem.type === "Frame") {
                     for (const frameItem of wallItem.items) {
                         yield {floor, room, frame: wallItem, item: frameItem};
+                        if (frameItem.type === "Socket") {
+                            yield {floor, room, frame: wallItem, item: frameItem.hardware}
+                            yield {floor, room, frame: wallItem, item: frameItem.cover}
+                        }
                     }
                 }
             }
             for (const ceilingItem of (room.ceilingItems || [])) {
-                yield {floor, room, frame: null, item: ceilingItem}
+                yield {floor, room, item: ceilingItem}
             }
         }
     }

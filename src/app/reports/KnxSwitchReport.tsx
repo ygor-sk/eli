@@ -1,7 +1,7 @@
 import {allItems} from "./report";
 
 type Row = {
-    floor: string
+    floor: number
     room: string
     name: string
 }

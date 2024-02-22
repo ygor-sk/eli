@@ -8,7 +8,7 @@ import {
     point,
     rawCable,
     Room,
-    sensor,
+    sensor, smoke,
     socket,
     wallLight
 } from "../../types";
@@ -60,7 +60,7 @@ export const room_1_04_kuchyna: Room = {
         point("1.04b", 50, 300),
         point("1.04b", 150, 300),
         point("1.04b", 250, 300),
-        sensor("DYM", 250, 180, {installed: false}),
+        smoke("DYM", 250, 180, {installed: false}),
         point("LED", 290, 375),
     ]
 };

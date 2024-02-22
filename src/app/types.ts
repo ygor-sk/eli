@@ -1,5 +1,5 @@
 export interface Floor {
-    name: "np1" | "np2" | "np3"
+    name: 1 | 2 | 3
     rooms: Room[];
 }
 
@@ -82,25 +82,41 @@ export const knxSwitch = (name: string, knxType: KnxControl["knxType"], options?
 
 export interface Socket {
     type: "Socket",
+    hardware: SocketHardware,
+    cover: SocketCover
+}
+
+export interface SocketHardware {
+    type: "SocketHardware",
     options: {
-        ip: "IP20" | "IP44",
-        voltage: 220 | 400,
-        installedHardware: boolean,
-        installedCover: boolean,
+        installed: boolean,
     }
 }
 
-export const socket = (options?: Partial<Socket["options"]>): Socket => ({
-    type: "Socket",
-    options: Object.assign({
-        ip: "IP20",
-        voltage: 220,
-        installedHardware: true,
-        installedCover: true
-    }, options)
-})
+export interface SocketCover {
+    type: "SocketCover",
+    options: {
+        ip: "IP20" | "IP44",
+        installed: boolean,
+    }
+}
 
-console.log(socket({voltage: 400, installedCover: false}))
+export const socket = (options?: { ip?: SocketCover["options"]["ip"], installedHardware?: boolean, installedCover?: boolean }): Socket => ({
+    type: "Socket",
+    hardware: {
+        type: "SocketHardware",
+        options: {
+            installed: options?.installedHardware === undefined ? true : options?.installedHardware
+        }
+    },
+    cover: {
+        type: "SocketCover",
+        options: {
+            ip: options?.ip === undefined ? "IP20" : options?.ip,
+            installed: options?.installedHardware === undefined ? true : options?.installedHardware,
+        }
+    },
+})
 
 export interface Lan {
     name: string

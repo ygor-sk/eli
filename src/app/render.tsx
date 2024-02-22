@@ -305,7 +305,7 @@ function renderFrame(wall: Wall, frame: Frame) {
 
                 switch (item.type) {
                     case "Socket":
-                        return renderFrameItem("lightblue", "E", item.options.installedHardware && item.options.installedCover);
+                        return renderFrameItem("lightblue", "E", item.hardware.options.installed && item.cover.options.installed);
                     case "KnxControl":
                         return renderFrameItem("purple", `${item.name}|${item.knxType}`, item.options.installed);
                     case "Lan":

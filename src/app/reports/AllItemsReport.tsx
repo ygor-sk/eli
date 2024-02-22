@@ -1,62 +1,84 @@
 import {allItems} from "./report";
 
 type Row = {
-    floor: string
-    room: string
-    name: string
+    floor: number
+    roomId: string
+    roomName: string
+    kind: string
+    id: string
+    missing: boolean
 }
 
-const rows: Row[] = [...allItems()]
-    .flatMap(item => {
-        function getColumns() {
-            switch (item.item.type) {
+export const rows: Row[] = [...allItems()]
+    .flatMap(reportItem => {
+        function getColumns(): Omit<Row, "floor" | "roomId" | "roomName" | "raw"> | undefined {
+            const item = reportItem.item;
+            switch (item.type) {
                 case "Frame":
-                    return "Ramcek-" + item.item.items.length;
+                    return {
+                        kind: "Ramik - " + item.items.length + (item.options.buried ? "" : " - nadomietkovy"),
+                        missing: !item.options.installed,
+                        id: ""
+                    };
                 case "PirSensor":
-                    return "PIR senzor";
+                    return {kind: "PIR senzor", missing: !item.options.installed, id: item.name};
                 case "Special":
-                    return item.item.name;
+                    return {kind: item.name, missing: !item.options.installed, id: item.name};
                 case "KnxControl":
-                    return "KNX vypinac - " + item.item.knxType + "x";
-                case "Socket":
-                    return "Zasuvka " + item.item.options.ip;
+                    return {
+                        kind: "KNX spinac - " + item.knxType + " tlacidla",
+                        missing: !item.options.installed,
+                        id: item.name
+                    };
+                case "SocketHardware":
+                    return {kind: "Zasuvka - strojcek", missing: !item.options.installed, id: ""};
+                case "SocketCover":
+                    return {kind: "Zasuvka - koliska " + item.options.ip, missing: !item.options.installed, id: ""};
                 case "Lan":
-                    return "Zasuvka LAN";
+                    return {kind: "Zasuvka LAN", missing: item.options.missing, id: item.name};
                 case "Tunnel":
-                    return "Tunel";
+                    return {kind: "Tunel", missing: false, id: ""};
                 case "Sensor":
-                    return "Senzor - pohyb";
+                    return {kind: "Senzor - pohyb", missing: !item.options.installed, id: item.circuit};
                 case "Smoke":
-                    return "Senzor - dym";
+                    return {kind: "Senzor - dym", missing: !item.options.installed, id: item.circuit};
             }
         }
 
-        let kind = getColumns();
-
-        return kind ?
+        const columns = getColumns();
+        return columns ?
             [{
-                floor: item.floor.name,
-                room: item.room.name,
-                name: kind
+                floor: reportItem.floor.name,
+                roomId: reportItem.room.id,
+                roomName: reportItem.room.name,
+                ...columns
             }] : [];
     })
     .sort();
 
 export function AllItemsReport() {
-    return <table className={"table table-bordered"}>
+    return <table className={"table table-bordered table-sm"}>
         <thead>
         <tr>
+            <th>nr.</th>
             <th>Poschodie</th>
             <th>Miestnost</th>
+            <th>Miestnost</th>
+            <th>Typ</th>
             <th>ID</th>
+            <th>Status</th>
         </tr>
         </thead>
         <tbody>
-        {rows.map(row =>
-            <tr>
+        {rows.map((row, index) =>
+            <tr className={row.missing ? "table-danger" : undefined}>
+                <td>{index + 1}</td>
                 <td>{row.floor}</td>
-                <td>{row.room}</td>
-                <td>{row.name}</td>
+                <td>{row.roomId}</td>
+                <td>{row.roomName}</td>
+                <td>{row.kind}</td>
+                <td>{row.id}</td>
+                <td>{row.missing ? "chýba" : ""}</td>
             </tr>)}
         </tbody>
     </table>
