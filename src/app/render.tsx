@@ -125,7 +125,7 @@ function NestedBox(props: NestedBoxProps) {
 
 export function renderFloor(floor: Floor) {
     return (
-        <div style={{position: "relative", margin: 60}}>
+        <div className={"main"} style={{position: "relative", margin: 60}}>
             {
                 floor.rooms.map(room => renderRoom(room))
             }
