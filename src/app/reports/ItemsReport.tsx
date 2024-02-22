@@ -9,7 +9,7 @@ type ItemRow = {
     missing: boolean
 }
 
-const allItems: ItemRow[] = [...allReportItems()]
+export const allItemRows: ItemRow[] = [...allReportItems()]
     .flatMap(reportItem => {
         function getColumns(): Omit<ItemRow, "floor" | "roomId" | "roomName"> | undefined {
             const item = reportItem.item;
@@ -55,7 +55,7 @@ const allItems: ItemRow[] = [...allReportItems()]
             }] : [];
     });
 
-const missingItems: ItemRow[] = allItems.filter(item => item.missing);
+export const missingItemRows: ItemRow[] = allItemRows.filter(item => item.missing);
 
 function ItemsReport(rows: ItemRow[]) {
     return <table className={"table table-bordered table-sm"}>
@@ -85,5 +85,5 @@ function ItemsReport(rows: ItemRow[]) {
     </table>
 }
 
-export const AllItemsReport = () => ItemsReport(allItems);
-export const MissingItemsReport = () => ItemsReport(missingItems);
+export const AllItemsReport = () => ItemsReport(allItemRows);
+export const MissingItemsReport = () => ItemsReport(missingItemRows);
