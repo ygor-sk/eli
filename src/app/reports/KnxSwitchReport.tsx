@@ -1,4 +1,4 @@
-import {allItems} from "./report";
+import {allReportItems} from "./report";
 
 type Row = {
     floor: number
@@ -6,7 +6,7 @@ type Row = {
     name: string
 }
 
-const rows: Row[] = [...allItems()]
+const rows: Row[] = [...allReportItems()]
     .flatMap(item =>
         item.item.type === "KnxControl" ?
             [{

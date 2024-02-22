@@ -17,7 +17,7 @@ type ReportItem = {
     socket?: Socket,
 };
 
-export function* allItems(): Generator<ReportItem> {
+export function* allReportItems(): Generator<ReportItem> {
     for (const floor of floors) {
         for (const room of floor.rooms) {
             for (const wallItem of wallItems(room)) {

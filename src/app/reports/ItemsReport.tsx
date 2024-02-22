@@ -1,6 +1,6 @@
-import {allItems} from "./report";
+import {allReportItems} from "./report";
 
-type Row = {
+type ItemRow = {
     floor: number
     roomId: string
     roomName: string
@@ -9,9 +9,9 @@ type Row = {
     missing: boolean
 }
 
-export const rows: Row[] = [...allItems()]
+const allItems: ItemRow[] = [...allReportItems()]
     .flatMap(reportItem => {
-        function getColumns(): Omit<Row, "floor" | "roomId" | "roomName" | "raw"> | undefined {
+        function getColumns(): Omit<ItemRow, "floor" | "roomId" | "roomName"> | undefined {
             const item = reportItem.item;
             switch (item.type) {
                 case "Frame":
@@ -53,10 +53,11 @@ export const rows: Row[] = [...allItems()]
                 roomName: reportItem.room.name,
                 ...columns
             }] : [];
-    })
-    .sort();
+    });
 
-export function AllItemsReport() {
+const missingItems: ItemRow[] = allItems.filter(item => item.missing);
+
+function ItemsReport(rows: ItemRow[]) {
     return <table className={"table table-bordered table-sm"}>
         <thead>
         <tr>
@@ -83,3 +84,6 @@ export function AllItemsReport() {
         </tbody>
     </table>
 }
+
+export const AllItemsReport = () => ItemsReport(allItems);
+export const MissingItemsReport = () => ItemsReport(missingItems);
