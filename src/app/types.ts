@@ -113,7 +113,7 @@ export const socket = (options?: { ip?: SocketCover["options"]["ip"], installedH
         type: "SocketCover",
         options: {
             ip: options?.ip === undefined ? "IP20" : options?.ip,
-            installed: options?.installedHardware === undefined ? true : options?.installedHardware,
+            installed: options?.installedCover === undefined ? true : options?.installedCover,
         }
     },
 })

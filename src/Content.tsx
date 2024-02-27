@@ -1,5 +1,5 @@
 import {renderFloor} from "./app/render";
-import {np_1, np_2} from "./app/floors";
+import {np_1, np_2} from "./app/rooms/floors";
 
 export enum Screen {
     NP_1,

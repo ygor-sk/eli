@@ -17,17 +17,23 @@ const rows: Row[] = [...allReportItems()]
     .sort();
 
 export function KnxSwitchReport() {
-    return <table>
+    return <table className={"table table-bordered table-sm"}>
+        <thead>
         <tr>
+            <th>nr.</th>
             <th>Poschodie</th>
             <th>Miestnost</th>
             <th>ID</th>
         </tr>
-        {rows.map(row =>
+        </thead>
+        <tbody>
+        {rows.map((row, index) =>
             <tr>
+                <td>{index + 1}</td>
                 <td>{row.floor}</td>
                 <td>{row.room}</td>
                 <td>{row.name}</td>
             </tr>)}
+        </tbody>
     </table>
 }

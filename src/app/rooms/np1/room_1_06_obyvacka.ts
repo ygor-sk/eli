@@ -34,8 +34,8 @@ export const room_1_06_obyvacka: Room = {
     ],
     topWall: [
         frame(920, [knxSwitch("Q106.1", 6)], {offset: -250}),
-        frame(780, [socket()]),
-        special("Display", 730, {installed: false}),
+        special("Display", 780, {installed: false}),
+        frame(750, [socket()]),
         frame(480, [socket()]),
         frame(450, [knxSwitch("Q106.4", 4)]),
         frame(150, [lan("PC106a"), socket(), socket(), tunnel()]),

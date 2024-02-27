@@ -15,7 +15,8 @@ export const room_2_04_herna: Room = {
         blinder("MZ204.1", 250, 100),
         frame(100, [socket(), socket(), socket(), socket()]),
         frame(360, [knxSwitch("Q204.2", 4)]),
-        wallLight("Ee1.3", 30, true)
+        wallLight("Ee1.3", 20, true),
+        frame(40, [socket({ip: "IP44"})], {mirror: true})
     ],
     topWall: [
         frame(200, [

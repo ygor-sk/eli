@@ -1,4 +1,4 @@
-import {floors} from "../floors";
+import {floors} from "../rooms/floors";
 import {CeilingItem, Floor, Frame, FrameItem, Room, Socket, SocketCover, SocketHardware, WallItem} from "../types";
 
 

@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import {BrowserRouter as Router, Link, Navigate, Route, Routes} from 'react-router-dom';
 
-import {np_1, np_2, np_3} from "./app/floors";
+import {np_1, np_2, np_3} from "./app/rooms/floors";
 import {renderFloor} from "./app/render";
 import {KnxSwitchReport} from "./app/reports/KnxSwitchReport";
 import {AllItemsReport, MissingItemsReport} from "./app/reports/ItemsReport";
@@ -29,8 +29,8 @@ function App() {
                             zariadenia - Sumar</Link></li>
                         <li className="nav-item"><Link className="nav-link" to="/MissingItemSummaryReport">Chybajuce
                             zariadenia - Sumar</Link></li>
-                        {/*<li className="nav-item"><Link className="nav-link" to="/KnxSwitchReport">KNX*/}
-                        {/*    tlacidla</Link></li>*/}
+                        <li className="nav-item"><Link className="nav-link" to="/KnxSwitchReport">KNX
+                            tlacidla</Link></li>
                     </ul>
 
                 </div>
@@ -45,10 +45,10 @@ function App() {
                     <Route path="/np2" element={renderFloor(np_2)}/>
                     <Route path="/np3" element={renderFloor(np_3)}/>
                     <Route path="/AllItemsReport" element={AllItemsReport()}/>
-                    <Route path="/KnxSwitchReport" element={KnxSwitchReport()}/>
                     <Route path="/MissingItemsReport" element={MissingItemsReport()}/>
                     <Route path="/AllItemSummaryReport" element={AllItemSummaryReport()}/>
                     <Route path="/MissingItemSummaryReport" element={MissingItemSummaryReport()}/>
+                    <Route path="/KnxSwitchReport" element={KnxSwitchReport()}/>
                 </Routes>
             </div>
         </main>

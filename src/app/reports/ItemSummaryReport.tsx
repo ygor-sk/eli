@@ -14,26 +14,27 @@ const missingItemCounts = _.countBy(missingItemRows, item => item.kind);
 const missingItemSummary: ItemSummaryRow[] = _.sortBy(Object.entries(missingItemCounts)
     .map(([kind, count]) => ({kind, count})), x => x.kind);
 
-function ItemsReport(rows: ItemSummaryRow[]) {
+function ItemsReport(rows: ItemSummaryRow[], allMissing: boolean) {
     return <table className={"table table-bordered table-sm"}>
         <thead>
         <tr>
             <th>nr.</th>
             <th>Typ</th>
             <th>Pocet</th>
+            {allMissing ? <th>Status</th> : undefined}
         </tr>
         </thead>
         <tbody>
         {rows.map((row, index) =>
-            <tr>
+            <tr className={allMissing ? "table-danger" : undefined}>
                 <td>{index + 1}</td>
                 <td>{row.kind}</td>
                 <td>{row.count}</td>
+                {allMissing ? <td>chýba</td> : undefined}
             </tr>)}
         </tbody>
     </table>
 }
 
-
-export const AllItemSummaryReport = () => ItemsReport(allItemSummary)
-export const MissingItemSummaryReport = () => ItemsReport(missingItemSummary)
+export const AllItemSummaryReport = () => ItemsReport(allItemSummary, false)
+export const MissingItemSummaryReport = () => ItemsReport(missingItemSummary, true)
