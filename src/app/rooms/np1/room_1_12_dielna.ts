@@ -15,6 +15,10 @@ export const room_1_12_dielna: Room = {
             100,
             [knxSwitch("Q112.2", 2, {installed: false})],
             {mirror: true, installed: false}),
+        frame(
+            120,
+            [socket({ip: "IP44"})],
+            {mirror: true}),
         frame(200, [socket(), socket()]),
         blinder("MZ112.1", 140, 200),
         wallLight("Ee1.6", 50, true)

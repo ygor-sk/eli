@@ -1,9 +1,12 @@
 import {allReportItems} from "./report";
+import {KnxControl} from "../types";
 
 type Row = {
     floor: number
     room: string
-    name: string
+    name: string,
+    knxType: KnxControl['knxType'],
+    missing: boolean
 }
 
 const rows: Row[] = [...allReportItems()]
@@ -12,7 +15,9 @@ const rows: Row[] = [...allReportItems()]
             [{
                 floor: item.floor.name,
                 room: item.room.name,
-                name: item.item.name
+                name: item.item.name,
+                knxType: item.item.knxType,
+                missing: !item.item.options.installed,
             }] : [])
     .sort();
 
@@ -24,6 +29,8 @@ export function KnxSwitchReport() {
             <th>Poschodie</th>
             <th>Miestnost</th>
             <th>ID</th>
+            <th>Pocet tlacitok</th>
+            <th>Status</th>
         </tr>
         </thead>
         <tbody>
@@ -33,6 +40,8 @@ export function KnxSwitchReport() {
                 <td>{row.floor}</td>
                 <td>{row.room}</td>
                 <td>{row.name}</td>
+                <td>{row.knxType}</td>
+                <td className={row.missing ? "table-danger" : undefined}>{row.missing ? "chýba" : ""}</td>
             </tr>)}
         </tbody>
     </table>

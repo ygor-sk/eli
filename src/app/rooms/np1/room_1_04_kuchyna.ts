@@ -12,6 +12,7 @@ import {
     socket,
     wallLight
 } from "../../types";
+import {BOX_SIZE} from "../../render";
 
 export const room_1_04_kuchyna: Room = {
     id: "1.04",
@@ -32,9 +33,10 @@ export const room_1_04_kuchyna: Room = {
             [knxSwitch("Q104.2", 8, {installed: false})],
             {installed: false}
         ),
-        blinder("MZ104.2", 50, 200),
+        blinder("MZ104.2", 80, 170),
         blinder("MZ104.1", 260, 80),
         wallLight("Ee1.3", 30, true),
+        frame(50, [socket({ip: "IP44"})], {mirror: true}),
     ],
     bottomWall: [
         frame(10, [socket(), socket(), socket(), socket()]),

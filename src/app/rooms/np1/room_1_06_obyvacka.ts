@@ -44,12 +44,16 @@ export const room_1_06_obyvacka: Room = {
     ],
     bottomWall: [
         frame(170, [socket()]),
+        frame(170, [socket({ip: "IP44"})], {mirror: true}),
         blinder("MZ106.3", 200, 150),
         blinder("MZ106.4", 360, 150),
         frame(520, [
             knxSwitch("Q106.2", 4),
             knxSwitch("Q106.3", 6)
         ]),
+        frame(520, [
+            knxSwitch("Q106.4", 1, {installed: false}),
+        ], {mirror: true, installed: false}),
         special("Sirena", 970, {installed: false}),
         special("Zvoncek", 990, {installed: false}),
         wallLight("Ee1.5", 10, true),
