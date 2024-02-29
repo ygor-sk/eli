@@ -8,11 +8,10 @@ import {
     point,
     rawCable,
     Room,
-    sensor, smoke,
+    smoke,
     socket,
     wallLight
 } from "../../types";
-import {BOX_SIZE} from "../../render";
 
 export const room_1_04_kuchyna: Room = {
     id: "1.04",

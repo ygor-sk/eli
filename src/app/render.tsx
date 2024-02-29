@@ -13,6 +13,7 @@ import {
     WallLight
 } from "./types";
 import React, {ReactNode} from "react";
+import socketIp22 from "./images/socket-ip22.svg";
 
 export const BOX_SIZE = 14;
 const NESTED_BOX_MARGIN = 2;
@@ -45,6 +46,11 @@ interface BoxProps {
     borderBottom?: boolean,
 }
 
+interface ImageProps {
+    path: string,
+    rotate: 0 | 90 | 180 | 270
+}
+
 function orientation(wall: Wall): Orientation {
     switch (wall) {
         case Wall.Top:
@@ -60,7 +66,7 @@ function orientation(wall: Wall): Orientation {
 
 function Box(props: BoxProps) {
     function resolveBorder(border?: boolean) {
-        return border === undefined || border ? "1px solid black" : "1px solid white";
+        return border ? "1px solid black" : undefined;
     }
 
     return <div
@@ -117,7 +123,8 @@ function NestedBox(props: NestedBoxProps) {
         }
     }
 
-    return <Box width={size} height={size} left={left()} bottom={bottom()} background={props.background}>
+    return <Box width={size} height={size} left={left()} bottom={bottom()}
+                background={props.background}>
         {props.children}
     </Box>
 }
@@ -147,7 +154,9 @@ function nameOffsetStyle(nameOffset?: NameOffset): any {
 function renderRoom(room: Room) {
     return <Box
         left={room.left} top={room.top} width={room.width} height={room.height}
-        background={"grey"} className={room.name}
+        background={"grey"}
+        borderRight={true} borderLeft={true} borderTop={true} borderBottom={true}
+        className={room.name}
     >
         <div className="room-name" style={nameOffsetStyle(room.nameOffset)}>
             {room.id} / {room.name}
@@ -288,18 +297,47 @@ function textProps(wall: Wall, mirror: boolean, rotate: boolean, installed: bool
     };
 }
 
+function imageProps(wall: Wall, mirror: boolean, path: string): any {
+    function rotate(): ImageProps['rotate'] {
+        switch (wall) {
+            case Wall.Top:
+                return 180;
+            case Wall.Bottom:
+                return 0;
+            case Wall.Left:
+                return 90;
+            case Wall.Right:
+                return 270;
+        }
+    }
+
+    return {
+        position: "absolute",
+        backgroundImage: `url(${path})`,
+        backgroundSize: "cover",
+        width: "100%",
+        height: "100%",
+        transform: `rotate(${rotate()}deg)`
+    }
+}
+
 function renderFrame(wall: Wall, frame: Frame) {
     function renderFrameItems() {
         return frame.items.map((item, index) => {
                 function renderFrameItem(background: string, text: string, installed: boolean) {
                     const tProps = textProps(wall, frame.options.mirror, false, installed);
+                    const iProps = imageProps(wall, frame.options.mirror, socketIp22);
                     return <NestedBox
                         level={1}
                         index={index}
                         background={background}
                         orientation={orientation(wall)}
                     >
-                        <div style={{position: "absolute", ...tProps}}>{text}</div>
+                        <div style={{...iProps}}/>
+                        <div style={{position: "absolute", ...tProps}}>
+                            {text}
+                        </div>
+
                     </NestedBox>
                 }
 
@@ -318,7 +356,8 @@ function renderFrame(wall: Wall, frame: Frame) {
     }
 
     const props = rectangleProps(wall, frame.position, BOX_SIZE, frame.items.length * BOX_SIZE, frame.options.offset, frame.options.mirror);
-    return <Box {...props} background={frame.options.installed ? "yellow" : "red"}>
+    return <Box {...props} background={frame.options.installed ? "yellow" : "red"}
+                borderLeft={true} borderRight={true} borderBottom={true} borderTop={true}>
         {renderFrameItems()}
     </Box>;
 }
@@ -366,11 +405,18 @@ function renderSpecial(wall: Wall, special: Special) {
 }
 
 function renderRawCable(wall: Wall, rawCable: RawCable) {
-    return renderWallItem(wall, "darkGreen", BOX_SIZE, BOX_SIZE, {...rawCable, name: rawCable.note || ""});
+    return renderWallItem(wall, "darkGreen", BOX_SIZE, BOX_SIZE, {
+        ...rawCable,
+        name: rawCable.note || ""
+    });
 }
 
 function renderBlinder(wall: Wall, blinder: Blinder) {
-    return renderWallItem(wall, "Beige", BOX_SIZE, blinder.size, {...blinder, mirror: true, rotate: true});
+    return renderWallItem(wall, "Beige", BOX_SIZE, blinder.size, {
+        ...blinder,
+        mirror: true,
+        rotate: true
+    });
 }
 
 function renderWallItem(wall: Wall, background: string, shortSize: number, longSize: number,
