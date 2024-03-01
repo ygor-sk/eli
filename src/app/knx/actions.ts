@@ -149,24 +149,50 @@ export const actions: Action[] = [
     action(knxSwitch("Q203.1", 1), "E203.1"),
     action(knxSwitch("Q203.1", 2), ["E203.2", "E203.3"]),
     action(knxSwitch("Q203.1", 3), blinder("MZ203.1", "up")),
-    action(knxSwitch("Q203.1", 4), "xxxxxx"),
+    action(knxSwitch("Q203.1", 4), blinder("MZ203.1", "down")),
 
-    action(knxSwitch("xxxx", 1), "xxxxxx"),
+    action(knxSwitch("Q203.2", 1), "E203.2"),
+    action(knxSwitch("Q203.2", 2), "E203.2"),
 
-    action(knxSwitch("xxxx", 1), "xxxxxx"),
+    action(knxSwitch("Q203.3", 1), "E203.3"),
+    action(knxSwitch("Q203.3", 2), "E203.1"),
 
-    action(knxSwitch("xxxx", 1), "xxxxxx"),
+    // satnik
+    action(knxSwitch("Q209.1", 1), "E209.1"),
 
-    action(knxSwitch("xxxx", 1), "xxxxxx"),
+    // herna
+    action(knxSwitch("Q204.1", 1), "E204.1"),
+    action(knxSwitch("Q204.1", 2), "E204.2"),
+    action(knxSwitch("Q204.1", 3), "E301.1"),
+    action(knxSwitch("Q204.1", 4), "Ee2.1"),
 
-    action(knxSwitch("xxxx", 1), "xxxxxx"),
+    action(knxSwitch("Q204.2", 1), blinder("MZ204.2", "up")),
+    action(knxSwitch("Q204.2", 2), blinder("MZ204.2", "down")),
+    action(knxSwitch("Q204.2", 3), blinder("MZ204.1", "up")),
+    action(knxSwitch("Q204.2", 4), blinder("MZ204.1", "down")),
 
-    action(knxSwitch("xxxx", 1), "xxxxxx"),
+    // povala
+    action(knxSwitch("Q301.1", 1), "E301.1"),
+    action(knxSwitch("Q301.2", 2), "E204.1"),
 
-    action(knxSwitch("xxxx", 1), "xxxxxx"),
+    // pracovna
+    action(knxSwitch("Q205.1", 1), "E205.1"),
+    action(knxSwitch("Q205.1", 2), "E205.2"),
+    action(knxSwitch("Q205.1", 3), "nepouzite"),
+    action(knxSwitch("Q205.1", 4), "Ee2.1"),
+    action(knxSwitch("Q205.1", 5), blinder("MZ205.2", "up")),
+    action(knxSwitch("Q205.1", 6), blinder("MZ205.2", "down")),
+    action(knxSwitch("Q205.1", 7), blinder("MZ205.1", "up")),
+    action(knxSwitch("Q205.1", 8), blinder("MZ205.1", "down")),
 
-    action(knxSwitch("xxxx", 1), "xxxxxx"),
-
-    action(knxSwitch("xxxx", 1), "xxxxxx"),
+    // zadna
+    action(knxSwitch("Q206.2", 1), "E206.1"),
+    action(knxSwitch("Q206.2", 2), "E206.2"),
+    action(knxSwitch("Q206.2", 3), "nepouzite"),
+    action(knxSwitch("Q206.2", 4), "Ee2.1"),
+    action(knxSwitch("Q206.2", 5), blinder("MZ206.2", "up")),
+    action(knxSwitch("Q206.2", 6), blinder("MZ206.2", "down")),
+    action(knxSwitch("Q206.2", 7), blinder("MZ206.1", "up")),
+    action(knxSwitch("Q206.2", 8), blinder("MZ206.1", "down")),
 
 ]
