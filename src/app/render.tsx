@@ -465,6 +465,7 @@ function renderRawCable(wall: Wall, rawCable: RawCable) {
 function renderBlinder(wall: Wall, blinder: Blinder) {
     return renderWallItem(wall, BOX_SIZE, blinder.size, {
         ...blinder,
+        border: true,
         background: "Beige",
         mirror: true,
         rotate: true
@@ -475,13 +476,15 @@ function renderWallItem(wall: Wall, shortSize: number, longSize: number,
                         options: {
                             name: string; position: number; mirror?: boolean;
                             rotate?: boolean, offset?: number, missing?: boolean,
+                            border?: boolean,
                             background?: string,
                             image?: string,
                         }) {
     const rProps = rectangleProps(wall, options.position, shortSize, longSize, options.offset, options.mirror);
     const tProps = textProps(wall, options.mirror || false, options.rotate || false, !options.missing);
     const iProps = options.image ? imageProps(wall, !!options.mirror, options.image) : undefined;
-    return <Box {...rProps} background={options.background}>
+    return <Box {...rProps} background={options.background} borderTop={options.border}
+                borderBottom={options.border} borderLeft={options.border} borderRight={options.border} >
         {iProps ? <div style={{...iProps}}/> : undefined}
         <div style={{...tProps}}>{options.name}&nbsp;{options.missing ? "(?)" : ""}</div>
     </Box>
