@@ -11,9 +11,9 @@ export const room_1_07_kumbal: Room = {
     top: room_1_08_wc.top,
     leftBottomCorner: {height: 150, width: 100},
     bottomWall: [
-        wallLight("1.07a", 150),
+        wallLight("107.1", 150),
     ],
     rightWall: [
-        wallLight("1.07a", 180),
+        wallLight("107.1", 180),
     ],
 };

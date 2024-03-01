@@ -8,12 +8,12 @@ export const room_1_12_dielna: Room = {
     leftWall: [
         frame(
             100,
-            [knxSwitch("Q112.1", 4, {installed: false})],
+            [knxSwitch("Q112.2", 4, {installed: false})],
             {installed: false}
         ),
         frame(
             100,
-            [knxSwitch("Q112.2", 2, {installed: false})],
+            [knxSwitch("Q112.3", 2, {installed: false})],
             {mirror: true, installed: false}),
         frame(
             120,
@@ -32,9 +32,9 @@ export const room_1_12_dielna: Room = {
         pirSensor("PIR112", 0, {installed: false}),
     ],
     ceilingItems: [
-        bulb("1.03a", 80, 100),
-        bulb("1.03a", 240, 100),
-        bulb("1.03a", 80, 300),
-        bulb("1.03a", 240, 300),
+        bulb("112.1", 80, 100),
+        bulb("112.1", 240, 100),
+        bulb("112.1", 80, 300),
+        bulb("112.1", 240, 300),
     ],
 }

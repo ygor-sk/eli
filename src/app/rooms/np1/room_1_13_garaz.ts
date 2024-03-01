@@ -23,7 +23,7 @@ export const room_1_13_garaz: Room = {
     bottomWall: [
         frame(180, [socket(), socket()]),
         rawCable(440, "El.auto"),
-        special("400V", 460, {installed: false, offset: -40}),
+        special("400V", 460, {installed: false, offset: -50}),
         rawCable(460, "400V"),
         wallLight("113.2", 500),
         frame(540, [socket(), socket()]),

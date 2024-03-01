@@ -50,18 +50,18 @@ export const room_1_04_kuchyna: Room = {
                 socket(), socket(), socket(), socket()
             ]
         ),
-        wallLight("LED", 285)
+        wallLight("104.3", 285)
     ],
     ceilingItems: [
-        bulb("1.04a", 100, 180),
-        bulb("1.04a", 200, 180),
-        point("1.04b", 50, 60),
-        point("1.04b", 150, 60),
-        point("1.04b", 250, 60),
-        point("1.04b", 50, 180),
-        point("1.04b", 50, 300),
-        point("1.04b", 150, 300),
-        point("1.04b", 250, 300),
+        bulb("104.2", 100, 180),
+        bulb("104.2", 200, 180),
+        point("104.1", 50, 60),
+        point("104.1", 150, 60),
+        point("104.1", 250, 60),
+        point("104.1", 50, 180),
+        point("104.1", 50, 300),
+        point("104.1", 150, 300),
+        point("104.1", 250, 300),
         smoke("DYM", 250, 180, {installed: false})
     ]
 };

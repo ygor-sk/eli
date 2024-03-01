@@ -16,7 +16,7 @@ export const room_2_06_zadna: Room = {
         ]),
         blinder("MZ206.1", 50, 220),
         blinder("MZ206.2", 280, 80),
-        wallLight("Ee1.5", 10, true),
+        wallLight("Ee2.1", 10, true),
         frame(30, [socket({ip: "IP44"})], {mirror: true}),
     ],
     leftWall: [
@@ -36,10 +36,10 @@ export const room_2_06_zadna: Room = {
             [knxSwitch("Q206.2", 8, {installed: false}),],
             {installed: false, buried: false})],
     ceilingItems: [
-        bulb("2.06a", 190, 200),
-        point("2.06b", 100, 100),
-        point("2.06b", 280, 100),
-        point("2.06b", 100, 300),
-        point("2.06b", 280, 300),
+        bulb("206.1", 190, 200),
+        point("206.2", 100, 100),
+        point("206.2", 280, 100),
+        point("206.2", 100, 300),
+        point("206.2", 280, 300),
     ]
 };
