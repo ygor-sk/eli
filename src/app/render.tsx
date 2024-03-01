@@ -13,13 +13,19 @@ import {
     WallLight
 } from "./types";
 import React, {ReactNode} from "react";
-import socketIp22 from "./images/socket-ip22.svg";
-import socketIp24 from "./images/socket-ip44.svg";
-import rj45 from "./images/rj45.svg";
-import knxSwitch from "./images/knxSwitch.svg";
-import tunnel from "./images/tunnel.svg";
-import bulb from "./images/bulb.svg";
-import point from "./images/point.svg";
+import imgSocketIp22 from "./images/socket-ip22.svg";
+import imgSocketIp24 from "./images/socket-ip44.svg";
+import imgRj45 from "./images/rj45.svg";
+import imgKnxSwitch from "./images/knxSwitch.svg";
+import imgTunnel from "./images/tunnel.svg";
+import imgBulb from "./images/bulb.svg";
+import imgPoint from "./images/point.svg";
+import imgRawCable from "./images/rawCable.svg";
+import imgWallLight from "./images/wallLight.svg";
+import imgPirSensor from "./images/pirSensor.svg";
+import imgMotionSensor from "./images/motionSensor.svg";
+import imgSmokeDetector from "./images/smokeDetector.svg";
+import imgSpecial from "./images/special.svg";
 
 export const BOX_SIZE = 14;
 const NESTED_BOX_MARGIN = 2;
@@ -331,8 +337,8 @@ function imageProps(wall: Wall, mirror: boolean, path: string): any {
 function renderFrame(wall: Wall, frame: Frame) {
     function renderFrameItems() {
         return frame.items.map((item, index) => {
-                function renderFrameItem(image: string, text: string, installed: boolean) {
-                    const tProps = textProps(wall, frame.options.mirror, false, installed);
+                function renderFrameItem(image: string, text: string, missingParts: number) {
+                    const tProps = textProps(wall, frame.options.mirror, false, missingParts === 0);
                     const iProps = imageProps(wall, frame.options.mirror, image);
                     return <NestedBox
                         level={1}
@@ -341,7 +347,7 @@ function renderFrame(wall: Wall, frame: Frame) {
                     >
                         <div style={{...iProps}}/>
                         <div style={{...tProps}}>
-                            {text}
+                            {text}&nbsp;{missingParts ? `(${"?".repeat(missingParts)})` : ""}
                         </div>
 
                     </NestedBox>
@@ -350,25 +356,51 @@ function renderFrame(wall: Wall, frame: Frame) {
                 switch (item.type) {
                     case "Socket":
                         return renderFrameItem(
-                            item.cover.options.ip === "IP20" ? socketIp22 : socketIp24,
+                            item.cover.options.ip === "IP20" ? imgSocketIp22 : imgSocketIp24,
                             "E",
-                            item.hardware.options.installed && item.cover.options.installed);
+                            Number(!item.hardware.options.installed) + Number(!item.cover.options.installed));
                     case "KnxControl":
-                        return renderFrameItem(knxSwitch, `${item.name}|${item.knxType}`, item.options.installed);
+                        return renderFrameItem(imgKnxSwitch, `${item.name}|${item.knxType}`, Number(!item.options.installed));
                     case "Lan":
-                        return renderFrameItem(rj45, item.name, !item.options.missing);
+                        return renderFrameItem(imgRj45, item.name, Number(item.options.missing));
                     case "Tunnel":
-                        return renderFrameItem(tunnel, "Tunnel", true);
+                        return renderFrameItem(imgTunnel, "Tunnel", 0);
                 }
             }
         )
     }
 
-    const props = rectangleProps(wall, frame.position, BOX_SIZE, frame.items.length * BOX_SIZE, frame.options.offset, frame.options.mirror);
-    return <Box {...props} background={frame.options.installed ? undefined : "red"}
-                borderLeft={true} borderRight={true} borderBottom={true} borderTop={true}>
-        {renderFrameItems()}
-    </Box>;
+
+    let notBuriedBox = undefined;
+    if (!frame.options.buried) {
+        const props = rectangleProps(
+            wall, frame.position,
+            6,
+            frame.items.length * BOX_SIZE,
+            frame.options.offset, frame.options.mirror
+        );
+        notBuriedBox =
+            <Box {...props} background={frame.options.installed ? undefined : "red"}
+                 borderLeft={true} borderRight={true} borderBottom={true} borderTop={true}
+            />
+        ;
+    }
+
+    const props = rectangleProps(
+        wall, frame.position,
+        BOX_SIZE,
+        frame.items.length * BOX_SIZE,
+        frame.options.offset - (frame.options.buried ? 0 : 6),
+        frame.options.mirror
+    );
+    return <>
+        {notBuriedBox}
+        <Box {...props} background={frame.options.installed ? undefined : "red"}
+             borderLeft={true} borderRight={true} borderBottom={true} borderTop={true}
+        >
+            {renderFrameItems()}
+        </Box>
+    </>;
 }
 
 function renderCeilingItem(items?: CeilingItem[]) {
@@ -376,13 +408,13 @@ function renderCeilingItem(items?: CeilingItem[]) {
         function options(): { background?: string, image?: string } {
             switch (item.type) {
                 case "Bulb":
-                    return {image: bulb};
+                    return {image: imgBulb};
                 case "Point":
-                    return {image: point};
+                    return {image: imgPoint};
                 case "Sensor":
-                    return {background: "darkblue"};
+                    return {image: imgMotionSensor};
                 case "Smoke":
-                    return {background: "purple"};
+                    return {image: imgSmokeDetector};
             }
         }
 
@@ -390,18 +422,18 @@ function renderCeilingItem(items?: CeilingItem[]) {
 
         const rProps = rectangleProps(Wall.Top, item.left - BOX_SIZE / 2, BOX_SIZE, BOX_SIZE, -item.top + BOX_SIZE / 2, false);
         const tProps = textProps(Wall.Top, false, true, item.options.installed);
+        const iProps = opt.image ? imageProps(Wall.Top, false, opt.image) : undefined;
         return <Box {...rProps} background={opt.background}>
-            {opt.image ? <div style={{...imageProps(Wall.Top, false, opt.image)}}/> : undefined}
-            <div style={{...tProps}}>{item.circuit}</div>
+            {iProps ? <div style={{...iProps}}/> : undefined}
+            <div style={{...tProps}}>{item.circuit}&nbsp;{item.options.installed ? "" : "(?)"}</div>
         </Box>
-
     })
 }
 
 function renderPyrSensor(wall: Wall, pyrSensor: PirSensor) {
     return renderWallItem(wall, BOX_SIZE, BOX_SIZE, {
         ...pyrSensor,
-        background: "DarkSlateGray",
+        image: imgPirSensor,
         missing: !pyrSensor.options.installed
     });
 }
@@ -409,15 +441,15 @@ function renderPyrSensor(wall: Wall, pyrSensor: PirSensor) {
 function renderWallLight(wall: Wall, wallLight: WallLight) {
     return renderWallItem(wall, BOX_SIZE, BOX_SIZE, {
         ...wallLight,
-        background: "pink",
+        image: imgWallLight,
     });
 }
 
 function renderSpecial(wall: Wall, special: Special) {
     return renderWallItem(wall, BOX_SIZE, BOX_SIZE, {
         ...special,
-        background: "aqua",
-        offset: special?.options.offset,
+        image: imgSpecial,
+        offset: special.options.offset,
         missing: !special.options.installed
     });
 }
@@ -425,7 +457,7 @@ function renderSpecial(wall: Wall, special: Special) {
 function renderRawCable(wall: Wall, rawCable: RawCable) {
     return renderWallItem(wall, BOX_SIZE, BOX_SIZE, {
         ...rawCable,
-        background: "darkGreen",
+        image: imgRawCable,
         name: rawCable.note || ""
     });
 }
@@ -448,7 +480,9 @@ function renderWallItem(wall: Wall, shortSize: number, longSize: number,
                         }) {
     const rProps = rectangleProps(wall, options.position, shortSize, longSize, options.offset, options.mirror);
     const tProps = textProps(wall, options.mirror || false, options.rotate || false, !options.missing);
+    const iProps = options.image ? imageProps(wall, !!options.mirror, options.image) : undefined;
     return <Box {...rProps} background={options.background}>
-        <div style={{...tProps}}>{options.name}</div>
+        {iProps ? <div style={{...iProps}}/> : undefined}
+        <div style={{...tProps}}>{options.name}&nbsp;{options.missing ? "(?)" : ""}</div>
     </Box>
 }

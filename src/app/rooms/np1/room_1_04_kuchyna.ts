@@ -22,7 +22,7 @@ export const room_1_04_kuchyna: Room = {
     left: room_1_06_obyvacka.left + 652 + 38 + 35,
     top: room_1_06_obyvacka.top + room_1_06_obyvacka.height + 30,
     topWall: [
-        pirSensor("PIR104", 200, {installed: false})
+        pirSensor("PIR104", 285, {installed: false})
     ],
     leftWall: [
         frame(130, [socket()]),

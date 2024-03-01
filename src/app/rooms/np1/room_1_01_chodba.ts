@@ -1,5 +1,6 @@
 import {room_1_08_wc} from "./room_1_08_wc";
 import {bulb, frame, knxSwitch, pirSensor, point, Room, socket, special, wallLight} from "../../types";
+import imgDisplay from "../../images/display.svg";
 
 export const room_1_01_chodba: Room = {
     id: "1.01",

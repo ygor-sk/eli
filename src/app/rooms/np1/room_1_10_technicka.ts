@@ -9,11 +9,11 @@ export const room_1_10_technicka: Room = {
     left: room_1_09_sprcha.left + room_1_09_sprcha.width + 15,
     top: room_1_09_sprcha.top,
     leftWall: [
-        frame(130, [socket({installedCover: false})], {installed: false}), // IP44 ?
-        frame(180, [socket({installedCover: false})], {installed: false}),
+        frame(130, [socket({ip: "IP44", installedCover: false})], {installed: false}),
+        frame(180, [socket({ip: "IP44", installedCover: false})], {installed: false}),
     ],
     rightWall: [
-        frame(200, [socket({installedCover: false})], {installed: false}), // IP44 ?
+        frame(200, [socket({ip: "IP44", installedCover: false})], {installed: false}),
     ],
     bottomWall: [
         frame(100, [knxSwitch("Q110.1", 1, {installed: false})], {installed: false})

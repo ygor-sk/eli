@@ -184,7 +184,7 @@ export interface Special {
     name: string,
     options: {
         installed: boolean,
-        offset: number
+        offset: number,
     }
 }
 
