@@ -8,7 +8,7 @@ export const room_1_12_dielna: Room = {
     leftWall: [
         frame(
             100,
-            [knxSwitch("Q112.2", 4, {installed: false})],
+            [knxSwitch("Q112.2", 2, {installed: false})],
             {installed: false}
         ),
         frame(

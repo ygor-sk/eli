@@ -17,7 +17,7 @@ export const room_2_06_zadna: Room = {
         blinder("MZ206.1", 50, 220),
         blinder("MZ206.2", 280, 80),
         wallLight("Ee2.1", 10, true),
-        frame(30, [socket({ip: "IP44"})], {mirror: true}),
+        frame(30, [socket({ip: "IP44", installedHardware: false, installedCover: false})], {mirror: true, installed: false}),
     ],
     leftWall: [
         frame(100, [socket(), socket()]),

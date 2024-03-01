@@ -14,11 +14,13 @@ export const room_1_13_garaz: Room = {
         height: 155
     },
     rightWall: [
-        wallLight("Ee1.1", 380, true)
+        wallLight("Ee1.1", 380, true),
+        special("Brana - plot", 200, {offset: 200})
     ],
     leftWall: [
-        frame(100, [knxSwitch("Q113.1", 2)], {offset: -115}),
+        frame(100, [knxSwitch("Q113.1", 4)], {offset: -115}),
         special("Display", 120, {offset: -115, installed: false}),
+        special("Brana - garaz", 200, {offset: -200})
     ],
     bottomWall: [
         frame(180, [socket(), socket()]),
@@ -28,7 +30,7 @@ export const room_1_13_garaz: Room = {
         wallLight("113.2", 500),
         frame(540, [socket(), socket()]),
         frame(600, [knxSwitch("Q113.2", 6)]),
-        pirSensor("PIR113", 640 - BOX_SIZE - 1, {installed: false})
+        pirSensor("PIR113", 640 - BOX_SIZE - 1, {installed: false}),
     ],
     topWall: [
         wallLight("113.2", 500) // TODO: second add
