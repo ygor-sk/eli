@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {BrowserRouter as Router, Link, Navigate, Route, Routes} from 'react-router-dom';
+import {HashRouter as Router, Link, Navigate, Route, Routes} from 'react-router-dom';
 
 import {np_1, np_2, np_3} from "./app/rooms/floors";
 import {renderFloor} from "./app/render";
