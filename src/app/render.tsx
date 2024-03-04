@@ -458,7 +458,8 @@ function renderRawCable(wall: Wall, rawCable: RawCable) {
     return renderWallItem(wall, BOX_SIZE, BOX_SIZE, {
         ...rawCable,
         image: imgRawCable,
-        name: rawCable.note || ""
+        name: rawCable.note || "",
+        offset: rawCable.options.offset
     });
 }
 

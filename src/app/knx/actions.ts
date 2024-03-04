@@ -27,21 +27,25 @@ function blinder(name: string, direction: Blinder['direction']): Blinder {
     return {type: "Blinder", name, direction};
 }
 
+interface Lights {
+    type: "Lights",
+    names: string[]
+}
 
-interface Action {
+export interface Action {
     source: KnxSwitch | Sensor, // knxSwitch OR sensor
-    targets: string[] | Blinder// light circuit OR special
+    target: Lights | Blinder// light circuit OR special
 }
 
 function action(source: KnxSwitch | Sensor, target: string | string[] | Blinder): Action {
     if (Array.isArray(target)) {
-        return {source, targets: target};
+        return {source, target: {type: "Lights", names: target}};
     }
     if (typeof target === "string") {
-        return {source, targets: [target]};
+        return {source, target: {type: "Lights", names: [target]}};
     }
     if (target.type === "Blinder") {
-        return {source, targets: target}
+        return {source, target: target}
     }
     throw "Unsupported target: " + JSON.stringify(target);
 }

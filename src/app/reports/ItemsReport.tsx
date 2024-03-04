@@ -33,7 +33,7 @@ export const allItemRows: ItemRow[] = [...allReportItems()]
                 case "SocketHardware":
                     return {kind: "Zasuvka - strojcek", missing: !item.options.installed, id: ""};
                 case "SocketCover":
-                    return {kind: "Zasuvka - koliska " + item.options.ip, missing: !item.options.installed, id: ""};
+                    return {kind: "Zasuvka - kryt " + item.options.ip, missing: !item.options.installed, id: ""};
                 case "Lan":
                     return {kind: "Zasuvka LAN", missing: item.options.missing, id: item.name};
                 case "Tunnel":

@@ -198,7 +198,14 @@ export interface RawCable {
     type: "RawCable",
     note: string
     position: number,
-
+    options: {
+        offset: number,
+    }
 }
 
-export const rawCable = (position: number, name: string): RawCable => ({type: "RawCable", position, note: name})
+export const rawCable = (position: number, name: string, options?: Partial<RawCable["options"]>): RawCable => ({
+    type: "RawCable",
+    position,
+    note: name,
+    options: Object.assign({offset: 0}, options)
+})

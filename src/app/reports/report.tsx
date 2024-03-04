@@ -9,7 +9,7 @@ const wallItems = (room: Room) => [
     ...(room.bottomWall || []),
 ]
 
-type ReportItem = {
+export type ReportItem = {
     floor: Floor,
     room: Room,
     item: WallItem | FrameItem | CeilingItem | SocketHardware| SocketCover
