@@ -10,9 +10,14 @@ import {AllItemSummaryReport, MissingItemSummaryReport} from "./app/reports/Item
 
 function App() {
     return <Router>
-        <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark noprint">
+            <button className="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"/>
+            </button>
             <div className="container-fluid">
-                <div className="collapse navbar-collapse" id="navbarCollapse">
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-md-0">
                         <li className="nav-item"><Link className="nav-link" to="/np1">1.NP</Link>
                         </li>
@@ -32,7 +37,6 @@ function App() {
                         <li className="nav-item"><Link className="nav-link" to="/KnxSwitchReport">KNX
                             tlacidla</Link></li>
                     </ul>
-
                 </div>
             </div>
         </nav>

@@ -15,7 +15,7 @@ export const room_1_01_chodba: Room = {
     ],
     bottomWall: [
         frame(420, [knxSwitch("Q101.1", 4)]),
-        special("Display", 360, {installed: false}),
+        special("Klavesnica", 360, {installed: false}),
         frame(
             300,
             [socket({installedHardware: false, installedCover: false})],

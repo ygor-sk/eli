@@ -5,7 +5,7 @@ import {
     knxSwitch,
     lan,
     pirSensor,
-    point,
+    point, rawCable,
     Room,
     socket,
     special,
@@ -34,7 +34,8 @@ export const room_1_06_obyvacka: Room = {
     ],
     topWall: [
         frame(920, [knxSwitch("Q106.1", 6)], {offset: -250}),
-        special("Display", 780, {installed: false}),
+        // special("Display", 780, {installed: false}),
+        rawCable( 780, "Display"),
         frame(750, [socket()]),
         frame(480, [socket()]),
         frame(450, [knxSwitch("Q106.4", 4)]),

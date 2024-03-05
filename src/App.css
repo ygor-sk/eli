@@ -18,5 +18,9 @@ body {
     font-weight: bold;
 }
 
-
+@media print {
+    .noprint {
+        visibility: hidden;
+    }
+}
 

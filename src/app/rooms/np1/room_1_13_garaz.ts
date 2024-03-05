@@ -28,7 +28,7 @@ export const room_1_13_garaz: Room = {
     ],
     leftWall: [
         frame(100, [knxSwitch("Q113.1", 4)], {offset: -115}),
-        special("Display", 120, {offset: -115, installed: false}),
+        special("Klavesnica", 120, {offset: -115, installed: false}),
         special("ovl.garaz brany", 200, {offset: -140, installed: false}),
     ],
     bottomWall: [
