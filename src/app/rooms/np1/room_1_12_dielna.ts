@@ -32,9 +32,9 @@ export const room_1_12_dielna: Room = {
         pirSensor("PIR112", 0, {installed: false}),
     ],
     ceilingItems: [
-        bulb("112.1", 80, 100),
-        bulb("112.1", 240, 100),
-        bulb("112.1", 80, 300),
-        bulb("112.1", 240, 300),
+        bulb("E112.1", 80, 100),
+        bulb("E112.1", 240, 100),
+        bulb("E112.1", 80, 300),
+        bulb("E112.1", 240, 300),
     ],
 }

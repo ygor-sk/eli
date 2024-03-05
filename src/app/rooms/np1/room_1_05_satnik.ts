@@ -17,7 +17,7 @@ export const room_1_05_satnik: Room = {
         )
     ],
     ceilingItems: [
-        point("105.1", 45, 60),
-        point("105.1", 100, 60),
+        point("E105.1", 45, 60),
+        point("E105.1", 100, 60),
     ]
 };

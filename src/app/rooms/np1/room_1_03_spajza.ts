@@ -12,7 +12,7 @@ export const room_1_03_spajza: Room = {
         frame(70, [socket(), socket()])
     ],
     ceilingItems: [
-        point("103.1", 80, 60),
-        point("103.1", 80, 180),
+        point("E103.1", 80, 60),
+        point("E103.1", 80, 180),
     ]
 };

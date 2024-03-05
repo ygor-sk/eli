@@ -22,7 +22,7 @@ export const room_1_10_technicka: Room = {
         wallLight("Ee1.1", 180, true)
     ],
     ceilingItems: [
-        point("110.1", 70, 80),
-        point("110.1", 140, 80),
+        point("E110.1", 70, 80),
+        point("E110.1", 140, 80),
     ]
 };

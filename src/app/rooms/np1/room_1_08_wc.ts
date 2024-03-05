@@ -15,7 +15,7 @@ export const room_1_08_wc: Room = {
         frame(10, [socket({ip: "IP44"})], {mirror: true})
     ],
     ceilingItems: [
-        point("108.1", 50, 60),
-        point("108.1", 50, 160),
+        point("E108.1", 50, 60),
+        point("E108.1", 50, 160),
     ]
 };

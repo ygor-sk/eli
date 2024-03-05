@@ -16,7 +16,7 @@ export const room_1_09_sprcha: Room = {
         frame(30, [knxSwitch("Q109.1", 2, {installed: false})], {installed: false})
     ],
     ceilingItems: [
-        point("109.1", 60, 60),
-        point("109.1", 60, 160),
+        point("E109.1", 60, 60),
+        point("E109.1", 60, 160),
     ]
 };

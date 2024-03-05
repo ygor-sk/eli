@@ -64,8 +64,8 @@ export const room_1_06_obyvacka: Room = {
     ceilingItems: [
         bulb("E106.2", 160, 220),
         ...([0, 1, 2, 3].map(i => [
-            point("106.1", 100 + i * 200, 80),
-            point("106.1", 100 + i * 200, 340),
+            point("E106.1", 100 + i * 200, 80),
+            point("E106.1", 100 + i * 200, 340),
         ]).flat()),
         point("E106.4", 900, 340),
         ...([0, 1, 2].map(i =>

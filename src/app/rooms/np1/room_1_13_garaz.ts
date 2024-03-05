@@ -36,16 +36,16 @@ export const room_1_13_garaz: Room = {
         rawCable(440, "El.auto"),
         special("400V_box", 460, {installed: false, offset: -50}),
         rawCable(460, "400V"),
-        wallLight("113.2", 500),
+        wallLight("E113.2", 500),
         frame(540, [socket(), socket()]),
         frame(600, [knxSwitch("Q113.2", 6)]),
         pirSensor("PIR113", 640 - BOX_SIZE - 1, {installed: false}),
     ],
     topWall: [
-        wallLight("113.2", 500) // TODO: second add
+        wallLight("E113.2", 500) // TODO: second add
     ],
     ceilingItems: [
-        bulb("113.1", 240, 100),
-        bulb("113.1", 240, 300),
+        bulb("E113.1", 240, 100),
+        bulb("E113.1", 240, 300),
     ]
 };

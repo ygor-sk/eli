@@ -12,7 +12,7 @@ export const room_2_07_wc = {
         frame(20, [knxSwitch("Q207.1", 1, {installed: false})], {installed: false})
     ],
     ceilingItems: [
-        point("207.1", 50, 60),
-        point("207.1", 50, 160),
+        point("E207.1", 50, 60),
+        point("E207.1", 50, 160),
     ]
 };
