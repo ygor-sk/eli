@@ -28,7 +28,7 @@ export const room_1_06_obyvacka: Room = {
     },
     leftWall: [
         frame(40, [socket()]),
-        blinder("MZ106.1", 100, 250),
+        blinder("MZ106.2", 100, 250),
         frame(390, [socket()]),
         pirSensor("PIR106.2", 0, {installed: false}),
     ],
@@ -38,7 +38,7 @@ export const room_1_06_obyvacka: Room = {
         rawCable( 780, "Display"),
         frame(750, [socket()]),
         frame(480, [socket()]),
-        frame(450, [knxSwitch("Q106.4", 4)]),
+        frame(450, [knxSwitch("Q106.3", 4)]),
         frame(150, [lan("PC106a"), socket(), socket(), tunnel()]),
         frame(150 - 2 * BOX_SIZE, [socket(), socket(), socket(), socket()], {offset: -4 * BOX_SIZE}),
         frame(150 + 3 * BOX_SIZE, [tunnel()], {offset: -4 * BOX_SIZE}),
@@ -49,11 +49,11 @@ export const room_1_06_obyvacka: Room = {
         blinder("MZ106.3", 200, 150),
         blinder("MZ106.4", 360, 150),
         frame(520, [
-            knxSwitch("Q106.2", 4),
-            knxSwitch("Q106.3", 6)
+            knxSwitch("Q106.4", 4),
+            knxSwitch("Q106.2", 6)
         ]),
         frame(520, [
-            knxSwitch("Q106.4", 1, {installed: false}),
+            knxSwitch("Q106.5", 1, {installed: false}),
         ], {mirror: true, installed: false}),
         special("Sirena", 970, {installed: false}),
         special("Zvoncek", 990, {installed: false}),
@@ -62,13 +62,13 @@ export const room_1_06_obyvacka: Room = {
         pirSensor("PIR106.1", 1010, {installed: false})
     ],
     ceilingItems: [
-        bulb("E106.1", 160, 220),
+        bulb("E106.2", 160, 220),
         ...([0, 1, 2, 3].map(i => [
-            point("106.3", 100 + i * 200, 80),
-            point("106.3", 100 + i * 200, 340),
+            point("106.1", 100 + i * 200, 80),
+            point("106.1", 100 + i * 200, 340),
         ]).flat()),
         point("E106.4", 900, 340),
         ...([0, 1, 2].map(i =>
-            bulb("E106.2", 600 + i * 40, 120)))
+            bulb("E106.3", 600 + i * 40, 120)))
     ]
 };

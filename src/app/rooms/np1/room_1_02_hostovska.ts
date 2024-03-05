@@ -19,7 +19,7 @@ export const room_1_02_hostovska: Room = {
         frame(300, [socket()]),
     ],
     bottomWall: [
-        blinder("MZ102.1", 60, 180)
+        blinder("MZ102.2", 60, 180)
     ],
     leftWall: [
         frame(30, [socket()]),

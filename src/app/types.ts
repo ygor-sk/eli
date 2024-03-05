@@ -89,6 +89,7 @@ export interface Socket {
 export interface SocketHardware {
     type: "SocketHardware",
     options: {
+        name: string,
         installed: boolean,
     }
 }
@@ -101,11 +102,12 @@ export interface SocketCover {
     }
 }
 
-export const socket = (options?: { ip?: SocketCover["options"]["ip"], installedHardware?: boolean, installedCover?: boolean }): Socket => ({
+export const socket = (options?: { name?: string, ip?: SocketCover["options"]["ip"], installedHardware?: boolean, installedCover?: boolean }): Socket => ({
     type: "Socket",
     hardware: {
         type: "SocketHardware",
         options: {
+            name: options?.name || "E",
             installed: options?.installedHardware === undefined ? true : options?.installedHardware
         }
     },

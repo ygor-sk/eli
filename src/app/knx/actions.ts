@@ -60,8 +60,8 @@ export const actions: Action[] = [
 
     action(knxSwitch("Q102.1", 1), "E102.1"),
     action(knxSwitch("Q102.1", 2), "E105.1"),
-    action(knxSwitch("Q102.1", 3), blinder("MZ102.1", "up")),
-    action(knxSwitch("Q102.1", 4), blinder("MZ102.1", "down")),
+    action(knxSwitch("Q102.1", 3), blinder("MZ102.2", "up")),
+    action(knxSwitch("Q102.1", 4), blinder("MZ102.2", "down")),
 
     action(knxSwitch("Q104.2", 1), "E104.2"),
     action(knxSwitch("Q104.2", 2), "E104.1"),
@@ -85,22 +85,22 @@ export const actions: Action[] = [
     action(knxSwitch("Q106.1", 5), "E106.3"),
     action(knxSwitch("Q106.1", 6), "E101.1"),
 
-    action(knxSwitch("Q106.2", 1), "E106.2"),
-    action(knxSwitch("Q106.2", 2), "E106.1"),
-    action(knxSwitch("Q106.2", 3), "E106.3"),
-    action(knxSwitch("Q106.2", 4), ["Ee1.3", "Ee1.4", "Ee1.5"]),
-
-    action(knxSwitch("Q106.3", 1), blinder("MZ106.4", "up")),
-    action(knxSwitch("Q106.3", 2), blinder("MZ106.4", "down")),
-    action(knxSwitch("Q106.3", 3), blinder("MZ106.3", "up")),
-    action(knxSwitch("Q106.3", 4), blinder("MZ106.3", "down")),
-    action(knxSwitch("Q106.3", 5), blinder("MZ106.1", "up")),
-    action(knxSwitch("Q106.3", 6), blinder("MZ106.1", "down")),
-
     action(knxSwitch("Q106.4", 1), "E106.2"),
     action(knxSwitch("Q106.4", 2), "E106.1"),
     action(knxSwitch("Q106.4", 3), "E106.3"),
-    action(knxSwitch("Q106.4", 4), "E106.4"),
+    action(knxSwitch("Q106.4", 4), ["Ee1.3", "Ee1.4", "Ee1.5"]),
+
+    action(knxSwitch("Q106.2", 1), blinder("MZ106.4", "up")),
+    action(knxSwitch("Q106.2", 2), blinder("MZ106.4", "down")),
+    action(knxSwitch("Q106.2", 3), blinder("MZ106.3", "up")),
+    action(knxSwitch("Q106.2", 4), blinder("MZ106.3", "down")),
+    action(knxSwitch("Q106.2", 5), blinder("MZ106.2", "up")),
+    action(knxSwitch("Q106.2", 6), blinder("MZ106.2", "down")),
+
+    action(knxSwitch("Q106.3", 1), "E106.2"),
+    action(knxSwitch("Q106.3", 2), "E106.1"),
+    action(knxSwitch("Q106.3", 3), "E106.3"),
+    action(knxSwitch("Q106.3", 4), "E106.4"),
 
     action(knxSwitch("Q106.5", 1), ["Ee1.3", "Ee1.4", "Ee1.5"]),
 
@@ -152,8 +152,8 @@ export const actions: Action[] = [
     // spalna
     action(knxSwitch("Q203.1", 1), "E203.1"),
     action(knxSwitch("Q203.1", 2), ["E203.2", "E203.3"]),
-    action(knxSwitch("Q203.1", 3), blinder("MZ203.1", "up")),
-    action(knxSwitch("Q203.1", 4), blinder("MZ203.1", "down")),
+    action(knxSwitch("Q203.1", 3), blinder("MZ203.2", "up")),
+    action(knxSwitch("Q203.1", 4), blinder("MZ203.2", "down")),
 
     action(knxSwitch("Q203.2", 1), "E203.2"),
     action(knxSwitch("Q203.2", 2), "E203.2"),

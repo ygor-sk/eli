@@ -357,7 +357,7 @@ function renderFrame(wall: Wall, frame: Frame) {
                     case "Socket":
                         return renderFrameItem(
                             item.cover.options.ip === "IP20" ? imgSocketIp22 : imgSocketIp24,
-                            "E",
+                            item.hardware.options.name,
                             Number(!item.hardware.options.installed) + Number(!item.cover.options.installed));
                     case "KnxControl":
                         return renderFrameItem(imgKnxSwitch, `${item.name}|${item.knxType}`, Number(!item.options.installed));

@@ -10,7 +10,7 @@ export const room_2_01_schody: Room = {
     left: room_2_05_pracovna.left + room_2_05_pracovna.width + 15,
     top: room_2_05_pracovna.top,
     rightWall: [
-        frame(200, [socket()])
+        frame(200, [socket({name: "202.2"})])
     ],
     ceilingItems: [
         point("E202.1", 50, 100),
