@@ -56,7 +56,7 @@ export const room_1_06_obyvacka: Room = {
             knxSwitch("Q106.5", 1, {installed: false}),
         ], {mirror: true, installed: false}),
         special("Sirena", 970, {installed: false}),
-        special("Zvoncek", 990, {installed: false}),
+        // special("Zvoncek", 990, {installed: false}),
         wallLight("Ee1.5", 10, true),
         wallLight("Ee1.4", 380 + 15 + 280, true),
         pirSensor("PIR106.1", 1010, {installed: false})

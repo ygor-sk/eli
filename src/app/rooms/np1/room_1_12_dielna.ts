@@ -8,13 +8,12 @@ export const room_1_12_dielna: Room = {
     leftWall: [
         frame(
             100,
-            [knxSwitch("Q112.2", 2, {installed: false})],
-            {installed: false}
+            [knxSwitch("Q112.2", 2)]
         ),
         frame(
             100,
-            [knxSwitch("Q112.3", 2, {installed: false})],
-            {mirror: true, installed: false}),
+            [knxSwitch("Q112.3", 2)],
+            {mirror: true}),
         frame(
             120,
             [socket({ip: "IP44"})],

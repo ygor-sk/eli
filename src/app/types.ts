@@ -202,6 +202,7 @@ export interface RawCable {
     position: number,
     options: {
         offset: number,
+        installed: boolean,// todo render
     }
 }
 
@@ -209,5 +210,5 @@ export const rawCable = (position: number, name: string, options?: Partial<RawCa
     type: "RawCable",
     position,
     note: name,
-    options: Object.assign({offset: 0}, options)
+    options: Object.assign({offset: 0, installed: true}, options)
 })

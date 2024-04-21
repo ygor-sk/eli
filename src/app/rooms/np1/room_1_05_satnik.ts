@@ -12,8 +12,8 @@ export const room_1_05_satnik: Room = {
     topWall: [
         frame(
             120,
-            [knxSwitch("Q105.1", 2, {installed: false})],
-            {installed: false}
+            [knxSwitch("Q105.1", 2)],
+
         )
     ],
     ceilingItems: [

@@ -14,8 +14,8 @@ export const room_3_01_podkrovie: Room = {
     bottomWall: [
         frame(
             100,
-            [knxSwitch("Q301.1", 2, {installed: false})],
-            {buried: false, installed: false}
+            [knxSwitch("Q301.1", 2)],
+            {buried: false}
         )
     ],
     ceilingItems: [

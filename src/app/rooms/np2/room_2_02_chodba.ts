@@ -18,7 +18,7 @@ export const room_2_02_chodba: Room = {
     ],
     bottomWall: [
         frame(325, [knxSwitch("Q202.2", 1, {installed: false})], {installed: false}),
-        frame(160, [socket({installedHardware: false, installedCover: false})], {installed: false}),
+        frame(160, [socket()]),
         frame(100, [socket({name: "202.2"})]),
     ],
     ceilingItems: [

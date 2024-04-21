@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="157.177 131.673 140.581 141.162" width="140.581px" height="141.162px" xmlns="http://www.w3.org/2000/svg">
+  <g transform="matrix(1, 0, 0, 1, 2.842170943040401e-14, 0)">
+    <ellipse style="stroke: rgb(0, 0, 0); fill: none; stroke-width: 8px;" cx="226.067" cy="239.706" rx="28.706" ry="28.706"/>
+    <line style="stroke: rgb(0, 0, 0); fill: none; stroke-width: 8px;" x1="225.84" y1="210.772" x2="226.067" y2="151.995"/>
+    <polyline style="stroke: rgb(0, 0, 0); fill: none; stroke-width: 8px;" points="192.684 133.411 192.155 149.359 260.693 149.131 260.957 133.183"/>
+  </g>
+</svg>

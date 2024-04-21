@@ -33,8 +33,8 @@ export const room_2_06_zadna: Room = {
         ]),
         frame(
             100,
-            [knxSwitch("Q206.2", 8, {installed: false}),],
-            {installed: false, buried: false})],
+            [knxSwitch("Q206.2", 8),],
+            {buried: false})], // buried no ?
     ceilingItems: [
         bulb("E206.1", 190, 200),
         point("E206.2", 100, 100),
